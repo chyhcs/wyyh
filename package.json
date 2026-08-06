@@ -1,4 +1,12 @@
 {
+  "name": "wyyh-deck",
+  "private": true,
+  "description": "32:9 one-page RNP-iFLYTEK procurement process deck",
+  "scripts": {
+    "build": "node build_deck.js",
+    "qa": "./scripts/qa.sh",
+    "preview": "./scripts/render.sh"
+  },
   "dependencies": {
     "pptxgenjs": "^4.0.1"
   }
