@@ -82,8 +82,20 @@ def _bullet(p, color, char="•"):
     etree.SubElement(pPr, qn("a:buChar")).set("char", char)
 
 
+def _num_bullet(p, color):
+    """自动编号项目符号（1. 2. 3.），用于要点列表。"""
+    pPr = p._p.get_or_add_pPr()
+    pPr.set("marL", str(int(Inches(0.22))))
+    pPr.set("indent", str(-int(Inches(0.22))))
+    buClr = etree.SubElement(pPr, qn("a:buClr"))
+    etree.SubElement(buClr, qn("a:srgbClr")).set("val", color)
+    etree.SubElement(pPr, qn("a:buSzPct")).set("val", "100000")
+    etree.SubElement(pPr, qn("a:buFont")).set("typeface", "Arial")
+    etree.SubElement(pPr, qn("a:buAutoNum")).set("type", "arabicPeriod")
+
+
 def fill_tf(tf, content, size=12, color=BODY, bold=False, align="l", valign="t",
-            margin=(0.05, 0.03, 0.05, 0.03), ls=1.15, sa=4, bullet=False, bcolor=None):
+            margin=(0.05, 0.03, 0.05, 0.03), ls=1.15, sa=4, bullet=False, bcolor=None, num=False):
     tf.word_wrap = True
     tf.auto_size = MSO_AUTO_SIZE.NONE
     tf.margin_left, tf.margin_top, tf.margin_right, tf.margin_bottom = [Inches(m) for m in margin]
@@ -102,7 +114,7 @@ def fill_tf(tf, content, size=12, color=BODY, bold=False, align="l", valign="t",
             r.text = t
             _set_font(r, size, BLUE if blue else color, bold or b)
         if bullet:
-            _bullet(p, bcolor or color)
+            (_num_bullet if num else _bullet)(p, bcolor or color)
     return tf
 
 
