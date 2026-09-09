@@ -162,13 +162,18 @@ def note(slide, y, content, h=0.4, size=10.5):
     return text(slide, L, y, CW, h, content, size=size, color=MUTE, valign="m", margin=(0, 0, 0, 0), sa=0)
 
 
-def cell_borders(cell, color=LINE, w=0.5):
+def cell_borders(cell, color=LINE, w=0.5, vlines=True):
     tcPr = cell._tc.get_or_add_tcPr()
     for tag in ("a:lnL", "a:lnR", "a:lnT", "a:lnB"):
         for e in tcPr.findall(qn(tag)):
             tcPr.remove(e)
     for i, tag in enumerate(("a:lnL", "a:lnR", "a:lnT", "a:lnB")):
         ln = etree.Element(qn(tag))
+        if tag in ("a:lnL", "a:lnR") and not vlines:
+            ln.set("w", "0")
+            etree.SubElement(ln, qn("a:noFill"))
+            tcPr.insert(i, ln)
+            continue
         ln.set("w", str(int(Pt(w))))
         ln.set("cap", "flat")
         ln.set("cmpd", "sng")
@@ -180,7 +185,7 @@ def cell_borders(cell, color=LINE, w=0.5):
 
 
 def table(slide, x, y, colw, header, rows, row_h=0.6, header_h=0.42, size=11.5, header_size=11.5,
-          header_fill=RED, header_color=WHITE, row_fills=None, first_col=True, valign="m", pad=0.08):
+          header_fill=RED, header_color=WHITE, row_fills=None, first_col=True, valign="m", pad=0.08, vlines=True):
     nrows, ncols = len(rows) + 1, len(colw)
     heights = row_h if isinstance(row_h, list) else [row_h] * len(rows)
     gf = slide.shapes.add_table(nrows, ncols, Inches(x), Inches(y), Inches(sum(colw)), Inches(header_h + sum(heights)))
@@ -198,7 +203,7 @@ def table(slide, x, y, colw, header, rows, row_h=0.6, header_h=0.42, size=11.5, 
         tbl.rows[r].height = Inches(heights[r - 1])
     for c, h in enumerate(header):
         cell = tbl.cell(0, c)
-        cell_borders(cell, color=header_fill if header_color == WHITE else LINE)
+        cell_borders(cell, color=header_fill if header_color == WHITE else LINE, vlines=vlines)
         cell.fill.solid()
         cell.fill.fore_color.rgb = rgb(header_fill)
         cell.vertical_anchor = MSO_ANCHOR.MIDDLE
@@ -207,7 +212,7 @@ def table(slide, x, y, colw, header, rows, row_h=0.6, header_h=0.42, size=11.5, 
         rf = row_fills[r - 1] if row_fills else WHITE
         for c, content in enumerate(row):
             cell = tbl.cell(r, c)
-            cell_borders(cell)
+            cell_borders(cell, vlines=vlines)
             cell.fill.solid()
             cell.fill.fore_color.rgb = rgb(rf)
             cell.vertical_anchor = {"t": MSO_ANCHOR.TOP, "m": MSO_ANCHOR.MIDDLE}[valign]
