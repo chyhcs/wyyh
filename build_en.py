@@ -14,8 +14,24 @@ Usage: python3 build_en.py <template.pptx> <out.pptx>
 """
 import sys
 
+import os
+
 import pptx_helpers
-pptx_helpers.FONT = "Arial"
+
+# ---- 排版风格开关（可用环境变量覆盖，便于并排比稿）----
+EN_FONT = os.environ.get("EN_FONT", "Calibri")        # Arial / Calibri / Segoe UI
+LS_MIN = float(os.environ.get("EN_LS", "1.38"))       # 行距下限
+SA_ADD = float(os.environ.get("EN_SA", "1"))         # 段后额外磅数
+pptx_helpers.FONT = EN_FONT
+
+_fill_tf = pptx_helpers.fill_tf
+
+
+def _fill_tf_styled(tf, content, ls=1.15, sa=4, **kw):
+    return _fill_tf(tf, content, ls=max(ls, LS_MIN), sa=sa + SA_ADD, **kw)
+
+
+pptx_helpers.fill_tf = _fill_tf_styled
 
 from pptx import Presentation
 from pptx.enum.shapes import MSO_SHAPE
@@ -86,7 +102,7 @@ def appendix_slide(title, question):
     return s
 
 
-def thesis(s, content, y=1.02, h=0.56):
+def thesis(s, content, y=1.00, h=0.60):
     body(s, L, y, CW, h, content, size=13, color=TXT, valign="m", ls=1.25)
 
 
@@ -140,7 +156,7 @@ def value_chain(s, y, h, items, lab="Direct value in this project"):
         card(s, cx, cy, w, ch, fill=WHITE, line=LINE)
         text(s, cx + 0.16, cy + 0.05, w - 0.32, 0.28, t1, size=10.5, color=TXT, bold=True,
              valign="m", margin=(0, 0, 0, 0), sa=0)
-        body(s, cx + 0.16, cy + 0.32, w - 0.32, ch - 0.38, t2, size=9, color=MUTE, ls=1.25)
+        body(s, cx + 0.16, cy + 0.30, w - 0.32, ch - 0.34, t2, size=9, color=MUTE, ls=1.2)
         if i < n - 1:
             arrow(s, cx + w + 0.06, cy + ch / 2 - 0.11, fill=LINE)
 
@@ -170,7 +186,7 @@ def spec_table(s, rows, y=1.15, colw=(2.6, 9.73), row_h=0.62, size=10, header=("
 # ============================== 1 Cover ==============================
 s = slide("")
 text(s, 0.8, 1.5, 8.6, 0.4, "RNP × iFLYTEK · Technical Exchange", size=14, color=MUTE, bold=True, margin=(0, 0, 0, 0))
-text(s, 0.8, 2.0, 8.6, 1.0, "National Model, National AI Application and Domain Models", size=27, color=RED, bold=True, margin=(0, 0, 0, 0), ls=1.1)
+text(s, 0.8, 1.98, 8.6, 1.30, "National Model, National AI Application and Domain Models", size=27, color=RED, bold=True, margin=(0, 0, 0, 0), ls=1.1)
 text(s, 0.8, 3.15, 8.6, 0.6, "What iFLYTEK delivers, how the work is split, how capability transfers", size=15, color=TXT, bold=True, margin=(0, 0, 0, 0))
 text(s, 0.8, 4.1, 8.6, 1.3, [
     "Rio de Janeiro · 9 September 2026",
@@ -223,7 +239,7 @@ tw = 3.7
 tx0 = L + (CW - (3 * tw + 2 * 0.4)) / 2
 for i, t in enumerate(tops):
     chip(s, tx0 + i * (tw + 0.4), 1.62, tw, 0.34, t, fill=WHITE, color=TXT, size=10, line=LINE)
-py, ph = 2.06, 2.30
+py, ph = 2.02, 2.30
 card(s, L, py, CW, ph, fill=PANEL2, line=LINE)
 label(s, L + 0.25, py + 0.08, 5, "National AI Capability Center (platform)", color=RED, size=11.5)
 mods = [
@@ -242,14 +258,14 @@ for i, (name, what, team) in enumerate(mods):
          valign="t", margin=(0, 0, 0, 0), sa=0, ls=1.15)
     body(s, mx + 0.16, my + 0.58, mw - 0.32, 0.62, what, size=9.5, ls=1.3)
     body(s, mx + 0.16, my + 1.24, mw - 0.32, 0.42, "**Maps to:** " + team, size=9.5, ls=1.3)
-two_boxes(s, 4.52, 1.26,
+two_boxes(s, 4.46, 1.60,
           ["Platform software and licences, deployment configuration, API guide, acceptance report, O&M documentation",
            "Deploy the platform and connect interfaces",
            "Product operations training: 6 topics, 12 O&M engineers per batch — see Appendix A12"],
           ["Provide the environment and interfaces",
            "Manage the platform after acceptance; four modules, four teams",
            "Organise acceptance and take over daily operations"], size=10)
-means(s, 5.94, "Every step in this demo is something RNP staff will do themselves during shadowing and guided hands-on.")
+means(s, 6.18, "Every step in this demo is something RNP staff will do themselves during shadowing and guided hands-on.")
 
 
 # ============================== 4 National Model: what it delivers ==============================
@@ -292,7 +308,7 @@ for k, (col, row, name, items, tags) in enumerate(quads):
     box(s, x + 0.24, y + 1.02, qw - 0.48, 0.02, fill=LINE)
     text(s, x + 0.24, y + 1.06, qw - 0.48, 0.26, tags, size=8.5, color=MUTE,
          valign="m", margin=(0, 0, 0, 0), sa=0)
-value_chain(s, 4.62, 1.15, [
+value_chain(s, 4.60, 1.32, [
     ("Brazilian Portuguese National Model", "Closer to Brazil's language, knowledge and needs"),
     ("Health / Space / Biodiversity DLMs", "Three domains named by RNP; built on this model or another agreed base"),
     ("AI applications and services for Brazil", "Supporting public services and national priorities"),
@@ -302,10 +318,10 @@ means(s, 6.05, "Performance and coverage are set against jointly agreed evaluati
 # ============================== 5 National Model: how it is built ==============================
 s = slide("National Model: iFLYTEK enhances the base first, RNP supplies the local corpus", size=18, ref="A2 · A3")
 HOWTO["model"] = s
-thesis(s, "Step 1 runs on two parallel tracks: iFLYTEK enhances the base model in China while RNP builds the local corpus in Brazil. Step 2 starts once the corpus and compute are ready.", h=0.5)
-step_cards(s, 1.78, [
+thesis(s, "Step 1 runs on two parallel tracks: iFLYTEK enhances the base model in China while RNP builds the local corpus in Brazil. Step 2 starts once corpus and compute are ready.", h=0.58)
+step_cards(s, 1.70, [
     ("1  Corpus and base model",
-     ["Collect public Portuguese corpus in China", "Use own compute to strengthen the base model", "Hand the public corpus to Brazil as well"],
+     ["Collect public Portuguese corpus in China", "Strengthen the base model with own compute", "Public corpus handed to Brazil too"],
      ["Produce and license the corpus in Brazil", "About 50 billion tokens", "{{Arrange compute before the data center opens}}"]),
     ("2  Model training",
      ["Continue training on the enhanced base", "Produce the NLP, ASR and TTS models", "Follow the approved plan and milestones"],
@@ -316,8 +332,8 @@ step_cards(s, 1.78, [
     ("4  Local delivery and tuning",
      ["Deploy in the Brazilian environment", "Deliver weights and model cards", "NLP upgraded 3× within 12 months", "ASR and TTS once each"],
      ["Organise acceptance and release", "Supply upgrade data within the A2 caps"]),
-], h=3.60)
-means(s, 5.68, "Enhancing the base first uses no Brazilian compute and does not wait for the corpus to be complete. Training can start as soon as corpus and compute are in place — less schedule risk.", h=0.6)
+], h=4.14)
+means(s, 6.08, "Enhancing the base first uses no Brazilian compute and does not wait for the corpus to be complete. Training can start as soon as corpus and compute are in place — less schedule risk.", h=0.6)
 
 # ============================== 6 National AI Application: what it delivers ==============================
 s = slide("What the National AI Application delivers", size=20)
@@ -347,7 +363,7 @@ for i2, (name, items, tags) in enumerate(acards):
     box(s, ax + 0.26, ay + ah - 0.44, aw - 0.52, 0.02, fill=LINE)
     text(s, ax + 0.26, ay + ah - 0.38, aw - 0.52, 0.26, tags, size=8.5, color=MUTE,
          valign="m", margin=(0, 0, 0, 0), sa=0)
-value_chain(s, 4.42, 1.15, [
+value_chain(s, 4.40, 1.32, [
     ("Model services and APIs", "NLP, speech recognition and synthesis, knowledge Q&A, content safety review"),
     ("National App and Data Operations Platform", "Mobile, desktop and web; 1,000 concurrent Q&A sessions"),
     ("Use in public services", "Users approved by RNP, supporting public services"),
@@ -369,7 +385,7 @@ for i, t in enumerate(funcs):
     fx = L + 0.26 + i * (fw6 + 0.12)
     card(s, fx, 2.20, fw6, 0.34, fill=WHITE, line=LINE)
     text(s, fx, 2.20, fw6, 0.34, t, size=9, color=TXT, bold=True, align="c", valign="m", margin=(0, 0, 0, 0), sa=0)
-step_cards(s, 2.68, [
+step_cards(s, 2.64, [
     ("1  Define requirements",
      ["Provide the standard capability list", "Explain configurable items and limits"],
      ["Join product definition and design", "Set user scope, content rules and branding"]),
@@ -382,8 +398,8 @@ step_cards(s, 2.68, [
     ("4  Launch and operate",
      ["Stage 1 initial delivery", "Stage 2 extended operation", "Hand over O&M documentation"],
      ["Approve users", "Product, operations and review teams take over", "Evolve on the delivered version"]),
-], h=3.10)
-means(s, 6.04, "The product team is needed from the requirements stage and the operations team before Stage 1 delivery. RNP can evolve the delivered version on its own.", h=0.6)
+], h=3.28)
+means(s, 6.14, "The product team is needed from the requirements stage and the operations team before Stage 1 delivery. RNP can evolve the delivered version on its own.", h=0.6)
 
 # ============================== 8 DLM: what it delivers ==============================
 s = slide("What the Domain Large Models deliver", size=20)
@@ -413,21 +429,21 @@ for i, (name, items, tags) in enumerate(dcards):
     box(s, dx + 0.26, dy + dh - 0.44, dw - 0.52, 0.02, fill=LINE)
     text(s, dx + 0.26, dy + dh - 0.38, dw - 0.52, 0.26, tags, size=8.5, color=MUTE,
          valign="m", margin=(0, 0, 0, 0), sa=0)
-value_chain(s, 4.34, 1.10, [
+value_chain(s, 4.32, 1.26, [
     ("Brazilian Portuguese National Model", "As the base model, or another base agreed by both parties"),
     ("Health / Space / Biodiversity DLMs", "Three domains named by RNP, one fixed scenario each"),
     ("Applications for public services", "Supporting RNP's public services and national priorities"),
 ])
-outcomes(s, 5.60, ["DLM plan", "Advisory records", "Training and evaluation report", "Service acceptance form", "Weights owned by RNP"])
+outcomes(s, 5.66, ["DLM plan", "Advisory records", "Training and evaluation report", "Service acceptance form", "Weights owned by RNP"])
 means(s, 6.02, "RNP performs the training; iFLYTEK provides advisory training services. The models offer analysis and decision support — they do not replace professional judgement.", h=0.62)
 
 # ============================== 9 DLM: how it is built ==============================
 s = slide("Domain Large Models: RNP trains, iFLYTEK advises — 3 services, one scenario each", size=18, ref="A5")
 HOWTO["dlm"] = s
 thesis(s, "All four steps are executed by RNP with iFLYTEK advising — the reverse of the national model, and RNP's first time training a model itself.", h=0.44)
-band(s, 1.50, 0.46, "Service scope",
+band(s, 1.48, 0.58, "Service scope",
      "Three advisory training services for industry models, one clearly bounded scenario each. RNP proposes the domain, iFLYTEK assesses feasibility. Weights are produced by RNP's training and belong to RNP.", size=10)
-step_cards(s, 2.04, [
+step_cards(s, 2.14, [
     ("1  Define the scenario",
      ["Assess feasibility of the domain", "Issue the technical plan", "Verify base model version, size, licence"],
      ["Propose the domain and scenario", "Define users, inputs, outputs and limits"]),
@@ -440,9 +456,9 @@ step_cards(s, 2.04, [
     ("4  Service acceptance",
      ["Based on RNP's actual results", "Produce the analysis report"],
      ["Check the advisory records", "Complete business acceptance"]),
-], h=3.40)
-note(s, 5.56, "Production deployment, API development and application integration are outside this service and can be agreed separately.", h=0.26, size=9)
-means(s, 5.94, "This is RNP's first time training a model independently. It needs RNP's own algorithm engineers and domain experts — which is exactly what shadowing and guided hands-on are for.", h=0.6)
+], h=3.52)
+note(s, 5.78, "Production deployment, API development and application integration are outside this service and can be agreed separately.", h=0.26, size=9)
+means(s, 6.10, "This is RNP's first time training a model independently. It needs RNP's own algorithm engineers and domain experts — which is exactly what shadowing and guided hands-on are for.", h=0.6)
 
 
 # ============================== 10 Knowledge Transfer: what RNP gains ==============================
@@ -479,7 +495,7 @@ two_boxes(s, 5.08, 1.08,
            "Seminars, coaching and handover materials; premium courses arranged separately"],
           ["Name the core trainees and schedule them for sessions and hands-on",
            "Organise staff by the six role learning paths — see Appendix A10"], size=10)
-means(s, 6.30, "Core and specialist courses are in scope at no extra cost. {{Premium transfer requires completing all Huawei AI Developer courses and a separate budget — see Appendix A11.}}", h=0.52)
+means(s, 6.24, "Core and specialist courses are in scope at no extra cost. {{Premium transfer requires all Huawei AI Developer courses first, plus a separate budget — see A11.}}", h=0.62)
 
 # ============================== 11 Knowledge Transfer: four stages ==============================
 s = slide("Knowledge transfer: two rounds, 1,216 hours, about 158 working days", size=19, ref="A8 · A12")
@@ -497,7 +513,7 @@ phases = [
 ]
 gap = 0.25
 pw = (CW - 3 * gap) / 4
-py, ph = 1.80, 3.00
+py, ph = 1.78, 3.16
 for i, (name, hours, meta, tasks, fill) in enumerate(phases):
     px = L + i * (pw + gap)
     card(s, px, py, pw, ph, fill=fill)
@@ -509,12 +525,12 @@ for i, (name, hours, meta, tasks, fill) in enumerate(phases):
     r0.font.color.rgb = __import__("pptx.dml.color", fromlist=["RGBColor"]).RGBColor.from_string(RED)
     text(s, px + 0.2, py + 0.94, pw - 0.4, 0.3, meta, size=9, color=MUTE, valign="m", margin=(0, 0, 0, 0), sa=0)
     body(s, px + 0.2, py + 1.26, pw - 0.4, ph - 1.32, tasks, size=9.5, ls=1.25, bullet=True, num=True, bcolor=RED, sa=2)
-two_boxes(s, 4.92, 1.10,
+two_boxes(s, 5.06, 1.08,
           ["Coaching by the iFLYTEK engineers delivering this project, checking the key steps",
            "Handover materials and verification of independent operation"],
           ["Name stable trainees with the right background; the same people may span stages",
            "Allocate their time and join real delivery work"], size=10)
-means(s, 6.14, "Card figures are per round. Two rounds total 1,216 hours and about 158 working days. Working days are training days spread across the project, not a continuous period. Product operations training is separate — see Appendix A12.", h=0.66)
+means(s, 6.26, "Card figures are per round; two rounds total 1,216 hours and ~158 working days. Working days are training days spread across the project, not a continuous period. Product operations training is separate — see A12.", h=0.6)
 
 # ============================== 12 Implementation path ==============================
 s = slide("Implementation: two stages, five steps, three parties", size=19)
@@ -579,7 +595,7 @@ for i, (name, num, who, task) in enumerate(waves):
     if i < 2:
         arrow(s, wx + ww + 0.04, wy + 0.95, fill=LINE)
 text(s, L, 4.54, CW, 0.5, "Headcounts are indicative, from iFLYTEK's early estimate. They are peaks per function that can be reused across activities, not people on site at the same time; final numbers follow the SOW split and workload.", size=9.5, color=MUTE, valign="m", margin=(0, 0, 0, 0), sa=0)
-means(s, 5.14, "The data team and Portuguese experts come first, then algorithm engineers, with the application and operations team in the third intake. Core knowledge-transfer trainees are named from these three intakes: 50 in Foundation, 20 each in Shadowing and Guided hands-on, 40 in Handover, per round, twice — 260 attendances in total.", h=0.72)
+means(s, 5.08, "Data team and Portuguese experts come first, then algorithm engineers, with application and operations in the third intake. Knowledge-transfer trainees are named from these three intakes: 50 Foundation, 20 each Shadowing and Guided hands-on, 40 Handover, per round, twice — 260 attendances.", h=0.86)
 
 # ============================== 14 TR five layers ==============================
 s = slide("Against RNP's TR: who delivers each of the five layers", size=19, ref="A14")
@@ -634,15 +650,15 @@ menu = [
 ]
 MENU = []
 mw = (CW - 2 * 0.3) / 3
-mh = 0.84
+mh = 0.90
 for k, (code, q, topic) in enumerate(menu):
     r, c = divmod(k, 3)
-    mx, my = L + c * (mw + 0.3), 2.08 + r * (mh + 0.14)
+    mx, my = L + c * (mw + 0.3), 2.04 + r * (mh + 0.06)
     cardk = card(s, mx, my, mw, mh, fill=WHITE, line=LINE)
     MENU.append((cardk, code))
     text(s, mx + 0.2, my + 0.08, 0.75, 0.32, code, size=11.5, color=RED, bold=True, valign="m", margin=(0, 0, 0, 0), sa=0)
-    text(s, mx + 0.9, my + 0.06, mw - 1.1, 0.36, q, size=10.5, color=TXT, bold=True, valign="m", margin=(0, 0, 0, 0), sa=0, ls=1.1)
-    text(s, mx + 0.2, my + 0.46, mw - 0.4, 0.3, topic, size=9, color=MUTE, valign="m", margin=(0, 0, 0, 0), sa=0)
+    text(s, mx + 0.88, my + 0.04, mw - 1.05, 0.50, q, size=10.5, color=TXT, bold=True, valign="t", margin=(0, 0, 0, 0), sa=0, ls=1.1)
+    text(s, mx + 0.2, my + 0.56, mw - 0.4, 0.3, topic, size=9, color=MUTE, valign="m", margin=(0, 0, 0, 0), sa=0)
 
 
 # ============================== A0 Overview table ==============================
@@ -659,10 +675,10 @@ rows = [
 ]
 table(s, L, 1.02, [1.95, 3.75, 2.35, 2.5, 1.78], ["Outcome", "What RNP gets", "iFLYTEK", "RNP", "Key figures"], rows,
       row_h=0.90, header_h=0.42, size=9, header_size=10, header_fill="F2F2F2", header_color=TXT, vlines=False)
-band(s, 5.06, 0.50, "Knowledge transfer",
+band(s, 5.02, 0.58, "Knowledge transfer",
      "608 hours and about 79 working days per round: Foundation 60, Shadowing 360, Guided hands-on 20, Formal handover 168; 50 / 20 / 20 / 40 trainees per round. Two rounds: 1,216 hours, about 158 working days.",
      fill=REDT, line=None, size=9.5)
-band(s, 5.66, 0.50, "Post-delivery support",
+band(s, 5.68, 0.50, "Post-delivery support",
      "12 months assisted O&M on site (5×8) plus 60 months remote technical support (7×24); the first 12 months overlap.", size=9.5)
 note(s, 6.22, "Scope follows the SOW and BOQ; capacity is verified per service.", h=0.3, size=9)
 
@@ -793,7 +809,7 @@ rows = [
 table(s, L, 1.15, [1.75, 4.05, 1.6, 1.7, 1.2, 2.03], ["Stage", "Learning objectives and scope", "Roles", "Hours / days per round", "Trainees", "Completion evidence"], rows,
       row_h=[0.75, 0.75, 0.75, 0.75, 0.7], header_h=0.4, size=8.5, header_size=9.5, header_fill="F2F2F2", header_color=TXT, vlines=False)
 note(s, 5.55, ["Hours and headcount in the table are per round and delivered twice. Working days are the sum of training days, not a continuous period. Percentages are development targets for qualified core trainees, not acceptance thresholds. Formal handover starts at least 3 months before the year of assisted O&M ends — the 168 hours do not begin at that point.",
-               "Trainees take part in batches and need not be the same people across stages. 260 is the total attendances across two rounds — one person joining several stages is counted each time, so it is not 260 distinct trainees. Formal handover targets the O&M team, so its headcount is wider. Basis: SOW and the approved knowledge transfer plan."], h=0.75, size=8.5)
+               "Trainees take part in batches and need not be the same people across stages. 260 is the total attendances across two rounds — one person joining several stages is counted each time, so it is not 260 distinct trainees. Formal handover targets the O&M team, so its headcount is wider. Basis: SOW and the approved knowledge transfer plan."], h=0.88, size=8.5)
 
 # ============================== A9 Topics and formats ==============================
 s = appendix_slide("A9 · Knowledge transfer: topics and exchange formats", "Q: What exactly is taught, in what formats?")
@@ -806,29 +822,29 @@ tracks = [
 ]
 gap = 0.25
 tw = (CW - 3 * gap) / 4
-ty, th = 1.40, 2.45
+ty, th = 1.38, 2.62
 for i, (name, items, obj) in enumerate(tracks):
     tx = L + i * (tw + gap)
     card(s, tx, ty, tw, th, fill=PANEL)
     dot(s, tx + 0.16, ty + 0.14, 0.32, str(i + 1), size=10)
     text(s, tx + 0.56, ty + 0.08, tw - 0.7, 0.44, name, size=10.5, color=TXT, bold=True, valign="m", margin=(0, 0, 0, 0), sa=0, ls=1.1)
-    body(s, tx + 0.16, ty + 0.58, tw - 0.32, 1.35, items, size=8.5, bullet=True, bcolor=RED, sa=2, ls=1.25)
-    body(s, tx + 0.16, ty + 1.97, tw - 0.32, 0.44, obj, size=8.5, color=MUTE, ls=1.2)
-label(s, L, 4.00, 6, "Four exchange formats", color=TXT, size=11.5)
+    body(s, tx + 0.16, ty + 0.56, tw - 0.32, 1.55, items, size=8.5, bullet=True, bcolor=RED, sa=2, ls=1.25)
+    body(s, tx + 0.16, ty + 2.14, tw - 0.32, 0.44, obj, size=8.5, color=MUTE, ls=1.2)
+label(s, L, 4.10, 6, "Four exchange formats", color=TXT, size=11.5)
 formats = [
     ("Advanced AI seminars", "In scope", GRAY, "Per the approved course plan, on the delivered platform and models; content and depth follow that plan"),
     ("China AI study visit", "{{See A11}}", RNP_C, "Visit iFLYTEK teams and compute facilities. Huawei's plan already includes a 6-day China journey for 100 people — this is the iFLYTEK technical variant, arranged so the two do not overlap"),
     ("One-to-one expert consulting", "{{See A11}}", RNP_C, "Design review on questions raised by RNP engineers; scope and duration agreed in advance, no long-term advisory role"),
     ("AI strategy round table", "{{Proposed}}", RNP_C, "RNP leadership and iFLYTEK architects discuss model roadmap, technology choices and capability planning; participants and timing agreed in advance"),
 ]
-fy, fh = 4.34, 1.42
+fy, fh = 4.44, 1.36
 for i, (name, status, color, desc) in enumerate(formats):
     fx = L + i * (tw + gap)
     card(s, fx, fy, tw, fh, fill=PANEL2 if i == 0 else BLUET)
-    text(s, fx + 0.16, fy + 0.08, tw - 1.25, 0.4, name, size=10, color=TXT, bold=True, valign="m", margin=(0, 0, 0, 0), sa=0, ls=1.1)
+    text(s, fx + 0.16, fy + 0.06, tw - 1.25, 0.42, name, size=9.5, color=TXT, bold=True, valign="m", margin=(0, 0, 0, 0), sa=0, ls=1.1)
     chip(s, fx + tw - 1.05, fy + 0.11, 0.90, 0.28, status, fill=WHITE, color=TXT, size=8, line=color)
     body(s, fx + 0.16, fy + 0.52, tw - 0.32, 0.84, desc, size=8.5, ls=1.25)
-note(s, 5.86, "Track-to-topic mapping: track 1 = SOW topics 1, 7, 8; track 2 = 2, 10, 11; track 3 = 3, 4, 9; track 4 = 5, 6, 12. Teaching a method does not mean every delivered model supports it, and no new optimisation work is implied. Basis: SOW. Of the four formats, only the advanced seminars are in project scope; the other three are agreed separately.", h=0.5, size=8.5)
+note(s, 5.92, "Track-to-topic mapping: track 1 = SOW topics 1, 7, 8; track 2 = 2, 10, 11; track 3 = 3, 4, 9; track 4 = 5, 6, 12. Teaching a method does not mean every delivered model supports it, and no new optimisation work is implied. Basis: SOW. Of the four formats, only the advanced seminars are in project scope; the other three are agreed separately.", h=0.5, size=8.5)
 
 # ============================== A10 Learning path by role ==============================
 s = appendix_slide("A10 · Knowledge transfer: learning path by role", "Q: What does each role learn?")
@@ -883,7 +899,7 @@ text(s, L, 6.02, CW, 0.45, "All of the above is separate from the core knowledge
 
 # ============================== A12 Product operations training ==============================
 s = appendix_slide("A12 · Product operations training: getting O&M started", "Q: How does O&M get started after delivery?")
-text(s, L, 1.00, CW, 0.36, "iFLYTEK demonstrates operation, gives configuration guidance and explains handover for the delivered software, models and security products. For RNP's O&M team, starting with assisted O&M — parallel to the four-stage knowledge transfer, with no double-counted hours.",
+text(s, L, 0.98, CW, 0.48, "iFLYTEK demonstrates operation, gives configuration guidance and explains handover for the delivered software, models and security products. For RNP's O&M team, starting with assisted O&M — parallel to the four-stage knowledge transfer, with no double-counted hours.",
      size=10, color=MUTE, valign="m", margin=(0, 0, 0, 0), sa=0, ls=1.25)
 rows = [
     ["Corpus and model training platforms", "Dataset workflows, quality checks and lineage; container images, training jobs, logs and model outputs; delivered speech tools and checkpoint recovery", "2", "12"],
@@ -896,8 +912,8 @@ rows = [
 table(s, L, 1.42, [3.15, 6.93, 0.95, 1.30], ["Topic", "Training content", "Days", "Per batch"], rows,
       row_h=0.58, header_h=0.4, size=9, header_size=10,
       header_fill="F2F2F2", header_color=TXT, vlines=False)
-band(s, 5.44, 0.46, "Timing", "Product operations training runs when assisted O&M begins; knowledge transfer activity continues through the following 12 months of assisted O&M. Formal handover starts at least 3 months before assisted O&M ends.", size=9.5, title_w=1.0)
-note(s, 5.98, ["The six topics are a consolidated view of the twelve product-use themes in SOW section 7.5; they are not six separately quantified courses. Training uses delivered versions and authorised samples.",
+band(s, 5.42, 0.58, "Timing", "Product operations training runs when assisted O&M begins; knowledge transfer activity continues through the following 12 months of assisted O&M. Formal handover starts at least 3 months before assisted O&M ends.", size=9.5, title_w=1.0)
+note(s, 6.04, ["The six topics are a consolidated view of the twelve product-use themes in SOW section 7.5; they are not six separately quantified courses. Training uses delivered versions and authorised samples.",
                "{{Batches, days, participants, language and on-site/remote arrangements are agreed before implementation. The topic days total 9; the joint material states about 10 — to be confirmed.}}   Basis: SOW 7.5 / 8.3 / 9.4."],
      h=0.5, size=8.5)
 
@@ -922,7 +938,7 @@ table(s, L, 1.02, [2.75, 4.85, 4.73], ["Service scope", "Deliverables (SOW 8.5)"
       header_fill="F2F2F2", header_color=TXT, vlines=False)
 note(s, 5.86, ["Acceptance flow: check platforms and versions → test interfaces and functions → verify integration and permissions → reference capacity and model tests → clear issues → confirm the application.",
                "Responsibility: RNP provides branding, knowledge content and business rules, confirms Portuguese terminology and interfaces, approves go-live and operates users, content and services. iFLYTEK does not take on user growth, content production, human moderation or managed business operations. Basis: SOW 3.9 / 8.5 / 9.6 / 10.7."],
-     h=0.5, size=8.5)
+     h=0.62, size=8.5)
 
 # ============================== A14 TR R&D support mapping ==============================
 s = appendix_slide("A14 · Supporting Brazil's own R&D: TR requirement mapping", "Q: How do you answer the TR's R&D requirements?")
@@ -945,7 +961,7 @@ table(s, L, 1.02, [2.6, 4.3, 5.43], ["TR requirement", "What it asks for", "How 
       header_fill="F2F2F2", header_color=TXT, vlines=False)
 note(s, 5.60, ["FP1–FP9 are RNP's research fronts (model construction, model serving, distributed execution, compiler optimisation, cluster management, data, cross-institution collaboration, performance, system security). This table shows how the contractor supports that research; it does not mean iFLYTEK covers every front alone.",
                "These requirements address the contractor side as a whole: the base software stack is Huawei's, as shown on page 14. Basis: SOW and the R&D cooperation plan confirmed before implementation."],
-     h=0.5, size=8.5)
+     h=0.62, size=8.5)
 
 for shp, code in LINKS + MENU + NAV:
     if code in APPX:
