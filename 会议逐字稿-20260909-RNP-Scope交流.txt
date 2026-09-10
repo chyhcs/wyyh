@@ -1,0 +1,2792 @@
+================================================================================
+RNP × 科大讯飞  技术交流会（Scope 交流）   会 议 逐 字 稿
+================================================================================
+
+会议时间   2026 年 9 月 9 日 18:01 起，历时 2 小时 48 分 34 秒
+会议地点   巴西 里约热内卢 · RNP（现场 + 远程接入）
+会议性质   讯飞向 RNP 陈述交付范围（Scope of Work）、双方分工与知识转移安排
+           华为项目 owner 及培训负责人同场
+
+记录来源   两份独立 ASR 转写交叉校验后重建
+           A 版 = 06babfe8  有说话人分轨、有时间戳，中文识别较准，英文较弱
+           B 版 = 7a9dcc23  无分轨、无时间戳，中文幻觉多，英文连续段识别较准
+
+--------------------------------------------------------------------------------
+关于说话人标注（务必先读）
+--------------------------------------------------------------------------------
+两份 ASR 的原始说话人标签都不能直接使用：
+
+  · A 版按【麦克风通道】分轨，不是按人。同一个标签在同一段落内可能串接
+    多个人。例如 A 版"说话人 1"在 07:00–13:00 之间先后是徐唯、王振华、
+    Diana、Sergio、Carol、Marita 等至少六个人；A 版"说话人 6"在
+    01:19 是赵祥（中文答配额），在 02:28 是 RNP 的技术负责人（英文质疑平台）。
+
+  · B 版完全没有分轨，全文只有一个"说话人1 00:00"。
+
+因此本稿的说话人身份，是按发言内容、上下文互指、入场顺序、以及两版互证
+重建的。每个人的判定依据与置信度见下方名单。
+
+标注约定
+  【姓名·单位】        身份已确认
+  【姓名?·单位】       高度推定，仍建议向当事人确认
+  【RNP·现场】         RNP 现场发言但无法确定到人
+  〔 〕                整理者注：ASR 误识更正、两版冲突、待核实项
+  〈中文·内部〉        我方内部中文交流，未经翻译传达给 RNP
+
+--------------------------------------------------------------------------------
+出席人名单
+--------------------------------------------------------------------------------
+
+■ 科大讯飞（现场 3 人）
+
+  陈昊 CHEN Hao       项目总监；讯飞巴西子公司总经理；本次主讲人
+                      置信度：确认（会上自报 "My name is Chen Hao, I'm the
+                      project director of this national AI project"，两版一致）
+
+  徐唯 William Xu     方案负责人（solution owner）
+                      置信度：确认（陈昊介绍 "he is the owner of our solution,
+                      previously he wrote a lot of documents and solution design"）
+
+  赵祥 ZHAO Xiang     首席方案架构师，讯飞总部来
+                      置信度：确认（陈昊介绍其"建过华为昇腾万卡集群"、
+                      "principal solution architect"；英语不便，全程中文作答、
+                      陈昊转译）
+
+■ 华为（现场 4 人）
+
+  王振华 Luciano Wang 项目 owner，统管华为 + 讯飞整体交付
+                      置信度：确认（用户确认；会上自报 "I'm the owner of the
+                      total products, both iFLYTEK and Huawei, from Huawei"；
+                      陈昊开场先请示 "What about Mr Luciano?"）
+                      〔B 版误识为 "miss anna wang"，以 A 版为准〕
+
+  华为·培训负责人      讲解 AI 人才培养框架（2900 人计划、绿/蓝预算、LPU 模式）
+                      置信度：角色确认，姓名未确认
+
+  另有 3 位华为同事（服务 1 人、AI 培训 1 人〔女〕、PCD 1 人），
+  会上仅由王振华代为介绍，未单独发言。
+
+  郑立雪              华为，未到场。此前已就 2900 人培养计划与 RNP 沟通
+                      〔A 版误识为 "Johnny"，B 版误识为 "Zheng li xue"，
+                       用户确认为郑立雪〕
+
+■ RNP（现场）
+
+  Diana?              副主任，本项目牵头人
+                      置信度：中。A 版记录其自报 "I'm in charge of this project
+                      with this team, I'm the deputy director"，B 版未捕捉到姓名。
+
+  Inara / Yara?       研发部门负责人
+                      置信度：中。两版均出现，拼写不一（Yara / Inara / andrews
+                      any island）。Carol 自述"与 Leandro 和 Inara 同在研发部"；
+                      另有人提到"Yara 送到部里的参考条款"。可能为同一人。
+
+  Leandro             研发部门。仅被他人提及，未单独发言。
+
+  Sergio              架构负责人（head of architecture），
+                      负责对外部客户交付解决方案
+                      置信度：确认（自报）
+
+  Carol               培训与开发服务总监（director of training development services）
+                      置信度：确认（自报）
+
+  Bernardo            开发工程师
+                      置信度：确认（A 版自报 "I am the developer"；
+                      B 版另记有一位"cloud architect and developer engineer"，
+                      可能为同一人）
+
+  Filippo             IT 部门，负责数据与 AI 项目团队
+                      置信度：确认（自报 "I'm from the IT department in RNP,
+                      responsible for a team that develops projects with data and AI"）
+
+  Rafael              创新业务
+                      置信度：确认（自报）
+
+■ RNP（远程接入）
+
+  Marcelo             数字服务副主任（Deputy Director of Digital Service）
+                      置信度：确认。另由 Carol 在 01:42 回指"connecting with
+                      Marcelo said"，可反向确认其发言归属。
+
+  Marita              数据与 AI 经理，向 Marcelo 汇报
+                      置信度：高。推定链：B 版记录主持人点名 "Role Marita,
+                      please" → 随即出现"没电池/麦克风故障"→ 跳过她先讲
+                      Michelle、Rodrigo → "you try again" → 该人接通并自报
+                      "data and AI manager at RNP and I work with Marcelo"。
+                      A 版在同一时刻（12:51）记下一句葡语 "Podem me escutar
+                      agora"（现在能听见我了吗）。两条合起来指向同一人。
+                      〔A 版把姓名误识为 "Maria Zakharova"〕
+                      她是全场问题最系统的提问者，全部提问均为事先准备。
+
+  Enzo                软件架构师，Sergio 团队
+                      置信度：确认（自报；且主持人点名 "we have Enzo,
+                      can you pose your question?" 后即为其发言）
+
+  Michelle            研发副主任（Deputy Director, Research and Development）
+                      置信度：确认（自报）
+
+  Rodrigo             采购部门
+                      置信度：确认（自报）
+
+--------------------------------------------------------------------------------
+无法拆分到人的现场声道说明
+--------------------------------------------------------------------------------
+RNP 现场使用一支公共麦克风，多人共用。全场约 2.5 小时的主要技术对话由
+RNP 现场至少两位发言人交替完成，本稿按内容特征区分为：
+
+  【RNP·现场·项目】   项目与商务视角：主持节奏、语料规模质疑、验收标准、
+                      收尾索要材料、"我们要拿这份材料去 MCTI 请款"、
+                      "DLM 应该早启动"
+                      推定为 Diana 或与其同级的项目牵头人
+
+  【RNP·现场·技术】   工程视角：并行训练开源模型、平台抽象层批评
+                      （"训人去点按钮不值得学"）、SDK、数据接入
+                      推定为 Filippo 或 Inara
+
+  两者在部分段落无法可靠切分，此类段落统一标为【RNP·现场】。
+
+================================================================================
+逐  字  稿
+================================================================================
+
+
+────────────────────────────────────────────────────────────────────────────────
+第一节  00:00 – 13:41   连线调试、人员介绍
+────────────────────────────────────────────────────────────────────────────────
+
+[01:00] 【陈昊·讯飞】〈中文·内部〉
+那个，会议的〔链接〕，发给你。
+
+[01:36] 【徐唯·讯飞】
+Yes, I have joined the meeting. Okay, I've used this microphone. Yes.
+
+[01:42] 【RNP·现场】
+We're configuring this microphone.
+
+[01:48] 【徐唯·讯飞】
+I need to — how to share the screen?
+
+[02:10] 【徐唯·讯飞】
+Okay, currently my slides are there.
+
+[02:39] 【徐唯·讯飞】
+You can full screen my slides. OK. Yes, yes.
+
+[02:44] 【RNP·现场】
+OK, thank you. Hello, can you hear me?
+
+[03:16] 【RNP·现场】
+Okay, so — as you put in your screen.
+
+[04:15] 【陈昊·讯飞】〈中文·内部〉
+最后你再展示吧，好吧？我讲完了你再展示，好不好？你有几个展示的？
+国民 APP 我看一眼，用星火还是用那个？国民 APP 呢？
+
+[04:24] 【徐唯·讯飞】〈中文·内部〉
+国民 APP。
+
+[04:26] 【陈昊·讯飞】〈中文·内部〉
+这是国民 APP。这个是国民 APP，是吧？对。哪个？这个是国民 APP？对。
+这是星火吗？国民 APP。啊，这个不像是个 Chatbot。啊，行行行，可以，
+这个可以。三大中心，昆仑那个呢？
+
+[05:15] 【徐唯·讯飞】
+OK.
+
+[05:35] 【陈昊·讯飞】
+We can start — or do we need an opening? What about Mr Luciano?
+〔陈昊开场先请示华为项目 owner 王振华是否致辞〕
+
+Okay, I think everyone is clear why we're here. First I will introduce our team.
+My name is Chen Hao. I'm the project director of iFLYTEK for this national AI
+project. And also I will give you good news: our Brazilian subsidiary — the
+registration has just now been approved by the JUCESP, the São Paulo Commercial
+Registry has approved our application. Because of the O&M of the federal tax
+bureau's systems, they had some delay, but now it is okay.
+
+[06:19] 【陈昊·讯飞】
+Later we will get the CNPJ and the certificate, and then we can start to push
+the following procedures.
+
+[06:29] 【陈昊·讯飞】
+I am Chen Hao and I will be responsible for the project from the beginning to
+the end. And after the project starts, I will be based here to host all
+project-related affairs.
+
+[06:42] 【陈昊·讯飞】
+And also I will be the director of the iFLYTEK Brazil subsidiary.
+And here is William Xu. He is the owner of our solution. Previously he wrote a
+lot of the documents and solution design for this project. You can introduce
+yourself.
+
+[07:00] 【徐唯·讯飞】
+Yes. I just provide all the solution — you can see, whatever you need in the
+SOW, and organize with our teams, with Huawei together, to provide all these
+things. So this time I just try my best to explain to you what we're doing and
+what we need the RNP team to do with us together, to create this set of AI
+projects. Thank you.
+
+[07:00] 【陈昊·讯飞】
+Yes. Okay. This is Zhao Xiang, and he comes from our headquarters —
+iFLYTEK headquarters.
+
+[07:43] 【陈昊·讯飞】
+It's the first time he has come to Brazil. Previously he supported the back end,
+with the R&D team and the guys on the product side. He is the principal solution
+architect of this project. Can you please introduce yourself?
+
+[08:03] 【赵祥·讯飞】
+My English isn't...
+
+[08:06] 【陈昊·讯飞】
+Yes — but he is the one who experienced the construction of the 10,000-card
+cluster of Huawei Ascend. And he knows every detail of model training and
+application building. He's the technical guy who knows the engineering details,
+and he will support us — when we cannot answer, he will tell you every detail.
+
+[08:27] 【陈昊·讯飞】
+He is the boss today. We're the adapters. He's the boss — the technical boss.
+We're the front end.
+
+[08:27] 【王振华·华为】
+Okay, I will introduce — my side will have four colleagues here. As we know,
+my name is Luciano Wang. I'm the owner of the total products, both iFLYTEK and
+Huawei — from Huawei.
+〔A 版："Luciano Wang… both African and Huawei"；B 版："miss anna wang…
+ both africa and huawei from huawei"。"African" / "africa" 均为 iFLYTEK 误识。
+ 姓名以用户确认为准：王振华〕
+
+[08:49] 【王振华·华为】
+Louis is from PCD, and also we have two guys here. One is for service — I think
+service is very important for the future, for delivery. And she is for the AI
+training. So I think today we totally have seven guys here to support this
+project.
+〔七人 = 华为 4 + 讯飞 3，B 版 "totally have seven guys here" 与人数吻合〕
+
+[09:20] 【RNP·现场】〈葡语〉
+E junto com aquela... a gente foi ali e fiz outra parte...
+
+[09:30] 【Diana?·RNP】
+My name is Diana. I'm in charge of this project with this team. I'm the deputy
+director. And we have invited people from several departments here to follow
+this meeting.
+〔B 版未捕捉到姓名，仅有 "I am deputy director. We have invited people from
+ several departments here"。姓名建议核实〕
+
+[09:58] 【Inara?·RNP】
+Thank you. And me as well. I work with Yara and as advisor in R&D.
+
+[09:58] 【Sergio·RNP】
+I'm Sergio. I work with the solutions and services teams, we deploy solutions
+for external customers, and I'm the head of architecture.
+
+[10:24] 【Bernardo?·RNP】
+I'm a cloud architect and developer engineer here.
+〔仅 B 版有此人，A 版漏；可能与下文 Bernardo 为同一人〕
+
+[10:24] 【Carol·RNP】
+My name is Carol. I work here with Leandro and Inara in the R&D department,
+responsible — and up to director of training development services.
+
+[10:24] 【Bernardo·RNP】
+My name is Bernardo. I am the developer.
+
+[10:24] 【Filippo·RNP】
+Hey guys, my name is Filippo. I am from the IT department in RNP. I'm
+responsible for a team that develops projects with data and AI here in RNP.
+
+[10:24] 【Rafael·RNP】
+I'm Rafael, working with innovation at RNP.
+
+[10:24] 【RNP·现场·项目】
+And people from the remote side — can you present yourself?
+
+[10:24] 【Marcelo·RNP·远程】
+Yeah, I can start. Hello, everyone. Welcome to Brazil. My name is Marcelo.
+I'm Deputy Director of Digital Service at RNP.
+
+[10:24] 【RNP·现场·项目】
+Welcome, everyone. Next one, Enzo, let's go.
+
+[10:24] 【Enzo·RNP·远程】
+Hi, folks. My name is Enzo. I work with Sergio as a software architect.
+
+[10:24] 【RNP·现场·项目】
+Marita, please.
+〔此处 Marita 麦克风/电池故障，B 版记有 "No battery 应该出问题"，
+ 主持人跳过她先请 Michelle 和 Rodrigo〕
+
+[12:11] 【Michelle·RNP·远程】
+Michelle, sorry. Hi, Michelle from RNP, Deputy Director, Research and
+Development team too.
+
+[12:11] 【Rodrigo·RNP·远程】
+Hi, Rodrigo, purchasing department, RNP.
+
+[12:11] 【RNP·现场·项目】
+Welcome. And then — might you try again?
+
+[12:51] 【Marita·RNP·远程】〈葡语〉
+Podem me escutar agora?
+〔"现在能听见我了吗" —— 麦克风恢复测试〕
+
+[12:59] 【Marita·RNP·远程】
+Yes, hello everyone. Welcome to Brazil. My name is Marita — Data and AI Manager
+at RNP, and I work with Marcelo.
+〔A 版把姓名误识为 "Maria Zakharova"；B 版为 "I might use a combat…"。
+ 姓名建议核实，但"数据与 AI 经理、向 Marcelo 汇报"两版一致〕
+
+[12:59] 【RNP·现场·项目】
+Yes, this is our team. Is there anyone from iFLYTEK or Huawei who is remote?
+
+[12:59] 【陈昊·讯飞】
+No, we're all here.
+
+
+────────────────────────────────────────────────────────────────────────────────
+第二节  13:41 – 29:05   会议目的、国家 AI 能力中心
+────────────────────────────────────────────────────────────────────────────────
+
+[13:41] 【陈昊·讯飞】
+So, okay, we can start. First I will confirm how much time we have, and I will
+determine the granularity of what I present. How much time do we have?
+
+[13:41] 【RNP·现场·项目】
+Take your time.
+
+[13:41] 【陈昊·讯飞】
+Okay, that's good. Thank you for your time.
+
+First I will state why we're here. From your side we got the feedback that you
+want to know the scope. I think we should leave some room for discussion.
+How long should I present? I think 10, 20 to 25 minutes. And then there will be
+the technical details and discussion.
+
+[13:41] 【RNP·现场·项目】
+Can we interrupt? Sorry — I prefer to.
+
+[13:41] 【陈昊·讯飞】
+It's up to you. Okay, up to you. Yes.
+
+So today I think there are three main purposes. The first purpose is that we
+will state our scope of work in detail, to let you know what we will deliver.
+The second is for you to know how you should allocate human resources, to form
+your team, to work together with us so that this scope of work can be delivered.
+
+[13:41] 【陈昊·讯飞】
+And the third is your capacity program, and how our knowledge transfer can be
+connected to your capacity program. I think this is the three parts.
+
+And first I will introduce the scope of work of this project — the oral
+presentation, or statement, of the scope of work document.
+〔陈昊自己定义的三个会议目的，后文对照用〕
+
+[15:26] 【徐唯·讯飞】
+Yes. Let me close that window and try to share again.
+
+[16:09] 【陈昊·讯飞】
+Yes, I think —
+
+[16:15] 【陈昊·讯飞】
+Okay, you can try if you can share.
+
+[16:20] 【RNP·现场】
+Let me put you as a presenter. Now you're a presenter.
+
+[16:20] 【徐唯·讯飞】
+Okay, let me try to share it. Let me share this one.
+
+[17:04] 【陈昊·讯飞】
+Full screen. Okay.
+
+The scope of work — the majority part of our scope of work is four parts.
+The first is the output of our project: you will get four outcomes of our
+delivery.
+
+The first is the National AI Capability Center. The second is the Brazilian
+Portuguese National Model — and this includes text, speech recognition and
+speech synthesis. The third will be the National AI Application; that should be
+a chatbot, like ChatGPT or Claude — such a chatbot will be built based on our
+Brazilian Portuguese national foundation model, to serve the end users that you
+assign. And the fourth will be the Domain Large Language Model.
+〔对应 PPT 第 2 页"一页看全：讯飞交付的四项成果"〕
+
+[18:01] 【陈昊·讯飞】
+And in the previous scope, maybe you proposed that you need one. But now,
+according to the updated requirement, maybe you need three, including Space,
+Biodiversity and Health. We have upgraded the scope of work to satisfy your
+requirements.
+
+And also, throughout all the scope of this work, when we're building these
+models and software, we will also be performing the knowledge transfer. We will
+have in total 1,216 hours of knowledge transfer program, including about 158
+working days and 260 attendances in total.
+〔A、B 两版在此处都转写为 "1,020 or 216 hours" —— 同一处口误的两次独立
+ 记录。按 SOW 与 PPT 第 2 页应为 1,216 课时，此处已按正确数字还原〕
+
+And also after the delivery, we will provide 12 months on-site and 60 months
+remote support.
+〔A 版 60，B 版 16。以 A 版及 SOW 为准：60 个月〕
+
+So it is the major part, and then we will explain it one by one. First it will
+be the National AI Capability Center. I think it should be quite familiar to you
+because we have introduced this before.
+
+[19:22] 【RNP·现场】
+You're changing there, but it's not changing here. I think you can click that.
+Zoom out. Yes. Another button. Yes, it's okay. Can you test? Go. Yeah, go next.
+It's good. Sorry — he is smarter than me.
+
+[20:10] 【陈昊·讯飞】
+Okay, so this is the National AI Capability Center.
+
+With this platform — actually this is a workbench for building the local corpus,
+and also for training the Portuguese large language model and the domain large
+language model. And this platform includes four parts. The first is the Corpus
+Construction Center, which is used to build the local dataset of Brazilian
+Portuguese documents and data. The second part is the Model Training Center. The
+third part is the AI Application Innovation Center. And the fourth part is the
+Content Safety Review Platform.
+
+I will not explain the details, but I think the names are quite straightforward.
+
+And from this part of work, we will deliver the platform software and licenses,
+and also do the deployment. And we will train your engineers how to operate and
+maintain this platform. We will have a series of courses to teach your team the
+O&M of this platform, to guarantee that after we leave, this platform can also
+be operated and maintained by your own team.
+
+And how RNP takes part in this project: you should provide the environments, and
+also the interfaces to be integrated with your existing systems; and to manage
+the platform after the acceptance; and to organize the acceptance; and to take
+over the daily operations after we hand over this platform to you.
+〔对应 PPT 第 3 页"讯飞负责 / RNP 怎么参与"两个方框，措辞与页面几乎一致〕
+
+[20:10] 【RNP·现场·技术】
+Okay — some questions. What do you mean, "to provide the interface and the
+environment" to us?
+
+[22:12] 【徐唯·讯飞】
+Our system — yes, databases. It just means: I think you have some login systems
+and authorization systems, and you need to provide some interface for us, so we
+can integrate single sign-on.
+
+[22:30] 【徐唯·讯飞】
+Yes, for example single sign-on, or the identity. And for the environment, we
+just need the physical environment to develop and deliver our software. And also
+we need the environment from the Huawei side, when they finish the ICT part, the
+computing power.
+
+[23:00] 【RNP·现场·技术】
+So do you need some environment before the installation of the data center?
+Because we have a lot of servers in the data center. So you're going to need
+some equipment before installation?
+
+[23:00] 【徐唯·讯飞】
+It's up to your requirements. Actually we don't need an especially separate
+environment or interface — we can deliver it ourselves, under the Huawei
+environment that is okay. But other system integration needs you to provide the
+interface.
+
+[23:00] 【RNP·现场·技术】
+The interface is okay, but the environment —
+
+[23:00] 【徐唯·讯飞】
+The environment is just the physical environment. We need some place, some
+network, to be able to log into the systems. Because it's your asset — when
+Huawei delivers their hardware it is your asset, so we need your organization's
+permission so that we can log into that environment. That's the meaning.
+
+[23:00] 【RNP·现场·项目】
+But what I understand is that this work is going to start before the data center
+is ready.
+
+[23:00] 【徐唯·讯飞】
+No — we need the data center, the server, to deliver our software. We need to go
+step by step.
+
+[23:00] 【陈昊·讯飞】
+Yes, I will state this in detail in the delivery plan. Actually after the data
+center is built —
+
+[24:45] 【陈昊·讯飞】
+— this should be the platform that needs to be deployed to the AI supercomputing
+center to make it work as designed.
+
+[24:45] 【RNP·现场·项目】
+Okay, but there will be previous work of data sets.
+
+[24:45] 【陈昊·讯飞】
+Yes, yes.
+
+[24:45] 【RNP·现场·技术】
+When you talk about interfaces, you're not referring to data — you mean
+integration, data interface?
+
+[25:09] 【RNP·现场·技术】
+You're talking about logging in and out. Yes, talking about those things.
+
+[25:09] 【徐唯·讯飞】
+Just — do you still talk about, because we also need to customize some of the
+interface for you.
+
+[25:09] 【RNP·现场·技术】
+For me, we can show our system in order to integrate with this.
+
+[25:32] 【陈昊·讯飞】
+Yes, because the system we deliver should not be a data silo. It should be
+integrated with your other systems, as you require in the TR.
+
+[25:32] 【RNP·现场·技术】
+Yes. We'll still go into the details about the ingested data preparation, etc.
+But yeah, that's it.
+
+[25:57] 【RNP·现场·项目】
+At least — my biggest concern is what we can start doing before having the
+equipment.
+〔★ 全场唯一一次 RNP 主动使用"最大关切"字样。A、B 两版逐字一致：
+ "my biggest concern is what we can start doing before having the equipment"〕
+
+[25:57] 【徐唯·讯飞】
+Yes — later we will explain what we can do while the data center is being
+constructed. We can do some of the process. Later we can talk about the details.
+
+[25:57] 【RNP·现场·项目】
+Okay. Yes, that's just to have an overview about what we're doing right now.
+
+[25:57] 【徐唯·讯飞】
+Yeah. We have already prepared all of these things.
+
+[26:31] 【陈昊·讯飞】
+So the Corpus Construction Center includes a pipeline for processing the data
+from the original documents to data which is AI-ready for model training. And
+the Model Training Center includes the workflow lab, which allows the clients to
+train the model based on a certain dataset, and also do benchmarks, and finish
+different training tasks including supervised fine-tuning, continuous
+pre-training, reinforcement learning and other training tasks.
+
+[27:07] 【陈昊·讯飞】
+And the AI Application Innovation Center mainly includes the model services and
+APIs that you mentioned last time. And it will provide the inference service to
+support the national application's operation.
+
+And the Content Safety Review Platform will be software to review the content
+generated by AI, to prevent content that is not compliant from being produced
+and presented to the user. This will be the firewall to make the content safe.
+And the rules can be configured by your side.
+
+[27:48] 【陈昊·讯飞】
+And this is the main idea of the AI Capability Center. Later he will do a system
+presentation to let you see what the platform looks like, and after delivery how
+you can use it.
+
+After my presentation there will be three system demos, from his side — small
+scale. It's not like a demo, it's a real environment, but it's a small scale of
+that environment. You can see all of it. All of our work in this project will be
+based on this platform.
+
+[28:22] 【陈昊·讯飞】
+And also you need four different teams. The first team is the data team and
+Portuguese experts from your side, to take part in the corpus construction work,
+and we will do knowledge transfer to this team based on the methodology and
+functionalities provided by this platform.
+
+[28:43] 【陈昊·讯飞】
+Second, you need a model engineer and domain expert team to support the model
+training. And also you need application product experts and software engineers
+to take part in the National Application development. And also you need a
+compliance team to help us do the content review.
+〔对应 PPT 第 3 页"四个模块各对应 RNP 的一支团队"〕
+
+
+────────────────────────────────────────────────────────────────────────────────
+第三节  29:05 – 45:39   巴西葡语国家模型；语料规模之争（全场最长争论）
+────────────────────────────────────────────────────────────────────────────────
+
+[29:05] 【陈昊·讯飞】
+And the second part — the previous one was the platform. The second part
+introduces our deliverables. The first deliverable is the Brazilian Portuguese
+National Model. We will provide a model of about 300 billion parameters,
+including NLP, ASR and TTS — one model for each. And based on this model, to
+train the model, we need to build our local corpus with about 50 billion tokens.
+
+This Portuguese foundation model will understand Brazil's language, knowledge,
+values, local needs and culture. And also the weights of our foundation model
+and the weights of the sovereign model, and the evaluation report, will be
+delivered to you after the project ends.
+〔对应 PPT 第 4 页导语，措辞几乎一致〕
+
+[30:03] 【陈昊·讯飞】
+And with this Brazilian Portuguese national model, you will get four
+achievements — four things you can get.
+
+The first is native Brazilian Portuguese, because we will train it with local
+high-quality data that maybe you need to organize some different entities to
+provide. And this data should be only in Brazil, and no other large language
+model — for example ChatGPT or Gemini — they cannot get this data.
+
+[30:33] 【陈昊·讯飞】
+So with this data, we can train the LLM to have a very good understanding of
+your local language, including some dialects of different areas. Because we can
+use this local —
+
+[30:33] 【RNP·现场·项目】
+I asked you this before. Okay, but I didn't remember this. What's the answer?
+
+[31:04] 【RNP·现场·项目】
+The concern that the experts have is about the size of the corpus. Many people
+said to me — people that work on this — that if the size of this model is 300
+billion parameters, they say that 50... Before it was 30. I understand before it
+was 30 billion; you present now 50 billion.
+
+[31:29] 【RNP·现场·项目】
+People say that this is not enough to make a model that's Portuguese, Brazilian.
+Some people say that perhaps you need around 100 to 200 billion tokens.
+
+[31:51] 【徐唯·讯飞】
+Let me explain to you. Before those 50 billion tokens — we will have the normal
+Portuguese, without Brazilian value, without your national news, your national
+library things; that is your 50 billion tokens. But we will search from the
+public internet and create around 300 billion tokens of corpus.
+〔A 版 "thir three hundred billion"，B 版 "3,300 billion"，后文两版均为
+ "300 billion" —— 取 3000 亿 token〕
+
+[32:31] 【徐唯·讯飞】
+From the public data, we will mix not only Brazilian Portuguese but also English
+and general Portuguese, and merge them — especially the general data corpus.
+And then we train with this the first time, and this model will know Portuguese
+normally.
+
+[33:01] 【徐唯·讯飞】
+But later we will move that model to your local environment and use your 50
+billion tokens, training your Brazilian value, Brazilian library, Brazilian news,
+and then we'll have your national Brazilian model.
+
+[33:19] 【徐唯·讯飞】
+So — you asked this before. Later I will explain; it's the last part of your
+question, what we can do before the equipment comes. So we can train for you in
+China, using our data centers, because it's general, from the public. It doesn't
+have the data-permission problem. We just use the public data and train, that
+first round.
+
+[33:19] 【RNP·现场·项目】
+You're going to transfer this?
+
+[33:19] 【徐唯·讯飞】
+Yes, we will transfer this for you and you can use it. And you can use those 300
+billion tokens to train other models also. In those 300 billion tokens, around
+maybe 10 or 20 percent is specifically Brazilian Portuguese. That one you can
+train with.
+〔巴葡占比 10–20%，A、B 两版一致〕
+
+[34:17] 【徐唯·讯飞】
+It belongs to you. I will send it to you. It's open source for you. But the
+merged one — that is our asset. Because it's our asset.
+
+[34:33] 【陈昊·讯飞】
+Okay, but you can use that one.
+
+I think there will be three different corpora.
+
+The first corpus is the corpus we use for pre-training. This is more than 50
+billion tokens — it is for our pre-training dataset. As he just mentioned, we
+will bring this to you and you can use it to train your model, but it is not
+visible to you, because it is our core intellectual property.
+
+The second part: for this project, in China we will start to strengthen the
+Portuguese capabilities of our foundation model. This will be collected from all
+the public Portuguese data, including maybe the Portuguese in Brazil — because
+we hope that the local work should have the highest value: you should collect
+the data that is not on the internet. But if there is public Brazilian
+Portuguese data that has already been published on the internet, in China we can
+start earlier to collect that data, which can be used to enhance the Portuguese
+capability. And we will do this before the data center finishes construction.
+
+And also the dataset we will share with you for your review — I think you should
+approve this dataset; this dataset can be open to you. And after one year we get
+a model that has better performance in general Portuguese — including Brazilian
+Portuguese, African Portuguese, European Portuguese; we collect all this
+Portuguese to enhance it. This second part, the public Portuguese corpus, I think
+is also several hundred billion tokens.
+
+And the third part is the local corpus. This has the highest quality, and other
+countries and other entities will have no possibility to get this high-quality
+data, because only you have possession of this data.
+〔★ 三套语料的划分 —— 这是全场最关键的一段技术说明，但 PPT 上没有任何
+ 一页画出这个结构，是徐唯与陈昊临场拆解的〕
+
+[36:46] 【陈昊·讯飞】
+I think these three datasets — is it clear for you?
+
+[36:46] 【RNP·现场·项目】
+Yeah. We have a question online. Okay, you still want to pose your question?
+
+[37:04] 【Marita·RNP·远程】
+I would like to make sure about the 50 billion. I understand that we have 50
+billion tokens to train the model. But I don't understand if we will have
+continual pre-training and start with, for example, Spark X 2.0 — and we are
+going to use the 50 billion to specialize in Brazilian Portuguese; or if we are
+going to use 50 billion for all of that. Do you understand my question?
+〔RNP 点名了具体的星火版本号 "Spark X 2.0"，两版一致〕
+
+[38:31] 【徐唯·讯飞】
+In my understanding, the 50 billion tokens is not all of the data to train the
+model. It's only a part, for the continuous training of our Spark model.
+
+[38:50] 【陈昊·讯飞】
+Only the continuous — the post-training. I think the continuous pre-training,
+CPT. Before we had this foundation model, we had trained from scratch on
+hundreds of billions of data.
+〔B 版记为 "400 of billions"，A 版记为 "hundreds of billions"。数量级待核实〕
+
+[39:11] 【RNP·现场·技术】
+Okay. Just one question. One thing that we discussed before is that we'd like as
+well to train an open source model in parallel with the Spark model. So if you
+do this CPT in China — you said that you will start collecting data from public
+websites, and then you prepare the model with this data as a first part. But if
+we want to do this on an open source model, would we have all the information
+that we need to do this in parallel with the Spark model? Do you understand my
+concern?
+
+[39:11] 【RNP·现场·技术】
+I think the dataset can be shared — but the dataset, and as well the methodology
+to do this CPT with another model: are you going to transfer this?
+
+[40:11] 【Marita·RNP·远程】
+My concern is not to prescribe the training strategy, because I know that. It's
+to make sure that whatever strategy we choose can be translated into verifiable
+requirements for performance, ownership of the model assets —
+
+[40:35] 【Marita·RNP·远程】
+— knowledge transfer and technology autonomy. That's my concern.
+
+[40:35] 【陈昊·讯飞】
+Yes. I just confirmed it with our architect. I think the methodology can be
+transferred to other open source models, because Spark is our flagship for how
+to train a model on Huawei's supercomputing. We have guaranteed performance and
+we have found a correct way to train our Spark on this, and this has been proved
+by our practice. But the methodology, I think, is general. You can also master
+the methodology and train the open source model based on our knowledge transfer.
+
+[41:25] 【陈昊·讯飞】
+But the performance — you know that other open source models are a black box for
+us. We don't know every detail, and we don't know their pre-training dataset. So
+after you do continuous pre-training on another open source model, the
+performance — when you meet some troubles, we need to take more time to locate
+and resolve the different issues, when there are troubles in performance or in
+the model's capability.
+
+But if we train it with Spark, we have every detail mastered in our hands, and
+we can very quickly tell you how to optimize and how to change some algorithm
+configurations to make this model work.
+
+[42:16] 【RNP·现场·技术】
+Okay, I think this is the idea.
+
+Another concern is: as you said, you're going to use all the public data in
+Portuguese. What I understand is that in our 50 billion token dataset, we cannot
+use this public data any more, because it will be duplicated with your data. So
+we have to have 50 billion of not-public but other sources of data that we can
+find — for example books and everything. For example you can use Wikipedia as
+well.
+
+[42:53] 【徐唯·讯飞】
+Yes. We will have a list. We will have a plan to tell you what kind of data we
+need to collect — from which department, maybe which places, maybe library,
+maybe news, maybe some other places. We will make the plan and confirm it with
+you together, because you know where the data is.
+〔"数据采集清单"是讯飞在会上作出的承诺，PPT 上无此项〕
+
+[43:17] 【陈昊·讯飞】
+Exactly. But we can check whether it's useful for us or not; we will tell you the
+reason. And also the public dataset — this can be done from our side and you
+only need to approve and do the QA/QC. We think the public data collection
+
+[43:39] 【陈昊·讯飞】
+should not be borne by your side, to save time. And we recommend that your team
+collect high-quality internal data in Brazil. Even for the public data, you need
+to work with us together — to avoid duplication, to double-check that it's
+useful.
+
+[43:39] 【RNP·现场】〈葡语·RNP 内部，但被会场麦克风拾到〉
+...faz sentido transferir tecnologia pra eles, mas assim, acho que eles estão
+conversando com a gente... 
+〔葡语段落转写残缺，语义不完整。同一意思紧接着用英文重复了一遍，见下条〕
+
+[43:39] 【RNP·现场·项目】
+...with another company. Yes, I know. Doing the same. Yes, the same stuff.
+〔B 版记为："you have some other activities [in] Brazil with another company,
+ I know, doing the same stuff." —— RNP 指出讯飞同时在与另一家巴西公司
+ 洽谈同类工作〕
+
+[44:33] 【RNP·现场·项目】
+And then, one idea is perhaps to share knowledge between these people, to not do
+the same job again and again.
+
+[44:33] 【徐唯·讯飞】
+No need again, because you can directly maybe buy, maybe just collect from the
+other companies. We can check together. We know them.
+
+[44:33] 【RNP·现场·项目】
+Yeah, we talked to them in February — which is... Buran AI and Maritaca AI.
+〔两版转写：A "so Buran a I I and Maratika a I"；B "boron ai and marathi car ai"。
+ "Maritaca AI" 高度确定；另一家名称未能还原，需核实〕
+
+[44:33] 【徐唯·讯飞】
+Yes, we know these companies. Just check with us. Because we don't need to
+redo it. So that's why we need to make that plan together — to list where the
+data is. Maybe, as you said, it's in another company, not in the library, not in
+the news; it's already in another company, so we can use it directly.
+
+
+────────────────────────────────────────────────────────────────────────────────
+第四节  45:39 – 57:45   建成前的临时算力；数据出境；星火权重开放范围
+────────────────────────────────────────────────────────────────────────────────
+
+[45:39] 【陈昊·讯飞】
+You see this PowerPoint — it is the first step for the corpus building. From our
+part, we will collect the public corpus and strengthen the base model with our
+domestic computing power.
+
+[45:52] 【陈昊·讯飞】
+And from your side, you should get the license of the corpus which exists in
+Brazil. You help us coordinate the licence, to get the datasets that are already
+here; and also to arrange — actually we need to do the knowledge transfer, and
+we also need to build the dataset locally in Brazil.
+〔对应 PPT 第 5 页第 1 步的两条并行线〕
+
+[46:15] 【陈昊·讯飞】
+So — because there will be one year in which the data center is not commissioned.
+During this year, we think we need some computing power to help our team do the
+data collection and data preparation work. We need some computing power.
+
+[46:35] 【徐唯·讯飞】
+We have this requirement, because before the computing power is finished, we
+need maybe 16 cards, maybe 32 cards, to build our corpus center, to create those
+50 billion tokens.
+〔★ A 版："we need some maybe 16 card, maybe such a 2 card"
+   B 版："we need some maybe16card，maybe such a two card"
+   两版转写完全一致地含混。最可能是"16 张，或者说 32 张"，但无法确定。
+   量级（十几到几十张）可用，具体张数必须向徐唯核实后再对外引用〕
+
+[46:56] 【徐唯·讯飞】
+We think we cannot stop, we cannot wait. We need to do something in parallel.
+So later we can find some computing power — maybe, as you said, from some other
+companies who have some. Or we can work with Huawei. Maybe three or four months
+together; we can discuss with Huawei. Because Huawei is already selling some
+other computing power in Brazil at the same time, so we can reuse that. And in
+maybe 2027 — because your data center will be under construction in 2027 — in
+that year we will use that other computing power, maybe three or four months, to
+create those 50 billion tokens. So we need some temporary computing power, three
+or four months, like this.
+
+[48:04] 【徐唯·讯飞】
+About the NPUs — we need some NPUs.
+
+[48:04] 【RNP·现场·技术】
+GPUs? Which GPU?
+
+[48:04] 【徐唯·讯飞】
+We need the NPUs. Yes, we need NPUs. Because we have the toolchain using several
+small models to do the NLP, to process the documents, to clean the data, to
+segment the data. Later I will show you what we do.
+〔明确要求昇腾 NPU，不是 GPU〕
+
+[48:04] 【RNP·现场·技术】
+One thing that I would say about all this is that, because of data — it's hard
+to use public cloud; we have to be involved in this.
+
+[48:04] 【徐唯·讯飞】
+Yes. You need the public data and training. Because those 50 billion tokens are
+your priority; this is your very high quality data.
+
+[49:04] 【陈昊·讯飞】
+Training with the public data as well — yes. For public data we can provide
+computing power in China, because this data is not sensitive, it's public.
+
+[49:15] 【徐唯·讯飞】
+We can do some knowledge transfer based on the remote computing power in China.
+That's okay.
+
+[49:15] 【RNP·现场·技术】
+But part of this — that's the concern — you must use your own Brazilian
+computing power, because it's your very private data, sensitive.
+
+[49:40] 【陈昊·讯飞】
+The LGPD, some problems — because of that, you need to use that one.
+
+This needs to be conducted in parallel: the data center construction, the local
+data corpus building, and the public data collection. These three things go
+together after the project starts. So we need some local computing power to
+support this. Otherwise, after one year when the data center goes into
+operation, we will not have enough data for model training, and there will be
+low efficiency.
+〔"三件事并行"是这一段的核心结论〕
+
+[49:40] 【RNP·现场·项目】
+Okay, we have to raise hands. Yeah.
+
+[50:28] 【Marita·RNP·远程】
+I have two doubts on these slides.
+
+The first is: will the complete corpus used to enhance the base model in China be
+delivered to RNP together with its provenance, licence information, quality
+criteria and processing methodology?
+
+[50:28] 【徐唯·讯飞】
+Yes, we will provide those same things.
+
+[50:59] 【徐唯·讯飞】
+All the methodology and also the process, and also together with the knowledge
+transfer. That's the first step in China. Yes, this public dataset we collected —
+yes, I will hand it over.
+
+[51:19] 【Marita·RNP·远程】
+The second doubt is: when this slide shows "keep supplying data to iFLYTEK's
+site" — when this slide says that every day we will keep supplying data to
+iFLYTEK's site — could you clarify where the Brazilian corpus will physically be
+processed during this stage? Will any Brazilian data or tokenized data leave the
+Brazilian environment?
+
+[51:19] 【徐唯·讯飞】
+No. Just the public data that we collect.
+
+[52:03] 【徐唯·讯飞】
+The resident data, those 50 billion tokens, are in your environment, always in
+your environment. We will not send it to China. We will go there to process it.
+That's why we need to provide the computing power. That's why.
+〔★ 数据不出境的正面承诺；也是临时算力需求的正当性来源〕
+
+[52:24] 【陈昊·讯飞】
+Yes, this is the specification of the Portuguese corpus. Because the details are
+too detailed, I have not presented them, but we prepared all this in the
+statement of work — you can refer to that document. It is very detailed.
+〔对应附录 A3〕
+
+[52:47] 【陈昊·讯飞】
+You can read it one by one later — but it's around 200 pages.
+
+[52:47] 【RNP·现场·项目】
+Okay — because we have Enzo. Can you pose your question?
+
+[52:47] 【Enzo·RNP·远程】
+Guys, I just want to clarify a couple of questions.
+
+[53:08] 【Enzo·RNP·远程】
+The base model that you bring to us is based on your Spark architecture. Is that
+correct?
+
+[53:08] 【陈昊·讯飞】
+Yep.
+
+[53:08] 【Enzo·RNP·远程】
+Okay. I noted that the larger Spark models that you have are not open weights.
+Is that correct?
+
+[53:30] 【陈昊·讯飞】
+What do you mean, the larger one? I think you got the newest news from our side.
+We have just open-sourced one small size, I think 30 billion. And we just
+published Spark 2.5, I think yesterday.
+〔即 2026 年 9 月 8 日前后发布 Spark 2.5，并开源了一个约 300 亿参数的小尺寸模型〕
+
+[53:53] 【Enzo·RNP·远程】
+My question is: if we — RNP, or even the government — decide to share this model,
+the final model that we get at the end of this process, with a permissive
+licence, is that okay? Do we need to worry about licensing or anything of the
+original Spark model?
+
+[54:17] 【陈昊·讯飞】
+Actually this has already been clarified in May. I think I talked directly to
+Miss — with RNP.
+
+[54:32] 【陈昊·讯飞】
+Because at that time the customer side asked us that we need to hand over the
+weights. And after we discussed, we got the approval of our headquarters that
+the Spark large language model used in this project, including the 300 billion
+large version, will be opened to Brazil. Even if it is not open to the public, it
+will be opened to you, to your team.
+
+It's a restrictive opening, and the opening scope should be constrained in our
+contract. Open, but not public. It's open source for you, you can see it. But if
+you want to share with a partner, this is possible if you consult — with some
+authorization for that partner.
+〔★ 会上口头承诺的开放范围，比 PPT 附录 A6 写得宽〕
+
+[55:22] 【徐唯·讯飞】
+It's not to all of the public. We cannot just directly one by one — you need to
+sign with us together.
+
+[55:22] 【RNP·现场·项目】
+Yes, maybe we have a list; this needs to be negotiated, maybe have a scope.
+Because I have another government institution, like this.
+
+[55:46] 【陈昊·讯飞】
+Actually, the reason is — we don't want you to sell our model to another country.
+That's the point.
+
+This can be confirmed when we talk to your legal team, and make this detailed in
+the contract: which entities or institutes you want to share the open weights
+with can be discussed at that time.
+〔★ 唯一一条明确红线〕
+
+[56:10] 【Inara?·RNP】
+But is it open for us to create our Brazilian model on top of other open models,
+like —
+
+[56:22] 【陈昊·讯飞】
+I think that is a hybrid. Yes, we have this capability. But previously we stated:
+if you want to guarantee the performance, we recommend [Spark]. But if you want
+to do something else, you can try by yourself. We can support.
+
+[56:22] 【RNP·现场·技术】
+Okay, we need to clarify that it's an option.
+
+[56:47] 【徐唯·讯飞】
+You can try that one. You can try. But in terms of performance, we cannot
+guarantee it. You can optimize by yourself. And maybe you can ask us some
+questions.
+
+[57:00] 【陈昊·讯飞】
+We will have the answers. We're a consulting service. Maybe you can try to do
+this — you can try, and also ask questions of us, we can give the answers.
+
+Yes, this is the support for the national AI stack R&D. We will support this from
+FP1 to FP9. FP1 is our platform, and FP2 is the model training.
+〔"FP1 到 FP9 全支持"为陈昊会上口径〕
+
+[57:23] 【徐唯·讯飞】
+And we will support you to do your own research. It's okay for us. We have the
+capability to serve you, open all the interfaces for you.
+
+
+────────────────────────────────────────────────────────────────────────────────
+第五节  57:45 – 01:13:30   模型升级与评测；验收标准；领域模型 DLM
+────────────────────────────────────────────────────────────────────────────────
+
+[57:45] 【陈昊·讯飞】
+So this is about the Portuguese LLM — the procedure: first corpus building, what
+we do and what you do; and model training. And because our service also includes
+the upgrade and optimization of the model — I think three times in one year — to
+optimize the model, the corpus should be updated.
+〔对应 PPT 第 5 页第 4 步"12 个月内 NLP 升 3 次"〕
+
+[58:06] 【陈昊·讯飞】
+So why do we say that you need to keep supplying data to our team? Because even
+if you finish the corpus building, the dataset should be upgraded. As all the
+mainstream large language model vendors do — also in our headquarters, we keep a
+dataset that is upgrading. And we hope that your local corpus will not be
+one-time; there needs to be a mechanism so that the data is renewed from time to
+time,
+
+[58:36] 【陈昊·讯飞】
+and then your model can keep optimizing and the performance keeps being enhanced.
+
+And for the model, after the model is trained — for the evaluation, we will issue
+the evaluation report. And also you need to coordinate some third-party
+organizations to do the tests, and to coordinate the experts from your side to
+review the performance. If it is not okay, we can help you do some revisions of
+the models.
+
+[59:10] 【陈昊·讯飞】
+And finally, it is the local delivery and upgrades, including the NLP model and
+the ASR model.
+
+[59:10] 【RNP·现场·项目】
+Chen Hao, may I ask you a question? We train the model, we have the corpora,
+everything is fine, fine-tuning and everything. And then we present some
+benchmarks and the evaluation is not that good.
+〔直呼陈昊名字，说明提问者与陈昊此前已有接触〕
+
+[59:29] 【徐唯·讯飞】
+Yes — it's a procedure. And then you will keep trying to improve this.
+
+It's two parts. One part: we can find some public benchmarks — this is the public
+part, public benchmark. We will try our best to get high scores and you can
+accept it. This is the first part.
+
+The second part — this is the main thing — we will create our own benchmark with
+your Brazilian culture, Brazilian understanding, Brazilian knowledge. We create
+that benchmark together with your team, to build a Brazilian benchmark. A
+Brazilian national benchmark. So these are the two parts to evaluate whether the
+model can already be used or not.
+
+[59:29] 【RNP·现场·项目】
+Okay. But you will have some acceptance level to say "now it's okay".
+
+[01:00:54] 【RNP·现场·项目】
+And how does this work in this contract?
+
+[01:00:54] 【陈昊·讯飞】
+Yes — we will have a list of the mainstream benchmark datasets in Brazil. For
+example ENEM, the Brazilian entrance exam of the university, and also some for
+toxicity. Because you already have some datasets; we have replied previously in
+the technical answers.
+〔ENEM 两版一致〕
+
+[01:01:23] 【徐唯·讯飞】
+You know, in AI circles too many people say the benchmark — we can train
+specially for a benchmark, we can train some special benchmark to directly get
+maybe 100 percent points, but it's not working. The real working is just: create
+what you want. You create your objective, to test whether that model can already
+be used.
+
+[01:01:23] 【RNP·现场·项目】
+My question was, in terms of — for example we create a benchmark with 20
+different [tasks], and then we do this evaluation and we say it's 75 percent. We
+say, "oh, that's not enough."
+
+[01:01:23] 【徐唯·讯飞】
+Yes, we will improve.
+
+[01:01:23] 【RNP·现场·项目】
+We can always say it's not enough.
+
+[01:02:23] 【徐唯·讯飞】
+We have the timeline. Before the model starts to be trained, we need to negotiate
+the acceptance criteria. First — that's the acceptance criteria. Because it
+depends on your corpus also, not only our model and our tools. We can always say
+"the problem is not the model, it's your [data]" — you can blame us, we would in
+turn say "that's your fault." No, we will not do that. We try to avoid it.
+
+[01:02:23] 【RNP·现场·项目】
+One way — think about having some objective criteria in order to say that's good
+or not good.
+
+[01:02:23] 【徐唯·讯飞】
+Yes, we have a template right now. We have a template: before training, to
+confirm all of the benchmarks, what kind of condition you can accept.
+〔★ 讯飞主动把"互相甩锅"的风险摊开，并给出"训练前先签验收标准"的机制〕
+
+[01:02:23] 【RNP·现场·项目】
+Okay. And just to bring — for the DLMs, you will need to have specific
+benchmarks.
+
+[01:02:23] 【徐唯·讯飞】
+Yes, of course. Before training, we confirm the acceptance terms.
+
+[01:03:50] 【陈昊·讯飞】
+Let's come to the Domain Large Model, this part. And we will go consecutively.
+
+You will get three domains. I wonder if these three domains are confirmed —
+Health, Space and Biodiversity — if it is confirmed, or it's only some very
+initial thoughts.
+
+[01:04:22] 【Inara?·RNP】
+I don't have these results. No. It's not my decision. I have some governance of
+this project, so I had to ask him. I don't know if that's a problem.
+
+[01:04:44] 【陈昊·讯飞】
+It's okay. I think the domain can be left open in the contract. But the number —
+yes, the number can be [fixed]. Actually the cost on our side will increase, to
+finish two more large language models, because it was at the same price. But
+after we negotiated — we have agreed with Huawei and I think we will keep the
+total price.
+〔★ 三个领域可以留空，但数量固定为 3；讯飞成本上升，与华为商定总价不变〕
+
+[01:05:22] 【徐唯·讯飞】
+But we have some limits, because we cannot train an industrial model. It's not an
+industrial model, because it's a specific domain — or we can say a specific
+scenario. For example, health: the health area is very huge. Actually in China,
+if we train a vertical —
+
+[01:05:45] 【陈昊·讯飞】
+— an industry model, for example the health model, it will take a lot of
+datasets; the workload is just as big as the Portuguese LLM. But in this project
+the majority part should be the delivered Portuguese LLM. For the domain large
+language model, we recommend starting with a smaller size.
+
+[01:06:17] 【陈昊·讯飞】
+So the general capability of the model will not, for example, have the capability
+to cover every area of health. We recommend that you choose one area within the
+health industry — for example diagnosis, to help the doctor do diagnosis. Or for
+biodiversity, maybe one area, for example to analyse the genetics. One area in
+each domain, and this is a specific area.
+
+Within this budget, we're not able to do every capability in every area of health
+and keep a very high performance. One scenario, one domain.
+
+[01:06:17] 【RNP·现场·项目】
+Yes, of course. Great. Because starting with one specific part, and you can
+continue.
+
+[01:07:27] 【陈昊·讯飞】
+So this is what we can support.
+
+First, you need to help us define the scenario well — for example health: which
+aspect, which sub-domain of health. And also you need to help us coordinate the
+data. It's the element you have to negotiate with the partners, because we need
+to allocate it. It's important to have some agreements in the government to open
+the data. For example, for health maybe you have the SUS system; there will be
+data sources, but there is a lot of data — maybe some part of the source data to
+cover a specific area.
+
+[01:08:07] 【徐唯·讯飞】
+So for the DLM we have three things we need to require from you.
+
+First, to define the scenario.
+Second, this scenario must have enough data, because we cannot train without data.
+Third, we need the specialist, the expert for this scenario. We need that
+specialist, that expert, to confirm the result — because without that expert to
+confirm, we don't know if it's correct or not.
+
+Just three things, and the specialist for it.
+〔对应 PPT 第 9 页；这三条是 DLM 启动的前提条件〕
+
+[01:08:51] 【徐唯·讯飞】
+The second part is the training part, the knowledge transfer for the DLM. It's
+similar. We use similar training to the LLM, just with different parameters and
+for a different scenario. The methodology is similar — not totally the same, but
+similar.
+
+[01:08:51] 【RNP·现场·技术】
+I have one question. What I understood from the last meetings is that you will
+not use the large model, the Spark model — you're going to use smaller models.
+Which is the main one you're going to use? The smaller ones, or are you going to
+use open source models? What is your plan for this part?
+
+[01:08:51] 【徐唯·讯飞】
+It depends on the model. We can also use some of our small models, and you can
+also use some open source model to train that DLM. We have both; we have the
+methodology, because the size is not a problem in this case. If you have 70
+billion parameters — maybe 70 billion, maybe 30 billion is enough for this
+scenario. But it's better this time to do distillation from the large model.
+
+We have the course for how to select the correct model for the specific
+scenario; we will teach you how to select the model. After you confirm the
+domain, we will select a model. For example, if you choose health, we will select
+a foundation model
+
+[01:10:51] 【陈昊·讯飞】
+which has the best performance in the health area, to be the foundation model.
+And then based on the model with the highest performance — for example our Spark;
+we also have a Spark medical model in China. We can do a benchmark between our
+Spark medical model and other open source models, whichever gets better.
+
+[01:10:51] 【RNP·现场·技术】
+It's good to have a Portuguese model, of course.
+
+[01:11:17] 【徐唯·讯飞】
+Yes. So how we choose, and how we compare which is better — we will teach you.
+It's one of our knowledge transfer items: how to choose the model.
+
+So the third thing: I told you that the knowledge transfer is similar. The DLM
+training is after the Portuguese national LLM. So we think you already have some
+capability to train it by yourself. So for the DLM, we provide consulting, not
+the training by our side. You train it, but we will guide your team, your
+algorithm engineers, how to train the DLM. We can use our own computing
+resources to do this because it's a smaller model. So you can start — if you have
+enough resources, you can start this from the beginning, to do this in parallel
+with the other.
+〔★ DLM 由 RNP 训练、讯飞指导，与国家模型相反〕
+
+[01:12:28] 【陈昊·讯飞】
+That depends on the computing power. If we start this simultaneously, maybe the
+computing power — I need to confirm with Huawei whether it can support this,
+because the first stage of the power, we used all of it for training.
+
+[01:12:49] 【RNP·现场·技术】
+That was my question — whether we need all the computing resources to do the
+training, or we can put some model to do some inference on this platform at the
+same time.
+
+[01:13:12] 【徐唯·讯飞】〈中文·内部，向赵祥确认〉
+我们训练时候大概占多少个月？一开始，around 200 pflops？
+
+[01:13:12] 【赵祥·讯飞】〈中文·内部〉
+是，around 200 pflops。
+
+[01:13:12] 【徐唯·讯飞】
+It's the first series, but our training will use around more than 200 PFLOPS.
+
+[01:13:27] 【陈昊·讯飞】
+I think it is possible to allocate an experiment environment for you within the
+first part of computing power. But I think it can support some fine-tuning; for
+continuous pre-training, I think it is difficult.
+
+And also I will make another point. I just confirmed with our solution architect
+that — not only do we build the 300 billion Portuguese sovereign model on this
+Portuguese dataset; after we get this dataset, we can also use the dataset to
+train the DLM, to improve the Portuguese capabilities. And we can also deliver a
+small size Portuguese LLM to you — for example maybe a 30 billion parameter
+small-size sovereign model. It is okay for us to give you a small size model at
+the same time. And this can be the foundation to build the DLM, so that you can
+get both the Portuguese capability and domain language understanding.
+〔★ 会上新增的承诺：额外交付一个约 300 亿参数的小尺寸葡语主权模型，
+ 作为 DLM 基座。PPT 中无此项〕
+
+
+────────────────────────────────────────────────────────────────────────────────
+第六节  01:13:30 – 01:28:24   国家 AI 应用；并发与配额；AI 治理提问
+────────────────────────────────────────────────────────────────────────────────
+
+[01:13:27] 【陈昊·讯飞】
+So I think this is the main idea. And the next part is the National AI
+Application. This includes the national app. And this national app will be open
+for the approved users; the scope of the users should be determined by your side,
+because the computing power is not enough to open it to the public. In the first
+phase it can only be opened to some — I think 1,000 concurrent users.
+
+[01:15:23] 【徐唯·讯飞】
+And this is 1,000 concurrent — but the total users, it depends, because maybe the
+DLM training uses too much power. So the concurrency of the National AI is
+smaller, but the highest is 1,000 concurrent users.
+
+[01:15:44] 【陈昊·讯飞】
+Yes. When we build the AI supercomputing [center], the National AI can be a pilot
+project which is opened to some seed users that you choose, to do some tests on
+our Portuguese model and also the application. And it will include Q&A and
+search, document analysis, and Portuguese speech input and read-aloud. This
+capability will be provided by the models we train in this project, including
+NLP, ASR and TTS.
+
+And also we will provide the Data Operation Platform, and the compliance and
+content safety review platform, to support the operation of the national app.
+And in this project, this is based on our model service and API; these APIs will
+support the inference of the national app.
+〔对应 PPT 第 6 页的三个方向〕
+
+[01:16:44] 【RNP·现场·技术】
+And then the public can use this platform. So the API that you're going to
+provide — is it suitable to develop agents as well? Are you going to support
+agent AI?
+
+[01:16:44] 【徐唯·讯飞】
+Yes, it's just an OpenAI [compatible API]. It's like a MaaS service.
+
+[01:17:12] 【徐唯·讯飞】
+It's a model-as-a-service; we can provide the model API directly and they can
+create their own agent. Even if you download some agent, you just connect our
+model API and it's running. It's an OpenAI-compatible API.
+
+[01:17:12] 【RNP·现场·技术】
+Yes — but how many users?
+
+[01:17:12] 【徐唯·讯飞】
+You decide. Because it depends on the computing power we have; it's limited. To
+grow the computing power in order to deliver the service to more people — if you
+need to support more people, you need to expand the computing power, the capacity
+of the AI Supercomputer Center. In 2028 you're going to have twice the computing
+resources.
+
+Even so, you can export our models, and some companies, some places, can just
+install our models directly and use their own tools and apps. But because the
+model priority is yours, to guarantee the quality of service you need to restrict
+the number of users.
+
+[01:18:33] 【陈昊·讯飞】
+If too many users access the platform, everything will be very slow and we cannot
+guarantee the user experience. It is constrained by the computing power capacity.
+
+[01:18:53] 【徐唯·讯飞】
+So maybe you would need to organize maybe high schools, universities, and some
+research departments to use it in the first stage. Maybe later you can open the
+API to more people.
+
+[01:18:53] 【RNP·现场·技术】
+Is it going to be possible to specify how much each user — or each [tenant] — can
+use? For the specific governance that you want to implement.
+
+[01:18:53] 【徐唯·讯飞】
+We will have the monitor of that in the platform. You can see the operating — we
+have the management system. This is a module that we deliver.
+
+[01:18:53] 【RNP·现场·技术】
+But maybe to check and say how much is going to be used for each one — is that
+possible? I mean, just for building governance, how much is going to be [used]?
+
+[01:19:43] 【徐唯·讯飞】〈中文·内部，转问赵祥〉
+可以，我们有是。Yes, I know what you mean。就是我们的租户上限是多少？
+
+[01:19:51] 【赵祥·讯飞】〈中文·内部〉
+租户上限目前取决于资源，目前是没有〔上限〕，其实考虑的是并发，如果说资源到
+了、资源不足〔才有影响〕。
+
+[01:19:58] 【徐唯·讯飞】〈中文·内部〉
+我们怎么计算最终的用户数量？用户是租户里面〔的〕。如果说就超了的话怎么办？
+
+[01:20:05] 【赵祥·讯飞】〈中文·内部〉
+我们现在这个部分是不限制的。
+
+[01:20:07] 【徐唯·讯飞】〈中文·内部〉
+那我如果真的超了，超了他的计算〔怎么办〕？
+
+[01:20:09] 【赵祥·讯飞】〈中文·内部〉
+是，其实不是崩，就是我平台〔会排队〕。
+
+[01:20:14] 【徐唯·讯飞】〈中文·内部〉
+限制用户数量，比如说单个用户的用量。
+
+[01:20:17] 【赵祥·讯飞】〈中文·内部〉
+就是用量，单个用户的用量是可以限制的，我们有一些 QoS。就是针对租户的数量，
+平台就不限制他有 100 个、1000 个。
+
+[01:20:25] 【徐唯·讯飞】〈中文·内部〉
+对，这我不限制，我知道，但是如果他同时使用就超了怎么办？
+
+[01:20:30] 【赵祥·讯飞】〈中文·内部〉
+不会存在超，就是我每一个上面都会有限制。有配额，有配额。
+
+[01:20:34] 【陈昊·讯飞】〈中文·内部〉
+你就告诉有 quota，就像 ChatGPT 一样，有个配额，就这意思。
+
+[01:20:37] 【赵祥·讯飞】〈中文·内部〉
+我是给你有一定的限制配额，你访问完你就没了。
+〔B 版另记有一句 A 版漏掉的补充：「还有经费计量。还有一个点是，我们如果在
+ 资源不足的情况下……在资源充足的情况下，然后对某个人限制的，然后可能到了，
+ 假如还有资源我可以〔再放宽〕。」即配额在资源富余时可弹性调整〕
+
+[01:20:40] 【徐唯·讯飞】
+In other systems we have something specific for each user — like you will find
+the activity, that you have the remaining tokens, how many you can use. We can
+control the tokens, how many tokens you can use. Of course we need to have a
+layer that controls this. We will calculate the quota and the usage of every
+[user].
+
+[01:21:52] 【RNP·现场·项目】
+Yes — can I? Well, my question is about governance.
+
+[01:22:15] 【Marita·RNP·远程】
+And I see that governance here in this slide includes content safety, access
+control and logging. Will the platform also support model governance? For
+example, I would like to know if the platform supports model versioning;
+traceability of each model produced; each response, prompt and output logging
+according to privacy policies; and evaluation results, incidents, and monitoring
+of model performance over time.
+
+[01:22:59] 【Marita·RNP·远程】
+Not comparison of the models — but everything that happens when we train, and
+after, when we use. I think about governance not only for content safety or
+access control; it is more than this. When we talk about AI governance, for
+example traceability, versioning, and all kinds of analysis that we do on the
+results, on the performance, on the incidents, evaluation results, etc.
+〔★ 全场最系统的一问。我方的回答见下条〕
+
+[01:23:46] 【徐唯·讯飞】
+Yes. In the whole process, including the data processing, the training, the
+evaluation and also the API usage, we can trace all of it — we have the log. And
+we can also trace where the roots are. I think it's clear.
+
+[01:23:46] 【Marita·RNP·远程】
+Okay, thanks.
+
+[01:23:46] 【徐唯·讯飞】
+We have it traceable. All of the things are traceable.
+〔★ 两版 ASR 记录的回答内容一致，均止于此。即会上确实只答到这个程度〕
+
+[01:24:27] 【陈昊·讯飞】
+Now, yes, we can continue.
+
+For the development of the National AI Application, we will provide the mobile
+application and the desktop application, and the major functionalities are
+presented here. iFLYTEK will provide the standard capability, and we also need
+the local team to join the product definition, the functionality plan, and to set
+the user scope and content rules.
+
+Because in May you mentioned that some people from your side said that you will
+have some local teams that can do this. And we hope that we can collaborate
+together to develop this national app. We have a baseline. You can join our
+product definition process, and you can define —
+
+[01:25:30] 【徐唯·讯飞】
+— what functions you need, and maybe the HTML page, the progress page, and the
+language, and also the future roadmap; we can consider it together. Because it
+needs the local content in Brazil, and your team understands this better.
+
+[01:25:51] 【陈昊·讯飞】
+For example, maybe we have a standard version in China, our Spark application,
+but in Brazil it needs to be localized. What scenarios do Brazilian citizens
+care about — we can do some customization to adapt to your appearance and
+preference. And this should be discussed before the development starts, with your
+team. You can allocate some team from your side and we can work together.
+
+[01:26:19] 【陈昊·讯飞】
+And after it is developed — I think the source code can be open to you. Because
+you asked this question in May and at that time I said I needed to confirm with
+HQ, but they have consented that this national app can be open-sourced to you.
+
+And after we design together and develop together, the application can be handed
+over to you and operated by your side, and also upgraded, maintained and iterated
+from your side, and we will support in the back end. I think that will be a very
+good state — handed over to you for your team to control.
+〔★ 国民 APP 源码开源给 RNP，HQ 已同意。这一项按内部决定原本不上 PPT〕
+
+[01:26:19] 【RNP·现场·项目】
+So you say the operation sovereignty — I think O&M sovereignty.
+
+[01:26:19] 【陈昊·讯飞】
+The second part is the localization, also the development by our teams, and the
+system integration and launch and operate. I will not go into the details; we
+will have a very detailed responsibility matrix in the contract next year, to
+define our interface and scope.
+
+[01:27:37] 【RNP·现场·技术】
+Just a question — this mobile app will be —
+
+[01:27:40] 【陈昊·讯飞】
+Android and iOS. We can support both.
+
+[01:27:56] 【赵祥·讯飞】
+And web — and the PC client.
+
+[01:28:05] 【陈昊·讯飞】〈中文·内部〉
+这些都能开源给他吗？都能开源。
+
+[01:28:07] 【陈昊·讯飞】
+All open source to you. Yes. This including the mobile app.
+
+
+────────────────────────────────────────────────────────────────────────────────
+第七节  01:28:24 – 01:45:30   知识转移：三个层次、四个阶段、两个轮次；人力诉求
+────────────────────────────────────────────────────────────────────────────────
+
+[01:28:24] 【陈昊·讯飞】
+I think the scope of work is finished. The next part is the knowledge transfer,
+and what you learn and what you get from this project.
+
+What you learn here: the first one is the core courses. The second is the
+specialist courses, including four tracks.
+〔对应 PPT 第 10 页的三个层次〕
+
+[01:28:52] 【徐唯·讯飞】
+The four stages — Foundation, Shadowing, Guided Hands-on, Formal Handover.
+Foundation is just the basic LLM knowledge and some project architecture and
+basic knowledge for you. And second, the main thing, is the Shadowing and the
+Guided Hands-on.
+
+[01:29:15] 【徐唯·讯飞】
+That's the true part. As Chen Hao already told you, in the second part your
+engineers, your algorithm engineers and your real operators of this project will
+follow our delivery, and our teachers together, to use it in the real environment
+to train the LLM and train the DLM together with us.
+
+And the third part — we will have some tests for those engineers, maybe 20
+engineers; you let them operate by themselves.
+
+[01:29:54] 【陈昊·讯飞】〈中文·内部〉
+等一下，这个是吧？是。不是。
+
+[01:29:58] 【陈昊·讯飞】
+This is the four stages in detail.
+
+[01:30:01] 【徐唯·讯飞】
+Yes, it's in detail about that one. They already know how to train models, how to
+do fine-tuning, how to create the corpus database. And finally we will hand over
+all of the system to them.
+
+And the whole — we have two rounds. The first round will begin in China, at the
+beginning of our project.
+
+[01:30:47] 【徐唯·讯飞】
+Starting in China — the first page we talked about, to create the public dataset
+and train in China; we will start that training, and this is the first round. And
+the second round we will be training and teaching you when we train in Brazil,
+locally.
+〔★ 第一轮知识转移在中国 —— PPT 第 11 页未写地点〕
+
+[01:31:09] 【RNP·现场·项目】
+But do you expect that some people from Brazil go to China?
+
+[01:31:09] 【徐唯·讯飞】
+Not too much time, maybe. We also have the requirement to know your engineers,
+your algorithm engineers. Maybe some people can have enough time to go to China —
+maybe leave their other work, because we pay all attention to our project.
+
+[01:31:57] 【陈昊·讯飞】
+Yesterday I talked with the HQ. Actually the scope of the HR talent [program] is
+based on LPU; some advanced training is not included in the scope.
+
+So if you want to send someone to China in this project — if you can, we can
+accept this. You can send five to ten people to our headquarters, iFLYTEK
+headquarters, to help us with, for example, the previous work, the public data
+collection. And after the project starts, you can send a team to our headquarters
+to work with us. If you can afford the travelling fees or other fees, it is
+accepted by us. I think it's okay.
+
+But if you want to send some teams to China to have some advanced seminar or
+training, I think maybe it can follow the same rule, after Huawei's HR talent LPU
+mode.
+〔★ 去中国的人数（5–10 人）可以，卡在费用由谁承担〕
+
+[01:32:55] 【Marita·RNP·远程】
+Sorry, go ahead. I have one question. Considering that the main objective is
+independent operation — how was the balance between 360 hours of shadowing and
+20 hours of guided hands-on defined? Will RNP engineers have additional
+opportunity to actually execute the activities themselves during the shadowing
+period?
+〔★ 直接读 PPT 第 11 页的数字提出质疑〕
+
+[01:33:46] 【徐唯·讯飞】〈中文·内部〉
+跟随作业和〔指导实操〕……
+
+[01:33:48] 【陈昊·讯飞】
+I think in the Shadowing stage — actually we will do the task, and we will
+explain how this task is executed to you; and the major purpose of your team is
+to follow us and to learn, to see, to watch, observe how we make it. And Guided
+Hands-on is that we will assign some tasks for your team to finish — you will
+operate and we will support.
+
+[01:34:22] 【徐唯·讯飞】
+Yes — because in the Shadowing, that task, we also will have some tasks to send
+to those engineers, not only watching our operations.
+〔徐唯在此对陈昊的说法做了补充：跟岗阶段也会派任务，不只是观察。
+ 两位口径存在细微不一致〕
+
+[01:35:00] 【RNP·现场·技术】
+It's a shadow for me — it's a shadow for you. Yeah, it's changed. I think it's
+good, this is working. Yes, I have another question. Oh, sorry — Marcelo.
+
+[01:35:00] 【Marcelo·RNP·远程】
+I would like to know how to organize our projects inside RNP. Because when I look
+at your slide, I see the display "what this means for RNP". And I think in
+slide 3 you talk about the shadowing and the RNP team shadowing. So in order to
+prepare for this big project, I would like to see if you can deliver for us the
+list of engineers in our team, in order to compare with our team. Because I think
+that I need to hire some people already, to be prepared for the knowledge
+transfer. So is it important for us.
+〔★ Marcelo 明确引用了 PPT 每页底部的「对 RNP 意味着 / What this means for
+ RNP」页脚，并由此提出全场最核心的人力诉求〕
+
+[01:36:06] 【陈昊·讯飞】
+Okay, yes. I think this slide states the role of your side: we need the corpus
+collection team — this is for Foundation and Shadowing — and language and
+annotation experts, and also the model engineers, and the application staff
+engineers, and O&M engineers and domain experts. These different roles are
+assigned to the different stages, and what tasks they should take part in and how
+we support. It is listed in this table, and we will send this document to you and
+you can read it.
+〔对应附录 A10〕
+
+[01:36:54] 【Marcelo·RNP·远程】
+Yeah — but I would like the professional profiles. The name of the professional
+profile is good for us, in order to compare with the profiles team at RNP. For
+example: AI engineer, architect, developer, or something like that.
+〔★ 同一诉求第二次提出，措辞更明确：要的是"职位画像"，不是"人数与任务"〕
+
+[01:37:22] 【陈昊·讯飞】
+Yes, I have another table here, you can read it. I know that you need to allocate
+the human resources for the project. I think you need these experts: Portuguese
+language experts — we indicate that you need six of them; compliance experts,
+six; and also the DLM domain experts, about seven.
+〔对应附录 A7〕
+
+[01:37:44] 【徐唯·讯飞】
+This we will introduce later. And this is the last page. This page just shows you
+all of it — we just suggest it.
+
+[01:38:24] 【徐唯·讯飞】
+That's why I'm just telling you — because this project needs that amount of
+people to organize. Some language experts, some domain experts are not needed for
+the long time, not all the long time for this project; maybe only half a year,
+maybe only nine months is enough, for the training, to check whether the data
+corpus is correct or not. So at least I think it's a 30-people team from your
+side. But you can invite some of your students, some university teachers, coming
+for this — some short tasks.
+
+[01:38:24] 【RNP·现场·项目】
+I need to understand what's the basic [number of] people that I have to keep, to
+sustain the model, to maintain and operate. So you have people that work on the
+development, and other people that work [on operations].
+
+[01:38:24] 【徐唯·讯飞】
+Yes. In our imagination, just at the end of that project when we hand over all of
+the things — you need at least maybe 15 to around 20 people to handle that
+platform, including operating your models and your service. And other people can
+be invited from the university or from other organizations.
+〔移交后长期运维 15–20 人，两版一致〕
+
+[01:40:07] 【陈昊·讯飞】
+And actually, which people and what position of the people are needed should be
+aligned with the project delivery schedule. So we will give you, for reference,
+what people at what stage, how many people should join the project team, and how
+long they should attend. We will give you such an HR allocation plan.
+〔★ 讯飞承诺出具人力配置计划 —— 会上第二次承诺，PPT 上没有〕
+
+[01:40:07] 【陈昊·讯飞】〈中文·内部〉
+就是甲方的人力计划，要出出来，他们知道什么时候要。
+
+[01:40:36] 【徐唯·讯飞】
+Six months — we need to build a core team. The core team, we need permanent
+people. The core team must include our maintenance and operating teams, and also
+the knowledge transfer core team. We will also have a core team, our core team. I
+think 20 to 30 people.
+
+[01:41:30] 【陈昊·讯飞】
+If your core team is too big, we cannot guarantee the knowledge transfer
+performance. Because our core team to your core team, one to one — maybe we can
+train the trainer. You can send a backbone staff to us; we help you to train
+about ten of this core team to let them become the experts, and your core team
+trains other people. I think that makes more sense, instead of training a lot of
+people who maybe cannot learn things in depth.
+〔★ 核心团队宜小不宜大；1:1 培养约 10 人做 train-the-trainer〕
+
+[01:42:17] 【Carol·RNP】
+A question. I've been working with [colleagues] to describe all the training
+about the Huawei projects, and we stopped at this level of iFLYTEK. So now we
+have more clear what is included in this training. But I think, connecting with
+what Marcelo said, we need to guarantee that the people's profile and skills are
+the same for the whole project. Because I understand that there are some people
+that will work along all these layers of this project, and there are some people
+that do not work like this. So I have to guarantee that the people that work
+along all these levels pass through all the levels that we decide here in this
+project. Like: first level is Huawei training; after that is the second level,
+iFLYTEK training.
+〔★ 由 Carol 回指 Marcelo，可反向确认 01:35–01:36 的发言人为 Marcelo〕
+
+[01:42:17] 【Carol·RNP】
+Could you go back to that slide of the two rounds?
+
+[01:42:17] 【陈昊·讯飞】
+Yes, two rounds of training.
+
+[01:42:17] 【Carol·RNP】
+Yeah. But before that, we got a lot of Huawei training.
+
+[01:43:31] 【陈昊·讯飞】
+Yes, we need the prerequisites. When you join the training of our part, you
+should first finish the training of Huawei's foundation part, I think. And then
+this is for methodology; this is for engineers.
+〔★ 前置关系当面确认：先华为 AI Developer，后讯飞知识转移〕
+
+[01:43:39] 【Carol·RNP】
+Take a picture of all this training, to see the best [path].
+
+[01:43:45] 【陈昊·讯飞】〈中文·内部，转向华为培训负责人〉
+你来嘛。你开始嘛，我们这边差不多了，其实。你要加会，那你的 PPT 呢？
+你来搞吧，你有吧？
+
+[01:43:56] 【华为·培训负责人】〈中文·内部〉
+你把邮箱发我，直接发给你。
+
+[01:43:59] 【徐唯·讯飞】〈中文·内部〉
+嗯，可以。
+
+[01:44:01] 【陈昊·讯飞】
+And we have other materials that consolidate our training plan with Huawei's HR
+talent plan. We have a consolidated [plan].
+
+[01:44:09] 【徐唯·讯飞】〈中文·内部〉
+邮箱，邮箱直接发我就可以。
+
+[01:44:13] 【陈昊·讯飞】〈中文·内部〉
+我的 demo 他有，对，我先〔讲〕。
+
+[01:44:22] 【徐唯·讯飞】
+You mentioned about two rounds of training. Yes, we'll show you that today.
+
+[01:44:30] 【RNP·现场·项目】
+The first time is one round a few months after the project starts, and the second
+round is like one year later? How do you think it's going?
+
+[01:44:49] 【徐唯·讯飞】
+Yes — we can explain that to you.
+
+[01:44:51] 【陈昊·讯飞】〈中文·内部〉
+OK，你发吧，你发到徐唯的邮箱，好。
+
+[01:45:09] 【RNP·现场·项目】
+Probably we will need to give you rights to [share]. We need to change to another
+slide — he's sending me this slide by email.
+
+[01:45:21] 【陈昊·讯飞】
+Maybe we can have a break, two to three minutes.
+
+[01:45:21] 【RNP·现场·项目】
+Okay, we have a small break.
+
+
+────────────────────────────────────────────────────────────────────────────────
+第八节  01:45:30 – 02:08:30   华为 AI 人才培养框架；绿/蓝预算之分；两支队伍
+────────────────────────────────────────────────────────────────────────────────
+
+〔01:45:38 – 01:51:26 为休息与文件传输过程。华为的 PPT 无法从华为侧网络直接
+ 发给讯飞侧，双方尝试邮件、微信、截图、加入会议投屏等多种方式，耗时约 6 分钟。
+ 以下保留关键几句〕
+
+[01:45:38] 【陈昊·讯飞】〈中文·内部〉
+发了吗？
+
+[01:45:39] 【华为·培训负责人】〈中文·内部〉
+没，没收到吗？
+
+[01:45:40] 【陈昊·讯飞】〈中文·内部〉
+我看一下，或者你能发微信吗？你发不了微信。
+
+[01:47:19] 【陈昊·讯飞】〈中文·内部〉
+你们能用微信发吗？谁能用微信发？不行是吧？
+
+[01:47:38] 【陈昊·讯飞】〈中文·内部〉
+或者你截个图我们投也行，你截个图。
+
+[01:47:45] 【陈昊·讯飞】
+They have some security rules. It is difficult for them to send from Huawei to
+iFLYTEK. They're overcoming the challenge.
+
+[01:47:45] 【陈昊·讯飞】〈中文·内部〉
+或者你加那个会吧，你加那个会直接投。
+
+[01:48:03] 【RNP·现场】
+Or send them the link. If you accept that link, you can connect as a guest.
+
+[01:48:34] 【陈昊·讯飞】
+Our CNPJ certificate — we have received it, we have CNPJ right now.
+〔会议进行中拿到 CNPJ〕
+
+[01:48:34] 【RNP·现场·项目】
+What's the CNPJ? That's news.
+
+[01:50:47] 【陈昊·讯飞】
+OK, it is received.
+
+[01:51:26] 【华为·培训负责人】
+Hey guys — training frame. This is for the training part.
+
+So actually we have two parts for this project. Firstly is AI talent development.
+As we discussed before, Zheng Lixue should already have talked with your guys —
+that's how we will train 2,900 talents for you.
+〔A 版误识为 "Johnny"，B 版误识为 "Zheng li xue"，用户确认为郑立雪〕
+
+[01:51:47] 【华为·培训负责人】
+This first part is only the Huawei part, Huawei training, not here. And the
+second part is for this project training. It's only for this AIDC project, just
+like the knowledge transfer.
+
+[01:52:13] 【华为·培训负责人】
+So actually the first part, the 2,900 part — we didn't count it; we need you guys
+to apply for budget, extra budget, for this part.
+
+But for the green part — you can see the green part is for project training. Here
+we have Huawei data center and ICT infrastructure training, and iFLYTEK software,
+and iFLYTEK Level 3 / Level 4 knowledge transfer. This belongs to project
+training and this training is already included in our budget now. So this part,
+you don't need to apply for extra budget. All the training free.
+
+And there is one point you need to think about. All the iFLYTEK training — if you
+guys need to receive the iFLYTEK training, you should finish the Huawei AI
+Developer training first. And then, with the knowledge from the Huawei AI
+Developer, you can get the iFLYTEK training.
+〔★ 绿 = 项目内已含预算；蓝 = 2900 人培养，不在预算内，需 LPU 模式另行申请。
+ 并当面确认了华为 AI Developer 的前置关系〕
+
+[01:53:20] 【徐唯·讯飞】
+This is just — we're thinking it's just for your core team, just RNP team guys.
+You first train by Huawei AI Developer and then go to our iFLYTEK technology
+transfer. That's what we're talking about, that first stage. So this is our
+frame. If you have any questions —
+
+[01:53:40] 【Carol·RNP】
+The other part — we discussed the project [training], but there's one part
+missing, right? The operation team training.
+
+[01:53:40] 【华为·培训负责人】
+Yeah, it's the operation team. This is the operation talent.
+
+[01:54:00] 【华为】
+Infrastructure, O&M, and the electricity, the power generation.
+
+[01:54:36] 【陈昊·讯飞】〈中文·内部〉
+对，反正准备主要 SOW。就是他要一碗水，我们准备一桶水，什么都不怕。
+〔★ 陈昊对本次准备工作的自评。B 版记为"完全是他要一碗酒准备一桶水，
+ 怎么都不怕"，语义一致〕
+
+[01:54:55] 【Carol·RNP】
+And this part — this kind of [training] for the project. So this group, must they
+pass this first phase here and then connect here, or no?
+
+[01:55:18] 【华为·培训负责人】
+Okay, this part is only for the infrastructure. So it's the same people — this
+can be the same. But look here: the Huawei ICT and this — is able to focus on
+handling, can move the data center level 0, level 1. Or even for our computing.
+
+[01:55:43] 【Carol·RNP】
+And all of this is also our software. Software engineering. So this part, they
+need to attend the development. So maybe we're talking about 42, 44 people, right?
+
+[01:56:06] 【RNP·现场·技术】
+I think these two can be one team.
+
+[01:56:09] 【华为·培训负责人】
+And here is another team, because it's more related to infrastructure. This is
+developer, this is the infrastructure.
+
+[01:56:24] 【华为·培训负责人】
+My question — these 12 people.
+
+[01:56:31] 【RNP·现场·技术】
+Must be the same with —
+
+[01:56:55] 【Carol·RNP】
+One thing that is not very clear to me is that you mentioned that the first round
+should be run in China.
+
+[01:57:06] 【徐唯·讯飞】
+The second round? No — it could be, not should be; it could be in Brazil also.
+It depends on our plan, the future plan. We can make it that you can [do it]
+online, just the training — make the knowledge transfer also. But it's okay.
+
+[01:57:30] 【Carol·RNP】
+But maybe going to China is one choice. And all this training, at least the first
+round, I believe that it must be ready before we start this project — about the
+training phase, the language model and all the stuff. I think we should have
+these people trained, right?
+
+[01:57:51] 【徐唯·讯飞】
+Yes, I think we need to. After the Huawei AI Developer training, after that, we
+need to start that AIDC project first, and we can make that planning to make the
+iFLYTEK knowledge transfer.
+
+[01:58:13] 【华为·培训负责人】
+Yeah, so actually we think now all the training we consider is online. It's
+online. But actually, from our experience, we think online is not enough to learn
+a lot of things. So it's better we choose some important guys to attend the
+on-site training. Our teacher can go to Brazil, be on site.
+
+[01:58:49] 【Carol·RNP】
+We believe in a hybrid training.
+
+[01:58:52] 【华为·培训负责人】
+So in the LPU we will mention one item: if you want on-site training instead of
+online training, how much you should add for one day.
+
+[01:58:57] 【Carol·RNP】
+I'm not sure about the in-class training — what are the [resources] to train all
+these people, you know, the labs. Because if you think about a hybrid training,
+you've got one part that is online, one part that's in class. But this in-class
+part, we must have some infrastructure to train. Do we have it here in Brazil, or
+do we have to send people [elsewhere]?
+
+[01:59:37] 【华为·培训负责人】
+We can use the cloud resource. For example you can choose maybe in this city
+where there are more people, so they don't need to buy the air ticket. So maybe
+in-class is here, some other city they're online, something like this. The
+teaching resource is on cloud, it's very easy. You can define this. Even if your
+guys want, we can have a conversation with the university; we can hold some
+classes in the university.
+
+[01:59:37] 【Carol·RNP】
+One thing that we discussed already is that we want to transfer all these
+materials — I believe that also to the ESR.
+〔★ ESR = Escola Superior de Redes，RNP 自有的网络学校。
+ A 版转写为 "ESAC" / "the SR"，B 版转写为 "the year" / "ASR"，
+ 三处误识指向同一个词。RNP 希望课程内容最终落到自己的培训机构〕
+
+[01:59:37] 【Carol·RNP】
+No, it's not 44 people, but maybe 12 + 32.
+
+[02:00:50] 【徐唯·讯飞】
+Yeah, sorry — 12 + 20. Actually it depends on your engineers' ability. Your
+engineer can do both the O&M and also the training. This first 12 engineers is a
+different profile from the others. We can use the same people; it's up to your
+decision. Actually it's two teams, but they can use the same person. But now this
+is the time to pick these profiles and separate them if needed.
+〔★ 两支队伍：12 名基础设施/运维 + 20 名 AI/算法。两版一致〕
+
+[02:01:44] 【华为·培训负责人】
+We can provide this for engineers — but people that will be working here, it will
+be like in a layer zero, one.
+
+[02:01:59] 【徐唯·讯飞】
+And the other part is for a different profile. But our part is the same profile —
+similar profile, but majoring in O&M or majoring in AI algorithms.
+
+[02:02:17] 【RNP·现场·项目】
+Okay. So we continue. Yes, this page is enough. What about the time — it's
+training time.
+
+[02:02:52] 【Carol·RNP】
+I don't know if it's already in all this slide, but I'm going back to my
+question. I can see the first one is [the green part] before, and the second one
+is the blue part.
+
+[02:03:15] 【华为·培训负责人】
+You can see, for a developer they have actually four stages.
+
+[02:03:35] 【华为·培训负责人】
+And from the first stage to the second stage, we will choose 40 percent. So from
+the 2,070 to the 1,080.
+
+[02:03:57] 【华为·培训负责人】
+People go to the advanced stage — half of the people, the best ones. Go to the
+second stage, and then finally we will choose maybe 100 persons to go back to
+China and have more [training].
+〔华为人才漏斗：2,900 总量 → 约 40% 进阶（2,070 → 1,080）→ 最终约 100 人赴华。
+ 两版数字一致〕
+
+[02:04:24] 【Carol·RNP】
+How many hours in total is it?
+
+[02:04:24] 【华为·培训负责人】
+It's not hours.
+
+[02:04:45] 【陈昊·讯飞】〈中文·内部〉
+他们回的数据也可以，去我们那研讨。也可以。到时候一起加合并一下，是不是？
+
+[02:04:51] 【徐唯·讯飞】〈中文·内部〉
+不不不，不用合并，也不用数。那后面再说。后面再跟郝磊去讲。
+〔提到"郝磊"，未到场〕
+
+[02:04:55] 【华为·培训负责人】
+Yeah, so they have to go back to the online learning platform we provided.
+
+[02:05:23] 【Carol·RNP】
+What we already discussed: the content will be transferred to the ESR, and the
+labs could be used by Huawei. And the courses are covered by that reference term
+that [Inara/Yara] has sent to the ministry. It's covered by there. So we have some
+adjustment that we have to do, and I'm not remembering if the iFLYTEK training is
+covered in that budget. I'm not sure about that.
+〔★ ESR 第二次出现，且明确了分工：课程内容归 ESR，实验室跑在华为平台上，
+ 课程费用已含在报给部里的参考条款中〕
+
+[02:05:51] 【华为·培训负责人】
+For that, the budget is included in the iFLYTEK part also. All the green parts,
+the budget is already included in the price.
+
+[02:06:14] 【徐唯·讯飞】
+The green one is included. But the blue one — no. The blue one is the LPU mode.
+The blue one is LPU. The green one is the AIDC, it's included in the AIDC project,
+and the blue one is the LPU mode.
+
+[02:06:40] 【Carol·RNP】
+Yes, it's different models of charging, let's say. Okay — but in terms of budget,
+what we sent to the ministry: I think you covered all right for AIDC, and you
+also sent the LPU for talent, right?
+
+[02:06:40] 【华为·培训负责人】
+Yes, it covers.
+
+[02:07:02] 【华为·培训负责人】
+If it's including the reference term, yes. But anyway, the cost for cloud service
+for hosting the training platform is ours. We must include this. It's ours, but
+we'll be reimbursed.
+
+[02:07:26] 【Carol·RNP】
+But the labs, I think it's the major part of this — we're running from a Huawei
+platform.
+
+[02:07:46] 【陈昊·讯飞】〈中文·内部〉
+我们的再投出来嘛。
+
+[02:07:49] 【徐唯·讯飞】
+Let me share back to our slides.
+
+[02:07:57] 【陈昊·讯飞】〈中文·内部〉
+你可以做系统演示的。其他的简单就带一带嘛，还有几张，是吧？
+
+[02:08:24] 【陈昊·讯飞】〈中文·内部〉
+其他几张还有吗？还有几个软件栈的支持，那不提了吧，那个东西他没问。
+
+[02:08:31] 【徐唯·讯飞】〈中文·内部〉
+人家不支持的不提。
+〔★ 陈昊与徐唯一度决定跳过 TR 五层软件栈那几页，理由是"客户没问"。
+ 最终仍讲了，见下一节 02:09:51，用时约 1 分半，RNP 无提问〕
+
+[02:08:33] 【陈昊·讯飞】〈中文·内部〉
+你放一下，好吧？放一下，我都不记得。
+
+
+────────────────────────────────────────────────────────────────────────────────
+第九节  02:08:30 – 02:24:30   实施两阶段；TR 五层软件栈；语料构建中心演示
+────────────────────────────────────────────────────────────────────────────────
+
+[02:08:40] 【徐唯·讯飞】
+Okay. And just, what stage and implementation, to summarize.
+
+For our implementation we designed two stages. The first stage is from this year
+to the end of 2028 — this is more than two years. And the other is from 2029. In
+the first stage we finish all of the platform, corpus, the national model and
+evaluations, and start the AI application and the DLM. Because the first stage we
+design together with Huawei — they implement the first package of computing
+power. And the second stage we finish all the things, including our O&M service
+and also the on-site service.
+〔对应 PPT 第 12 页〕
+
+[02:09:51] 【陈昊·讯飞】
+And hand over all of the software and hardware.
+
+And this is the proposal for how to support your national AI software stack.
+Actually in our proposal, our scope of work, we support this in five layers.
+
+The first layer is the base computing software — I think it is supported by
+Huawei, to make the NPUs ready to compute. The second is the data, model and
+application platform; it is provided by our side, the National Capability
+platform. And also the integration and operation will be finished by all of our
+three parties; and research and development, and talent.
+〔对应 PPT 第 14 页。第一层由华为承担 —— 与 PPT 口径一致〕
+
+[02:10:41] 【陈昊·讯飞】
+And we have already presented how to support your R&D for the AI software stack,
+and also the delivery. And long-term autonomy: we hand over the assets and the
+model weights to you, and also support the maintenance and provide the
+maintenance services, and have O&M training for you to support you to get your
+operation [sovereignty].
+
+[02:11:09] 【陈昊·讯飞】
+So this is for the warranty, and this is what makes you have long-term autonomy
+after the project ends. I think this is the slide part we prepared. We also have
+a lot more stating the details, and you can refer to our scope of work.
+〔★ 第 14 页实际用时约 1 分半，RNP 无任何提问〕
+
+[02:11:31] 【徐唯·讯飞】
+We can read it and understand more about our details. And right now, not to show
+our slides — I just want to show our real environment, in China, that we use for
+the R&D teams. Let me share that.
+
+[02:12:16] 【徐唯·讯飞】
+This environment we're building in China right now, so there's some time delay.
+This is what in the future we implement for you: our AI capability centers,
+including the corpus centers, the training centers and the AI application
+centers. Just to show you the main functions of our centers.
+
+So this one is for how to build the data corpus. You can create a task
+automatically. You can choose the types, you can select your data from your
+local, and you can choose your industry — it doesn't matter what kind of data —
+and change the language.
+
+[02:13:17] 【徐唯·讯飞】
+Right now we just support these languages. In the future, when we implement, we
+will support your Brazilian Portuguese. So you can find the detailed output data
+and the exceptions, and it starts running like this. I'll show you one already
+running.
+
+[02:13:43] 【徐唯·讯飞】
+This is all of our process to make the data for the training. The first three
+parts are format conversion, text segmentation and data cleaning. When you do all
+of this, the data can be used for pre-training — as you said, after this you can
+do the pre-training, the CPT. And if you do this one, you can do the SFT.
+
+[02:14:30] 【徐唯·讯飞】
+You can see each process, what we're doing.
+
+[02:14:30] 【RNP·现场·技术】
+Can you start opening the dataset that you're using? Can you show the dataset?
+
+[02:14:30] 【徐唯·讯飞】
+Yes, we can. You can see, this is the original file — here we're using the
+original file, like the PDF. So this is the dataset; this is one document.
+
+[02:14:30] 【RNP·现场·技术】
+Does it have an example of a tabular dataset?
+
+[02:14:30] 【徐唯·讯飞】
+I think in that demo environment we don't have all the datasets.
+
+[02:15:07] 【RNP·现场·技术】
+But in your previous screen, I saw we can upload. Would it be a batch of tabular
+[files]? I can have thousands.
+
+[02:15:07] 【徐唯·讯飞】
+Yes, you can batch. Not one by one — you can batch upload and analyse in batch.
+
+[02:15:33] 【陈昊·讯飞】〈中文·内部〉
+不能选数据集？
+
+[02:15:38] 【赵祥·讯飞】〈中文·内部〉
+选数据集〔可以〕。
+
+[02:15:40] 【徐唯·讯飞】〈中文·内部〉
+这个有 API 吗？上传的、上传文件。
+
+[02:15:43] 【赵祥·讯飞】〈中文·内部〉
+对，可以去上传。
+
+[02:15:43] 【赵祥·讯飞】
+Yes, we have API. We can open the API.
+
+[02:15:43] 【RNP·现场·技术】
+Which type of data source can you have?
+
+[02:15:53] 【徐唯·讯飞】〈中文·内部〉
+支持哪些数据来源？
+
+[02:15:55] 【RNP·现场·技术】
+Specific data, like data he deposits on —
+
+[02:16:00] 【徐唯·讯飞】〈中文·内部〉
+什么格式的 data？
+
+[02:16:02] 【赵祥·讯飞】〈中文·内部〉
+PDF、Markdown，然后这种都可以。
+
+[02:16:09] 【徐唯·讯飞】〈中文·内部〉
+这直接上传数据集可以吗？数据集是什么格式？
+
+[02:16:13] 【赵祥·讯飞】〈中文·内部〉
+数据集的话，〔通用的〕或者处理过的一些数据集，就是 JSON。
+
+[02:16:20] 【赵祥·讯飞】〈中文·内部〉
+Markdown。
+
+[02:16:20] 【徐唯·讯飞】
+That's original data.
+
+[02:16:23] 【RNP·现场·技术】
+We can have data which is in a data lake.
+
+[02:16:31] 【徐唯·讯飞】
+Export to this — of course, if you have data in something like Dataverse, it's a
+little bit like that. We will do a little bit of customization; we will improve
+some tools, maybe some small language models, to adjust to your data and analyse
+your data. We will guarantee that, now that you have prepared your dataset, our
+platform can connect to your dataset.
+
+[02:17:15] 【Inara?·RNP】
+Yeah, I know. Anyway, so we can extract from there and bring it to you. Good use
+cases. That is the biodiversity — the Brazilian node. It's an open data
+repository, a Brazilian data repository for biodiversity. So if you just Google
+it — SiBBr. This is a database that has a very qualified dataset; this data is not
+PDF, it's not text.
+〔★ SiBBr = Sistema de Informação sobre a Biodiversidade Brasileira，
+ GBIF 的巴西节点，由 RNP 运营。A 版转写 "SBPR/sbpr"，B 版 "svpr/svbr/
+ siisisibbisi"，两版均指向 SiBBr〕
+
+[02:17:56] 【陈昊·讯飞】〈中文·内部〉
+就已经公开的数据集怎么导进去？意思是？对，能不能整个数据集全导进去？
+
+[02:18:05] 【陈昊·讯飞】〈中文·内部〉
+就存量的数据集，就是说他们已经构建好的，可以整个导入，是吧？
+
+[02:18:10] 【Inara?·RNP】
+If all the semantics — informative, disciplinary — that will be very helpful for
+domain language models. Instead of PDF.
+
+[02:18:24] 【徐唯·讯飞】
+Yeah, I know your point. We can support you in importing already-segmented data
+and also some qualified data. We have the function to import a dataset like this,
+some already segmented.
+
+[02:18:46] 【Inara?·RNP】
+Let me just open a website. Just Google it. This is a good example — SiBBr. So
+this is GBIF, the global version — Global Biodiversity Information Facility.
+
+[02:19:15] 【Inara?·RNP】
+Yes, this is the Global Biodiversity Information System, and this is the Brazilian
+node. So here is very qualified domain data for biodiversity. And this one is
+public. This is an RNP operation — it's the open node of biodiversity. So in your
+use case that you propose, biodiversity — we already have qualified data that is
+operated by RNP. So this is our system, you just can connect.
+〔★ RNP 自己运营的、现成的、高质量的生物多样性结构化数据源〕
+
+[02:19:57] 【徐唯·讯飞】
+Yes, we can just create some tools, some small tools that can input your data,
+qualified data, into our system. It's very easy, I think it's straightforward.
+
+[02:20:11] 【陈昊·讯飞】
+Not a very complex task. We have an R&D team — if the standard function does not
+support it, we can customize it. Technically it is not so difficult.
+
+[02:20:11] 【Inara?·RNP】
+Okay, this is for JSON. And tabular, CSV.
+
+[02:20:39] 【徐唯·讯飞】
+We will ask for the data from that node. The platform does save the data — to
+open it, yes, but under your permission. Under your permission. Because we
+collect data with your permission; you tell us what kind of data we can use. And
+then I can create some customized tools, customized interfaces, to fetch from a
+specific website or some node data, or download some data into our systems, and
+do that task.
+
+[02:21:21] 【RNP·现场·技术】
+To make the format, make the data cleaning, do the extraction, right? Like this.
+What do you expect at the start — raw data, completely raw data, to go through
+all this?
+
+[02:21:21] 【徐唯·讯飞】
+Yes. And then you get everything from, for example, the web, and then you take
+out the markdowns.
+
+[02:21:21] 【RNP·现场·技术】
+You just put it on this, and the process that is done in each step — is it open in
+this platform? Can we see what is being done, not on the front end?
+
+[02:21:21] 【徐唯·讯飞】
+It's open to see. That's why we have the knowledge transfer service — we will tell
+you what happens in that step.
+
+[02:22:18] 【徐唯·讯飞】
+And if you want to change this, we can change it with you together, because we
+must change it with you together. Because right now those tools are especially
+for English, for Chinese — we don't know how to segment, how to divide
+Portuguese right now. So you need to help us to create that tool together.
+〔★ 葡语分词/切分工具需要 RNP 一起做〕
+
+[02:22:18] 【RNP·现场·技术】
+Okay, you have to [customize].
+
+[02:22:18] 【徐唯·讯飞】
+We need some customization. We have the technology; you have the language
+experts. But it's not a black box. Not a black box. It is developed by our team.
+
+[02:22:18] 【RNP·现场·技术】
+And in the end, you're going to tokenize everything and then it's ready.
+
+[02:23:00] 【徐唯·讯飞】
+Yes. At the end of this we have the dataset database, so we can pre-prepare for
+training, use it for training — for different processes of training. When you
+finish the images you can do the text; we'll do extraction and augmentation and
+we can do the SFT, because it's a QA pair, or just segment and clean the data. So
+on this platform you can do everything, all these steps. But if you want to
+adjust the tools by yourself —
+
+[02:23:45] 【陈昊·讯飞】
+— you can ask us to discuss this part together. If you have coordinated the
+datasets, we will promise that they can be accessible and can be connected to our
+platform. If the standard functions cannot support it, we will do customization
+to import your dataset, to guarantee that all the datasets you provide are
+available for further processing.
+
+
+────────────────────────────────────────────────────────────────────────────────
+第十节  02:24:30 – 02:48:34   SDK；训练中心；平台抽象层之争；国民 APP 与
+                              昆仑模型演示；收尾与后续动作
+────────────────────────────────────────────────────────────────────────────────
+
+[02:24:15] 【RNP·现场·技术】
+I have a question. Are there any software development kits for developers?
+
+[02:24:25] 【陈昊·讯飞】〈中文·内部，转问赵祥〉
+有没有 SDK？这三大中心有 SDK 吗？让他们的开发者用，就是例如说接到别的系统里
+集成。
+
+[02:24:32] 【赵祥·讯飞】〈中文·内部〉
+这个现在目前是没有的。
+
+[02:24:34] 【陈昊·讯飞】
+I think, because our AI Capability Center is a platform for developing and
+deploying AI applications, and currently by default we think you execute these
+tasks on this platform. But if you want to have an SDK to support other
+application development — currently it is not supported. We recommend finishing
+this task on the platform.
+
+[02:25:03] 【陈昊·讯飞】
+Because it's extremely complex. If we provide an SDK for you, maybe it will be
+out of control of the platform. It is an integrated workflow; it is a partial
+function. If we expose the partial function to you by API, by SDK, we cannot
+guarantee that you can use these functions normally.
+〔★ 明确没有 SDK，且是有意为之〕
+
+[02:25:03] 【RNP·现场·技术】
+Okay. Thank you.
+
+[02:25:38] 【徐唯·讯飞】
+Okay, the second part of this platform is the training center. We create a
+pre-training task and you can choose your models. We will provide the Spark
+models as base models; we will open them to your team, especially to your
+authorized organization.
+
+[02:25:58] 【RNP·现场·技术】
+How does it fit, for example, a new open source model in this platform? For
+example if you want to do the same training on another model?
+
+[02:25:58] 【徐唯·讯飞】
+Yes, you can customize this platform to add this new one. You can adjust your
+models by yourself. We support you to upload your models to our platform.
+
+[02:26:25] 【徐唯·讯飞】
+But at least it must be Huawei-adapted. Already adapted — it needs to be adapted
+for the Ascend NPU, because some of the models don't have the training [support].
+It first should be adapted by Huawei.
+〔★ 上传第三方开源模型的前提：先经华为 NPU 适配〕
+
+[02:26:48] 【RNP·现场·技术】
+By Huawei NPU — first Huawei supports it and then you support it. Because
+normally when we do this, all these steps as research, we work with Python,
+everything, and then we can do the training using scripts and so on. This
+platform hides this — hides all this background, all these tools. So if you want
+to add a new open source model, then you have to go
+
+[02:27:31] 【RNP·现场·技术】
+downstairs, to the background, the coding.
+
+[02:27:35] 【徐唯·讯飞】〈中文·内部〉
+对，coding part。我们开放接口是可以让他上传训练的框架的。可以。
+
+[02:27:43] 【徐唯·讯飞】
+We can — you can upload your training framework, and also different kinds if you
+want to upload the models, including the training framework.
+
+[02:28:08] 【RNP·现场·技术】
+My concern is, for example — you say "let's train people to do [this]". In my
+point of view, it's not right to train people to pilot this platform. It's a very
+high level abstraction. If you're not able to modify the platform to adjust for
+new open source models and the libraries, everything — it's not worth learning
+how to use this. Any kid can use the file and open the file and everything. It's
+not what kind of training [we need].
+〔★ 全场对知识转移深度最尖锐的一次质疑〕
+
+[02:28:55] 【RNP·现场·技术】
+You go there, you open a file, and you [click] — not like this, we click this
+button, not this. This is only operation.
+
+[02:29:13] 【徐唯·讯飞】
+That's why we do not only do this one — we let you know what's happening inside
+that system, the know-how, the know-how of the LLM training, the platform. In the
+end we will help you to be faster, everything in the pipeline.
+
+[02:29:27] 【RNP·现场·技术】
+But what's important for us, in my understanding, is what's behind the scenes. Of
+course this is the workload which is organized by the platform. But what is the
+mechanism, and what is the reason of the workload?
+
+[02:29:50] 【陈昊·讯飞】
+We will explain that to you in the Knowledge Transfer program. After you
+understand the principles behind it, at the last we will teach you how to
+operate. Even if you do not master those principles, you cannot actually use it.
+
+[02:30:10] 【RNP·现场】
+I just want to apologize — I need to leave for another [meeting]. But I will be
+listening. Thank you.
+
+[02:30:31] 【RNP·现场·技术】
+One thing that perhaps we have to talk to each other about: in my opinion, to
+participate in China in the CPT training, the first phase — the public data — I
+think that's important to us. And then to know what's going on behind the scenes
+on these platforms, how you're going to do this. I think that's important. So you
+have to see how to manage all the costs, everything. But I think it's important to
+have at least one or two people to go there, to work with you on these steps.
+Because if not, you're going to jump some steps.
+〔★ RNP 要求派 1–2 人赴华参与 CPT 阶段〕
+
+[02:31:14] 【徐唯·讯飞】〈中文·内部〉
+你要不要说这个？
+
+[02:31:15] 【陈昊·讯飞】〈中文·内部〉
+我来说，我来说。
+
+[02:31:16] 【陈昊·讯飞】
+Yes, I think it is necessary to train the core team of your side. If your core
+team does not understand the background knowledge and does not master the
+necessary techniques to execute the project, the efficiency of communication will
+be very low.
+
+[02:31:41] 【RNP·现场·技术】
+And my concern is to do the workflow face to face. It's easier to understand.
+When you say "now I want to change this and this" and I don't have any knowledge
+of how to do this, then you have to follow them.
+
+[02:32:00] 【陈昊·讯飞】
+And also, in our headquarters there will be a lot of experts who understand this
+knowledge, and we can coordinate the most expert people to train with you. I
+think this is okay for us. You're welcome to join the program in China.
+
+The only issue is how to settle the fees. I need to talk to the Huawei side about
+how to settle these issues. You're welcome. But the team who is sent to China, I
+think they should have the necessary background that can support the program.
+〔★ 去中国这件事，卡点在费用；对口方是华为侧〕
+
+[02:32:45] 【RNP·现场·技术】
+Maybe some [funding] — we're negotiating with the MCTI to have our money to send
+some people.
+
+[02:32:52] 【陈昊·讯飞】
+To hire people to participate. So it's okay, open to discuss. You're very welcome
+to our side. Even you can join our developer team. We need to come out with some
+ideas to settle the financial problem, and then to make
+
+[02:33:13] 【徐唯·讯飞】
+the seminar in China work. Also, there are some programs you can join — join our
+developer [program] before that project. You have to organize it. Even before the
+project starts, you can start some pre-developer training.
+
+[02:33:33] 【徐唯·讯飞】
+To make the project a success, I think it is necessary.
+
+Yes — I don't need to show you all of these things; you can see all the details in
+the SOW, the scope of work. All the functions we have right now, and the
+background things, we will show in the knowledge transfer part. You can see what
+kind of [training] we will do for you.
+
+[02:34:09] 【徐唯·讯飞】
+And this is the national application — just a very simple demo. This one is the
+chatbot. You can ask questions and you can choose the models. And also we have
+some small applications inside that app: you can generate the PPT.
+
+[02:34:09] 【RNP·现场·技术】
+Can you show how we can connect to the model just created?
+
+[02:34:09] 【徐唯·讯飞】
+Yes, we can see. This is your managing page. This is a management [console].
+
+[02:35:00] 【徐唯·讯飞】
+If you want to check how many tokens — the usage. But right now this one doesn't
+have too much usage.
+
+[02:35:16] 【RNP·现场·技术】
+Okay, for example — how can I connect to this?
+
+[02:35:28] 【徐唯·讯飞】
+You can connect. We have the API; you can get the data from the API. This is just
+the page, but the page is not [the point] — it shows what we can send you at the
+same time. This is the different tenant.
+
+[02:35:51] 【徐唯·讯飞】
+And then you can use some API here for the national applications, and generate
+PPT and make some AI notes. AI writing is very simple. So this page — I just want
+to say that you can organize your team to create your applications on that
+national application. And also you can design that national application, maybe the
+page, maybe some functions, together with us. We have two ways.
+
+So that is our national application. And this one I'll show you is the domain
+large language model — what we did in China, PetroChina, the oil and gas industry
+model.
+
+[02:36:54] 【陈昊·讯飞】
+I just ask a simple question, and they give a very professional answer. And the
+data is from the PetroChina group; they trained this model with their operation
+and maintenance manuals for their wells, well pads and stations.
+
+[02:37:12] 【徐唯·讯飞】
+The answer will support that. I just use the external interface, so I don't have
+too much knowledge. And you can also check by yourself — look at this Kunlun
+model.
+
+[02:37:33] 【RNP·现场·技术】
+Can we connect other apps? For example, I have my own apps in my infrastructure.
+I can connect here? My apps, my agents?
+
+[02:37:33] 【徐唯·讯飞】
+Yes, your agent can connect to our API. We have the MaaS operations; we can
+provide the MaaS API, that's the model API. You can connect this API to use our
+inference power. But we also have a limit, because the computing power is not
+enough to open to too many different applications.
+
+[02:37:33] 【RNP·现场·技术】
+Maybe a stupid question, but this application is going to be running on the side
+that Huawei constructs here, right?
+
+[02:37:33] 【徐唯·讯飞】
+Yes, running on Huawei's computing power. Right now we design around 100 PFLOPS.
+In the future we can [expand].
+〔推理侧约 100 PFLOPS；训练侧首批 200+ PFLOPS，见 01:13:12〕
+
+[02:38:47] 【陈昊·讯飞】〈中文·内部〉
+差不多，不用讲太细，差不多，说吧。
+
+[02:38:53] 【陈昊·讯飞】〈中文·内部〉
+我们这差不多了，差不多，差不多。
+
+[02:39:04] 【RNP·现场·项目】
+OK, come back to —
+
+[02:39:43] 【RNP·现场·项目】
+Okay, we finished. We're done.
+
+[02:39:43] 【徐唯·讯飞】
+I'm going to send all the files. We will send your file, presentation.
+
+[02:39:43] 【RNP·现场·项目】
+Yeah. One important thing for us is the training, and the matrix of
+responsibilities. We need that, because we're building the project to receive
+this money. So you have to have this planning of —
+
+[02:40:15] 【RNP·现场·项目】
+— the human resources, of course, and as well the responsibilities, what we have
+to do and so on.
+〔★ 收尾时 RNP 最明确的两项要求：责任矩阵 + 人力计划〕
+
+[02:40:15] 【陈昊·讯飞】
+And if you need some specific input, you can tell us and we can help you to draft
+such materials.
+
+[02:40:15] 【RNP·现场·项目】
+We're preparing a project [document]. It's in Portuguese at the moment; the idea
+was to translate it to English and send it to you. We have work packages for each
+step of the project. And the idea is — because in the end, this will be the
+document that we will send to the MCTI to have our money.
+〔★ RNP 要这些材料的真实用途：向 MCTI 请款〕
+
+[02:40:15] 【陈昊·讯飞】
+Okay, it doesn't matter. We will send comments on this, give suggestions.
+
+[02:40:15] 【RNP·现场·项目】
+And also any document you want to add — four or five pages, for all the work
+packages. But the CPT, for example — we thought that you were going to do
+everything in Brazil.
+
+[02:41:30] 【RNP·现场·项目】
+And now this changes a little bit, to go there to China.
+
+[02:41:30] 【徐唯·讯飞】
+The whole of that delivery schedule — we will also send you the delivery schedule.
+
+[02:41:52] 【RNP·现场·项目】
+One thing that's my opinion: I think that it's strategic for RNP to start the
+DLMs together with the training. Because training the national [model] needs a
+lot of computing power, and it takes a long time. And then if you have the DLMs
+that are ready — not ready, but it's much faster — and you can show the value of
+the results. Because after two years of going on with the supercomputer, we don't
+know [what happens].
+
+So, to show some steps, and even the inference for the development of agents —
+of course, to offer the API to people to develop agents, that would be nice as
+well, if you could from the start say "that's the model, you can use the API and
+you can develop" — not for everybody, but for some people. That would be nice as
+well, to have an impact. Because then the timeline of these different activities,
+it would be nice to have this.
+〔★ RNP 会末提出的战略要求：DLM 应该早启动，不要等两年〕
+
+[02:43:17] 【徐唯·讯飞】
+If you can share the computing resource — in China it is okay, but we do not have
+local [compute] for training. I know your point: because of the data sensitivity,
+the data you cannot send to us to China; we cannot use China if [it's sensitive]
+data.
+
+[02:43:42] 【陈昊·讯飞】
+For example, just now, SiBBr — I don't know if the dataset is public. I think we
+can utilize some computing power in China [if it is], but if it is not, we need
+your help to coordinate some local computing power.
+
+[02:43:42] 【RNP·现场·技术】
+Sovereignty is a basic issue. If it's public, it's already public, it doesn't
+matter.
+〔★ 此句仅 B 版记录到，A 版漏。RNP 明确了立场：主权是底线问题，
+ 但公开数据不构成主权问题 —— 等于自己确认了"在中国用公开数据训练"可行〕
+
+[02:44:09] 【徐唯·讯飞】
+Yeah, that's the problem. We have to see. But we're all open to discussing with
+you, to make more value. We discuss between us, and then perhaps you can propose
+something.
+
+[02:44:30] 【RNP·现场·项目】
+The early milestone should start the DLMs, not just wait for the LLM in two years
+and then start the DLMs. I think that's one possible [approach] — maybe the DLM
+and the domain agent that can work.
+
+[02:44:52] 【陈昊·讯飞】
+For example, today another team of our Brazil company is supporting the MGI SGP —
+they're doing such a government agent about HR talent recruitment. Another team on
+our side is supporting this POC, and we understand what you need, and we also have
+some experience in cooperating with your government departments to finish it.
+
+So we can have further discussion on how to confirm the domain with high priority
+and resources. We also need your help to allocate some resources. We can work
+together to let the project have the first achievements as soon as possible.
+〔讯飞另一支巴西团队正在支持 MGI/SGP 的政府招聘 agent POC〕
+
+[02:44:52] 【RNP·现场·项目】
+Thank you. Comparing — we did it in another project. We have training sessions and
+we have some challenges
+
+[02:45:47] 【Rafael?·RNP】
+for students, so they can develop an agent or something like that, as part of the
+training program. Like hackathons. I don't know if you have something like that.
+Hackathons — it is about the operations. To engage the community, to have real
+applications. I think it's strategic to engage people in the process.
+〔发言人推定为 Rafael（创新业务），置信度低〕
+
+[02:45:47] 【陈昊·讯飞】
+Yes, to organize some activities or competitions to make the culture of AI. We
+have such experience in China. For example, just now he mentioned PetroChina, the
+oil and gas domain large model — we helped PetroChina to organize such an AI
+competition.
+
+[02:46:38] 【陈昊·讯飞】
+And if you have such needs — I think the organizer should be you, but we can
+support you to organize such activities. According to our experience it is for
+the operations part. I know that you held Fórum RNP 2026 two weeks ago. I think
+when you start this project, you also need to organize some activities to enlarge
+the impact of this project.
+〔A 版 "foreign IMP 2026"，B 版 "foreign imp 2026" —— 应为 Fórum RNP 2026〕
+
+[02:47:12] 【陈昊·讯飞】
+So at that time, if you have such needs, our core team can support you to do
+this. I understand what you need — for the promotion, or for the brand,
+sponsorship, everything. We will try our best to support this.
+
+[02:47:43] 【RNP·现场·项目】
+Okay, thank you. Nice to have you here. Then — three hours, for sure. We're going
+to send you some questions, the slides and so on.
+
+[02:47:43] 【陈昊·讯飞】
+Yeah, if you have further questions, it is welcome from our part to have another
+meeting at any time.
+
+[02:47:43] 【RNP·现场·项目】
+Okay. Yeah, it's much more productive.
+
+[02:48:09] 【陈昊·讯飞】
+OK, OK, thank you, thank you very much. Thank you for your time.
+
+〔会议结束，02:48:34〕
+
+
+================================================================================
+附  录  一 ：待 核 实 清 单
+================================================================================
+以下各项在两版 ASR 中或存在冲突、或转写含混，对外引用前须向当事人确认。
+
+ 1. 【临时算力张数】徐唯 46:35 提出的 NPU 数量。
+    A 版 "16 card, maybe such a 2 card" / B 版 "16card, maybe such a two card"。
+    两版一致地含混，最可能是"16 张或 32 张"，但不能确定。
+    量级（十几到几十张）、时长（3–4 个月）、时间（2027 年）三项可用。
+    → 向徐唯核实
+
+ 2. 【星火从零训练的数据量】陈昊 38:50。
+    A 版 "hundreds of billions of data" / B 版 "400 of billions"。
+    → 向陈昊或赵祥核实
+
+ 3. 【另一家巴西 AI 公司名】44:33 RNP 提及的两家公司。
+    "Maritaca AI" 高度确定；另一家 A 版 "Buran AI" / B 版 "boron ai"，未还原。
+    → 向在场者核实
+
+ 4. 【ESR 转移的具体范围】Carol 01:59:37、02:05:23 两次提出"把课程内容转移到
+    ESR，实验室跑在华为平台上"。会上未讨论：转移哪些材料、以什么许可、
+    RNP 能否用这些材料对第三方开班。PPT 与 SOW 中均无对应条款。
+    → 需内部确认口径后再答复 RNP
+
+ 5. 【RNP 现场主问人身份】本稿以【RNP·现场·项目】/【RNP·现场·技术】区分，
+    实际应为具名的两人（推定 Diana 与 Filippo 或 Inara）。
+    → 请在场同事直接指认
+
+ 6. 【Diana / Inara / Yara 三个姓名】仅 A 版捕捉到，B 版无。是否为同一人、
+    拼写是否正确，均需确认。
+
+ 7. 【Marita 姓名拼写】A 版误识为 "Maria Zakharova"，B 版为主持人点名的
+    "Marita"。身份（数据与 AI 经理、向 Marcelo 汇报）确定，姓名待确认。
+
+ 8. 【郝磊】徐唯 02:04:51 中文内部提及，未到场，身份不明。
+
+ 9. 【华为培训负责人姓名】角色明确，姓名未在会上出现。
+
+
+================================================================================
+附  录  二 ：本 次 会 上 超 出 PPT 口 径 的 口 头 承 诺
+================================================================================
+以下五项，会上口头表述比 PPT / SOW 纸面更宽或更具体。RNP 会以会议记录为准，
+建议尽快在书面材料中对齐口径。
+
+ 1. 【国民 APP 源码】陈昊 01:26:19 / 01:28:07：
+    "the source code can be open to you… All open source to you."
+    HQ 已同意。原内部决定为暂不写入 PPT。
+
+ 2. 【星火权重开放范围】陈昊 54:32：
+    含 3000 亿参数版本向巴西受限开放，已获总部批准；范围写入合同。
+    PPT 附录 A6 表述更保守。
+
+ 3. 【第一轮知识转移在中国】徐唯 01:30:01 / 01:30:47；
+    可派 5–10 人赴讯飞总部（陈昊 01:31:57）。PPT 第 11 页未写地点。
+
+ 4. 【建成前的临时算力】徐唯 46:35：具体到卡数、月数、年份。
+    PPT 第 5 页原为蓝字待确认项。
+
+ 5. 【小尺寸葡语主权模型】陈昊 01:13:27：
+    可额外交付约 300 亿参数版本，作为 DLM 基座。PPT 中完全没有此项。
+
+
+================================================================================
+附  录  三 ：RNP 会 后 明 确 索 要 的 材 料
+================================================================================
+ 1. 责任矩阵（matrix of responsibilities）
+ 2. 人力计划（HR allocation plan：哪个阶段、什么岗位、多少人、多久）
+ 3. 岗位画像清单（professional profiles：AI engineer / architect / developer…）
+    —— Marcelo 在 01:35 与 01:36 两次提出
+ 4. 交付排期（delivery schedule）
+ 5. 演示所用幻灯片与 SOW
+ 6. 讯飞 + 华为合并后的培训计划
+
+用途：RNP 需以此编制报送 MCTI 的项目文件以释放资金。
+RNP 侧亦在准备一份葡语项目文件（含各步骤 work package），将译为英文发我方评注。
+
+================================================================================
+                                                                        —— 完 ——
+以上逐字稿由两份独立 ASR 转写交叉校验后重建。说话人身份为按内容与上下文推定，
+非 ASR 原始标签。凡标注 ? 或"推定"者，请以当事人确认为准。
+================================================================================
