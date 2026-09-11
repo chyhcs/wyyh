@@ -7,18 +7,20 @@ RNP × 科大讯飞  技术交流会（Scope 交流）   会 议 逐 字 稿
 会议性质   讯飞向 RNP 陈述交付范围（Scope of Work）、双方分工与知识转移安排
            华为项目 owner 及培训负责人同场
 
-记录来源   两份独立 ASR 转写交叉校验后重建
+记录来源   三份独立 ASR 转写交叉校验后重建
            A 版 = 06babfe8  有说话人分轨、有时间戳，中文识别较准，英文较弱
            B 版 = 7a9dcc23  无分轨、无时间戳，中文幻觉多，英文连续段识别较准
+           C 版 = 87d671a2  SRT 字幕，无分轨、秒级时间戳，英文识别最准，
+                            葡语段落可读；人名、数字、机构名多以此版为准
 
 --------------------------------------------------------------------------------
 关于说话人标注（务必先读）
 --------------------------------------------------------------------------------
-两份 ASR 的原始说话人标签都不能直接使用：
+三份 ASR 的原始说话人标签都不能直接使用（C 版根本没有标签）：
 
   · A 版按【麦克风通道】分轨，不是按人。同一个标签在同一段落内可能串接
     多个人。例如 A 版"说话人 1"在 07:00–13:00 之间先后是徐唯、王振华、
-    Diana、Sergio、Carol、Marita 等至少六个人；A 版"说话人 6"在
+    Iara、Inara、Sergio、Carol、Leandro、Marisa 等至少七个人；A 版"说话人 6"在
     01:19 是赵祥（中文答配额），在 02:28 是 RNP 的技术负责人（英文质疑平台）。
 
   · B 版完全没有分轨，全文只有一个"说话人1 00:00"。
@@ -63,64 +65,88 @@ RNP × 科大讯飞  技术交流会（Scope 交流）   会 议 逐 字 稿
   华为·培训负责人      讲解 AI 人才培养框架（2900 人计划、绿/蓝预算、LPU 模式）
                       置信度：角色确认，姓名未确认
 
-  另有 3 位华为同事（服务 1 人、AI 培训 1 人〔女〕、PCD 1 人），
-  会上仅由王振华代为介绍，未单独发言。
+  Luis               华为，PCD（王振华介绍 "Luis is from PCD"）；
+                      Leandro 在 01:42 提到"一直与 Luis 和 Lisa 一起梳理华为培训"
+  华为·公关/推广同事  巴西本地员工，会上用葡语自我介绍："Sou da Huawei também,
+                      trabalho na parte de relações públicas, de promoção"（C 版）
+  华为·AI 培训同事〔女〕 王振华介绍 "she is for the AI training"；公关同事以葡语
+                      提到她负责 AI Talent，姓名转写 "Shwea Linza"，未能还原
 
   郑立雪              华为，未到场。此前已就 2900 人培养计划与 RNP 沟通
-                      〔A 版误识为 "Johnny"，B 版误识为 "Zheng li xue"，
-                       用户确认为郑立雪〕
+                      〔A 版误识为 "Johnny"，B 版 "Zheng li xue"，C 版
+                       "Jenny Xue"；用户确认为郑立雪〕
 
 ■ RNP（现场）
 
-  Diana?              副主任，本项目牵头人
-                      置信度：中。A 版记录其自报 "I'm in charge of this project
-                      with this team, I'm the deputy director"，B 版未捕捉到姓名。
+  Iara (Yara)         本项目 RNP 侧牵头人；研发/发展组织的（副）主任
+                      置信度：高。C 版清晰记录其自报 "my name is Yara… I'm in
+                      charge of this project… [Deputy] Director in the …
+                      development organization"。另两处交叉印证：陈昊 54:17
+                      称五月"直接与 Ms. Iara 谈过"权重问题；Leandro 02:05:37
+                      称"Iara 送到部里的参考条款"。即她是 RNP 侧对本项目负责、
+                      并对部委和讯飞双向对接的人。
+                      〔A 版误识为 "Diana"，且把她与下一位 Inara 的自我介绍
+                       合并成了一个人〕
 
-  Inara / Yara?       研发部门负责人
-                      置信度：中。两版均出现，拼写不一（Yara / Inara / andrews
-                      any island）。Carol 自述"与 Leandro 和 Inara 同在研发部"；
-                      另有人提到"Yara 送到部里的参考条款"。可能为同一人。
+  Inara?              副主任；本次会议 RNP 侧召集人（"we have invited people
+                      from several departments here"）
+                      置信度：中。C 版转写 "I'm Nia Devosik Ayare. I am her
+                      deputy director"，"her" 指 Iara；Carol 自述"与 Leandro 和
+                      Yara/Inara 同在研发部"。姓名拼写待核。
 
-  Leandro             研发部门。仅被他人提及，未单独发言。
+  RNP·研发顾问        "I work with [Inara]. I'm an advisor in R&D."  姓名未记录
 
   Sergio              架构负责人（head of architecture），
                       负责对外部客户交付解决方案
-                      置信度：确认（自报）
+                      置信度：确认（三版一致）
 
-  Carol               培训与开发服务总监（director of training development services）
-                      置信度：确认（自报）
+  Alberto             云架构师 / DevOps 工程师
+                      置信度：确认（C 版 "I'm Alberto. I'm a cloud architect and
+                      DevOps engineer here"；A 版漏，B 版误识为 "I'm a bester"）
+
+  Carol               研发部门（"I work here with Leandro and Yara, the R&D
+                      department"）
+                      置信度：确认（三版一致）
+                      〔A 版把她与紧接其后的 Leandro 合并成一人，误将"培训与
+                       开发服务总监"的头衔安在她名下〕
+
+  Leandro Guimarães   培训、开发与服务副主任
+                      （Deputy Director of Training, Development and Services）
+                      置信度：确认（C 版 "I'm Leandro Guimarães, responsible and
+                      deputy director of Training, development, and servicing
+                      RNP. We've been talking with Lisa…"）
+                      ★ 全场培训口的所有发言——人员画像连续性、华为培训衔接、
+                      绿蓝预算归属、混合式培训、课程内容转入 ESR——均为他所提。
+                      本稿初版误标为 Carol，已全部改正。
 
   Bernardo            开发工程师
-                      置信度：确认（A 版自报 "I am the developer"；
-                      B 版另记有一位"cloud architect and developer engineer"，
-                      可能为同一人）
+                      置信度：确认（自报 "I am a developer"）
 
-  Filippo             IT 部门，负责数据与 AI 项目团队
-                      置信度：确认（自报 "I'm from the IT department in RNP,
-                      responsible for a team that develops projects with data and AI"）
+  Filipe              IT 部门，负责数据与 AI 项目团队
+                      置信度：确认（自报；A 版拼作 "Filippo"）
 
-  Rafael              创新业务
+  Rafael              创新业务（"working with innovation at the … directorate"）
                       置信度：确认（自报）
 
 ■ RNP（远程接入）
 
-  Marcelo             数字服务副主任（Deputy Director of Digital Service）
-                      置信度：确认。另由 Carol 在 01:42 回指"connecting with
-                      Marcelo said"，可反向确认其发言归属。
+  Marcelo             数字服务副主任（Deputy Director of Digital Services）
+                      置信度：确认。另由 Leandro 在 01:42 回指 "connecting with
+                      what Marcelo said"，可反向确认其发言归属。
+                      〔C 版 01:35:13 转写为 "Marcelo Jesus"，是否为其姓氏待核〕
 
-  Marita              数据与 AI 经理，向 Marcelo 汇报
-                      置信度：高。推定链：B 版记录主持人点名 "Role Marita,
-                      please" → 随即出现"没电池/麦克风故障"→ 跳过她先讲
-                      Michelle、Rodrigo → "you try again" → 该人接通并自报
-                      "data and AI manager at RNP and I work with Marcelo"。
-                      A 版在同一时刻（12:51）记下一句葡语 "Podem me escutar
-                      agora"（现在能听见我了吗）。两条合起来指向同一人。
-                      〔A 版把姓名误识为 "Maria Zakharova"〕
+  Marisa Carvalho     数据与 AI 经理，向 Marcelo 汇报；会上被主持人称作
+  （"Marita"）        "Marita / Maritza"
+                      置信度：确认。C 版清晰记录 "I'm Marisa Carvalho, Data and
+                      AI Manager at RNP, and I work with Marcelo"；且主持人两次
+                      点名后即为其发言："Maritza, do you still want to pose your
+                      question?"（36:53）、"Marisa, do you want to?"（50:17）。
+                      〔A 版误识为 "Maria Zakharova"〕
                       她是全场问题最系统的提问者，全部提问均为事先准备。
 
   Enzo                软件架构师，Sergio 团队
-                      置信度：确认（自报；且主持人点名 "we have Enzo,
-                      can you pose your question?" 后即为其发言）
+                      置信度：确认（自报；且主持人点名 "Enzo, can you pose your
+                      question?" 后即为其发言）
 
   Michelle            研发副主任（Deputy Director, Research and Development）
                       置信度：确认（自报）
@@ -137,11 +163,11 @@ RNP 现场至少两位发言人交替完成，本稿按内容特征区分为：
   【RNP·现场·项目】   项目与商务视角：主持节奏、语料规模质疑、验收标准、
                       收尾索要材料、"我们要拿这份材料去 MCTI 请款"、
                       "DLM 应该早启动"
-                      推定为 Diana 或与其同级的项目牵头人
+                      推定为 Iara 或 Inara（项目牵头/召集人）
 
   【RNP·现场·技术】   工程视角：并行训练开源模型、平台抽象层批评
                       （"训人去点按钮不值得学"）、SDK、数据接入
-                      推定为 Filippo 或 Inara
+                      推定为 Filipe、Sergio 或 Alberto（技术口）
 
   两者在部分段落无法可靠切分，此类段落统一标为【RNP·现场】。
 
@@ -263,40 +289,52 @@ training. So I think today we totally have seven guys here to support this
 project.
 〔七人 = 华为 4 + 讯飞 3，B 版 "totally have seven guys here" 与人数吻合〕
 
-[09:20] 【RNP·现场】〈葡语〉
-E junto com aquela... a gente foi ali e fiz outra parte...
+[09:20] 【华为·公关/推广同事】〈葡语〉
+Sou da Huawei também. Trabalho hoje na parte de relações públicas, de promoção.
+E junto com aquela moça ali, [名字未还原], para a parte do AI Talent.
+〔"我也是华为的，做公关推广；和那边那位女同事一起，她负责 AI Talent 部分。"
+ C 版转写；A/B 版均未识别出这段葡语〕
 
-[09:30] 【Diana?·RNP】
-My name is Diana. I'm in charge of this project with this team. I'm the deputy
-director. And we have invited people from several departments here to follow
-this meeting.
-〔B 版未捕捉到姓名，仅有 "I am deputy director. We have invited people from
- several departments here"。姓名建议核实〕
+[09:30] 【Iara·RNP】
+My name is Yara. I'm in charge of this project. I'm [Deputy] Director in the
+development organization.
+〔C 版："Oh, my name is Yara… I'm in charge of this project… Director in the …
+ development organization"。A 版误识为 "Diana" 并与下一位合并〕
 
-[09:58] 【Inara?·RNP】
-Thank you. And me as well. I work with Yara and as advisor in R&D.
+[09:48] 【Iara?·RNP】
+I'm [Inara]. I am her deputy director, and we have invited people from several
+departments here to follow this meeting.
+〔C 版转写 "I'm Nia Devosik Ayare. I am her deputy director"；"her" 指 Iara〕
+
+[09:58] 【RNP·研发顾问】
+Thank you. And me as well. I work with [Inara]. I'm an advisor in R&D.
 
 [09:58] 【Sergio·RNP】
 I'm Sergio. I work with the solutions and services teams, we deploy solutions
 for external customers, and I'm the head of architecture.
 
-[10:24] 【Bernardo?·RNP】
-I'm a cloud architect and developer engineer here.
-〔仅 B 版有此人，A 版漏；可能与下文 Bernardo 为同一人〕
+[10:16] 【Alberto·RNP】
+I'm Alberto. I'm a cloud architect and DevOps engineer here.
+〔C 版；A 版漏，B 版误识为 "I'm a bester"〕
 
 [10:24] 【Carol·RNP】
-My name is Carol. I work here with Leandro and Inara in the R&D department,
-responsible — and up to director of training development services.
+My name is Carol. I work here with Leandro and Yara, the R&D department.
+
+[10:34] 【Leandro·RNP】
+I'm Leandro Guimarães, responsible and Deputy Director of Training, Development
+and Services at RNP. We've been talking with Lisa and —
+〔C 版把 Carol 与 Leandro 清晰分为两人；A 版合并为一人并把 Leandro 的头衔
+ 误记在 Carol 名下〕
 
 [10:24] 【Bernardo·RNP】
 My name is Bernardo. I am the developer.
 
-[10:24] 【Filippo·RNP】
-Hey guys, my name is Filippo. I am from the IT department in RNP. I'm
+[10:24] 【Filipe·RNP】
+Hey guys, my name is Filipe. I am from the IT department in RNP. I'm
 responsible for a team that develops projects with data and AI here in RNP.
 
 [10:24] 【Rafael·RNP】
-I'm Rafael, working with innovation at RNP.
+I'm Rafael, working with innovation at the [ERA?] directorate.
 
 [10:24] 【RNP·现场·项目】
 And people from the remote side — can you present yourself?
@@ -312,9 +350,10 @@ Welcome, everyone. Next one, Enzo, let's go.
 Hi, folks. My name is Enzo. I work with Sergio as a software architect.
 
 [10:24] 【RNP·现场·项目】
-Marita, please.
-〔此处 Marita 麦克风/电池故障，B 版记有 "No battery 应该出问题"，
- 主持人跳过她先请 Michelle 和 Rodrigo〕
+Marita, please. — We can hear you? — No battery. — Bluetooth… not yet. So let's
+skip. Michelle.
+〔C 版完整记录了这一段：Marisa（昵称 Marita）耳机没电，主持人跳过她先请
+ Michelle 和 Rodrigo〕
 
 [12:11] 【Michelle·RNP·远程】
 Michelle, sorry. Hi, Michelle from RNP, Deputy Director, Research and
@@ -324,17 +363,16 @@ Development team too.
 Hi, Rodrigo, purchasing department, RNP.
 
 [12:11] 【RNP·现场·项目】
-Welcome. And then — might you try again?
+Welcome. And Maritza, can you try again?
 
-[12:51] 【Marita·RNP·远程】〈葡语〉
+[12:51] 【Marisa Carvalho·RNP·远程】〈葡语〉
 Podem me escutar agora?
 〔"现在能听见我了吗" —— 麦克风恢复测试〕
 
-[12:59] 【Marita·RNP·远程】
-Yes, hello everyone. Welcome to Brazil. My name is Marita — Data and AI Manager
-at RNP, and I work with Marcelo.
-〔A 版把姓名误识为 "Maria Zakharova"；B 版为 "I might use a combat…"。
- 姓名建议核实，但"数据与 AI 经理、向 Marcelo 汇报"两版一致〕
+[12:59] 【Marisa Carvalho·RNP·远程】
+Yes. Well, hello everyone. Welcome to Brazil. I'm Marisa Carvalho, Data and AI
+Manager at RNP, and I work with Marcelo.
+〔C 版清晰；A 版误识为 "Maria Zakharova"，B 版为 "I might use a combat…"〕
 
 [12:59] 【RNP·现场·项目】
 Yes, this is our team. Is there anyone from iFLYTEK or Huawei who is remote?
@@ -719,9 +757,9 @@ data, because only you have possession of this data.
 I think these three datasets — is it clear for you?
 
 [36:46] 【RNP·现场·项目】
-Yeah. We have a question online. Okay, you still want to pose your question?
+Yeah. We have a question online. Maritza, do you still want to pose your question?
 
-[37:04] 【Marita·RNP·远程】
+[37:04] 【Marisa Carvalho·RNP·远程】
 I would like to make sure about the 50 billion. I understand that we have 50
 billion tokens to train the model. But I don't understand if we will have
 continual pre-training and start with, for example, Spark X 2.0 — and we are
@@ -752,12 +790,12 @@ concern?
 I think the dataset can be shared — but the dataset, and as well the methodology
 to do this CPT with another model: are you going to transfer this?
 
-[40:11] 【Marita·RNP·远程】
+[40:11] 【Marisa Carvalho·RNP·远程】
 My concern is not to prescribe the training strategy, because I know that. It's
 to make sure that whatever strategy we choose can be translated into verifiable
 requirements for performance, ownership of the model assets —
 
-[40:35] 【Marita·RNP·远程】
+[40:35] 【Marisa Carvalho·RNP·远程】
 — knowledge transfer and technology autonomy. That's my concern.
 
 [40:35] 【陈昊·讯飞】
@@ -829,8 +867,9 @@ other companies. We can check together. We know them.
 
 [44:33] 【RNP·现场·项目】
 Yeah, we talked to them in February — which is... Buran AI and Maritaca AI.
-〔两版转写：A "so Buran a I I and Maratika a I"；B "boron ai and marathi car ai"。
- "Maritaca AI" 高度确定；另一家名称未能还原，需核实〕
+〔三版转写：A "so Buran a I I and Maratika a I"；B "boron ai and marathi car ai"；
+ C "Boran AI and Marathi K AI"。"Maritaca AI" 高度确定；另一家三版均作
+ "Buran / boron / Boran AI"，未能还原为已知公司名，需核实〕
 
 [44:33] 【徐唯·讯飞】
 Yes, we know these companies. Just check with us. Because we don't need to
@@ -864,15 +903,16 @@ data collection and data preparation work. We need some computing power.
 We have this requirement, because before the computing power is finished, we
 need maybe 16 cards, maybe 32 cards, to build our corpus center, to create those
 50 billion tokens.
-〔★ A 版："we need some maybe 16 card, maybe such a 2 card"
-   B 版："we need some maybe16card，maybe such a two card"
-   两版转写完全一致地含混。最可能是"16 张，或者说 32 张"，但无法确定。
-   量级（十几到几十张）可用，具体张数必须向徐唯核实后再对外引用〕
+〔★ A/B 两版均转写为含混的 "16 card, maybe such a 2 card"；
+   C 版清晰："we need some maybe 16 cards, maybe 32 cards"。
+   数字确定为 16 或 32 张昇腾 NPU〕
 
 [46:56] 【徐唯·讯飞】
 We think we cannot stop, we cannot wait. We need to do something in parallel.
-So later we can find some computing power — maybe, as you said, from some other
-companies who have some. Or we can work with Huawei. Maybe three or four months
+So later we can find some computing power — maybe, as you said, from [Serpro?],
+or some other companies who have some. Or we can work with Huawei.
+〔C 版此处转写 "maybe from like you said, Sefaro" —— 疑为 RNP 先前提到的
+ Serpro（巴西联邦数据处理局）。待核〕 Maybe three or four months
 together; we can discuss with Huawei. Because Huawei is already selling some
 other computing power in Brazil at the same time, so we can reuse that. And in
 maybe 2027 — because your data center will be under construction in 2027 — in
@@ -924,9 +964,9 @@ low efficiency.
 〔"三件事并行"是这一段的核心结论〕
 
 [49:40] 【RNP·现场·项目】
-Okay, we have to raise hands. Yeah.
+Okay, we have two raised hands. Marisa, do you want to?
 
-[50:28] 【Marita·RNP·远程】
+[50:28] 【Marisa Carvalho·RNP·远程】
 I have two doubts on these slides.
 
 The first is: will the complete corpus used to enhance the base model in China be
@@ -941,7 +981,7 @@ All the methodology and also the process, and also together with the knowledge
 transfer. That's the first step in China. Yes, this public dataset we collected —
 yes, I will hand it over.
 
-[51:19] 【Marita·RNP·远程】
+[51:19] 【Marisa Carvalho·RNP·远程】
 The second doubt is: when this slide shows "keep supplying data to iFLYTEK's
 site" — when this slide says that every day we will keep supplying data to
 iFLYTEK's site — could you clarify where the Brazilian corpus will physically be
@@ -997,11 +1037,15 @@ original Spark model?
 
 [54:17] 【陈昊·讯飞】
 Actually this has already been clarified in May. I think I talked directly to
-Miss — with RNP.
+Ms. Iara.
+〔C 版 "Ms. Iera"；即 RNP 项目牵头人 Iara〕
 
 [54:32] 【陈昊·讯飞】
-Because at that time the customer side asked us that we need to hand over the
+Because at that time the Casa Civil asked us that we need to hand over the
 weights. And after we discussed, we got the approval of our headquarters that
+〔★ C 版清晰记录 "the Casa Civil"（巴西总统府民事办公室）；A 版 "the customer
+ view"、B 版 "the cousins review" 均为误识。即五月要求交付权重的是总统府
+ 层面，不只是 RNP〕
 the Spark large language model used in this project, including the 300 billion
 large version, will be opened to Brazil. Even if it is not open to the public, it
 will be opened to you, to your team.
@@ -1029,7 +1073,7 @@ the contract: which entities or institutes you want to share the open weights
 with can be discussed at that time.
 〔★ 唯一一条明确红线〕
 
-[56:10] 【Inara?·RNP】
+[56:10] 【Iara?·RNP】
 But is it open for us to create our Brazilian model on top of other open models,
 like —
 
@@ -1171,17 +1215,29 @@ You will get three domains. I wonder if these three domains are confirmed —
 Health, Space and Biodiversity — if it is confirmed, or it's only some very
 initial thoughts.
 
-[01:04:22] 【Inara?·RNP】
-I don't have these results. No. It's not my decision. I have some governance of
-this project, so I had to ask him. I don't know if that's a problem.
+[01:04:13] 【Iara?·RNP】
+It's just an example, right? Because the Casa Civil wants to define this
+vertical. I don't have the results. No — it's not my decision. I have some
+governance of this project, so I had to ask. I don't know if that's a problem.
+〔★ C 版："because the civil house wants to define this vertical"。三个领域
+ 由总统府民事办公室（Casa Civil）决定，RNP 只是转达。A/B 版均漏掉此句〕
 
-[01:04:44] 【陈昊·讯飞】
-It's okay. I think the domain can be left open in the contract. But the number —
-yes, the number can be [fixed]. Actually the cost on our side will increase, to
-finish two more large language models, because it was at the same price. But
-after we negotiated — we have agreed with Huawei and I think we will keep the
-total price.
-〔★ 三个领域可以留空，但数量固定为 3；讯飞成本上升，与华为商定总价不变〕
+[01:04:37] 【陈昊·讯飞】
+It's okay. I think the domain can be left open in the contract. But the number of
+domains can be [fixed at three]. Actually the cost on our side will increase, to
+finish two more large language models.
+
+[01:04:53] 【RNP·现场·项目】
+Oh yeah? Because — I thought that was in the same price.
+〔★ C 版清晰："Oh yeah? Because also it's a— I thought that was in the same
+ price." 第一人称 "I thought"，确认此句为 RNP 所说：RNP 认为三个领域本就
+ 应包含在同一报价内。A/B 版把这句并进了陈昊的发言块〕
+
+[01:05:00] 【陈昊·讯飞】
+Yes — but actually we increased our cost. But after we negotiated — we have
+agreed with Huawei, and we will keep the total price.
+〔★ 三个领域可以留空，数量固定为 3；RNP 先主张"同一价格"，陈昊确认总价不变。
+ 华为侧在场但未出声背书〕
 
 [01:05:22] 【徐唯·讯飞】
 But we have some limits, because we cannot train an industrial model. It's not an
@@ -1294,6 +1350,7 @@ same time.
 
 [01:13:12] 【赵祥·讯飞】〈中文·内部〉
 是，around 200 pflops。
+〔C 版此处转写 "around 280 pFLOPS"，A 版 200。首批训练算力 200 或 280，待核〕
 
 [01:13:12] 【徐唯·讯飞】
 It's the first series, but our training will use around more than 200 PFLOPS.
@@ -1445,7 +1502,7 @@ layer that controls this. We will calculate the quota and the usage of every
 [01:21:52] 【RNP·现场·项目】
 Yes — can I? Well, my question is about governance.
 
-[01:22:15] 【Marita·RNP·远程】
+[01:22:15] 【Marisa Carvalho·RNP·远程】
 And I see that governance here in this slide includes content safety, access
 control and logging. Will the platform also support model governance? For
 example, I would like to know if the platform supports model versioning;
@@ -1453,7 +1510,7 @@ traceability of each model produced; each response, prompt and output logging
 according to privacy policies; and evaluation results, incidents, and monitoring
 of model performance over time.
 
-[01:22:59] 【Marita·RNP·远程】
+[01:22:59] 【Marisa Carvalho·RNP·远程】
 Not comparison of the models — but everything that happens when we train, and
 after, when we use. I think about governance not only for content safety or
 access control; it is more than this. When we talk about AI governance, for
@@ -1466,7 +1523,7 @@ Yes. In the whole process, including the data processing, the training, the
 evaluation and also the API usage, we can trace all of it — we have the log. And
 we can also trace where the roots are. I think it's clear.
 
-[01:23:46] 【Marita·RNP·远程】
+[01:23:46] 【Marisa Carvalho·RNP·远程】
 Okay, thanks.
 
 [01:23:46] 【徐唯·讯飞】
@@ -1607,7 +1664,7 @@ training, I think maybe it can follow the same rule, after Huawei's HR talent LP
 mode.
 〔★ 去中国的人数（5–10 人）可以，卡在费用由谁承担〕
 
-[01:32:55] 【Marita·RNP·远程】
+[01:32:55] 【Marisa Carvalho·RNP·远程】
 Sorry, go ahead. I have one question. Considering that the main objective is
 independent operation — how was the balance between 360 hours of shadowing and
 20 hours of guided hands-on defined? Will RNP engineers have additional
@@ -1633,7 +1690,8 @@ to those engineers, not only watching our operations.
 
 [01:35:00] 【RNP·现场·技术】
 It's a shadow for me — it's a shadow for you. Yeah, it's changed. I think it's
-good, this is working. Yes, I have another question. Oh, sorry — Marcelo.
+good, this is working. Yes, there's another question. Oh, sorry — Marcelo.
+〔C 版此处转写 "Marcelo Jesus"，是否为其姓氏待核〕
 
 [01:35:00] 【Marcelo·RNP·远程】
 I would like to know how to organize our projects inside RNP. Because when I look
@@ -1719,9 +1777,10 @@ trains other people. I think that makes more sense, instead of training a lot of
 people who maybe cannot learn things in depth.
 〔★ 核心团队宜小不宜大；1:1 培养约 10 人做 train-the-trainer〕
 
-[01:42:17] 【Carol·RNP】
-A question. I've been working with [colleagues] to describe all the training
-about the Huawei projects, and we stopped at this level of iFLYTEK. So now we
+[01:42:09] 【Leandro·RNP】
+A question. I've been working with Luis and Lisa to describe all the training
+about the Huawei project, and we stopped at this level of iFLYTEK.
+〔C 版 "Luis and Lisa"：Luis 为华为 PCD 同事；Lisa 身份待核〕 So now we
 have more clear what is included in this training. But I think, connecting with
 what Marcelo said, we need to guarantee that the people's profile and skills are
 the same for the whole project. Because I understand that there are some people
@@ -1730,15 +1789,17 @@ that do not work like this. So I have to guarantee that the people that work
 along all these levels pass through all the levels that we decide here in this
 project. Like: first level is Huawei training; after that is the second level,
 iFLYTEK training.
-〔★ 由 Carol 回指 Marcelo，可反向确认 01:35–01:36 的发言人为 Marcelo〕
+〔★ 由 Leandro 回指 Marcelo，可反向确认 01:35–01:36 的发言人为 Marcelo。
+ 本轮及之后所有培训/预算/ESR 发言，C 版印证为 Leandro（培训副主任），
+ 非 Carol〕
 
-[01:42:17] 【Carol·RNP】
+[01:42:17] 【Leandro·RNP】
 Could you go back to that slide of the two rounds?
 
 [01:42:17] 【陈昊·讯飞】
 Yes, two rounds of training.
 
-[01:42:17] 【Carol·RNP】
+[01:42:17] 【Leandro·RNP】
 Yeah. But before that, we got a lot of Huawei training.
 
 [01:43:31] 【陈昊·讯飞】
@@ -1747,7 +1808,7 @@ should first finish the training of Huawei's foundation part, I think. And then
 this is for methodology; this is for engineers.
 〔★ 前置关系当面确认：先华为 AI Developer，后讯飞知识转移〕
 
-[01:43:39] 【Carol·RNP】
+[01:43:39] 【Leandro·RNP】
 Take a picture of all this training, to see the best [path].
 
 [01:43:45] 【陈昊·讯飞】〈中文·内部，转向华为培训负责人〉
@@ -1843,7 +1904,7 @@ Hey guys — training frame. This is for the training part.
 So actually we have two parts for this project. Firstly is AI talent development.
 As we discussed before, Zheng Lixue should already have talked with your guys —
 that's how we will train 2,900 talents for you.
-〔A 版误识为 "Johnny"，B 版误识为 "Zheng li xue"，用户确认为郑立雪〕
+〔A 版误识为 "Johnny"，B 版 "Zheng li xue"，C 版 "Jenny Xue"；用户确认为郑立雪〕
 
 [01:51:47] 【华为·培训负责人】
 This first part is only the Huawei part, Huawei training, not here. And the
@@ -1873,7 +1934,7 @@ You first train by Huawei AI Developer and then go to our iFLYTEK technology
 transfer. That's what we're talking about, that first stage. So this is our
 frame. If you have any questions —
 
-[01:53:40] 【Carol·RNP】
+[01:53:40] 【Leandro·RNP】
 The other part — we discussed the project [training], but there's one part
 missing, right? The operation team training.
 
@@ -1888,7 +1949,7 @@ Infrastructure, O&M, and the electricity, the power generation.
 〔★ 陈昊对本次准备工作的自评。B 版记为"完全是他要一碗酒准备一桶水，
  怎么都不怕"，语义一致〕
 
-[01:54:55] 【Carol·RNP】
+[01:54:55] 【Leandro·RNP】
 And this part — this kind of [training] for the project. So this group, must they
 pass this first phase here and then connect here, or no?
 
@@ -1897,7 +1958,7 @@ Okay, this part is only for the infrastructure. So it's the same people — this
 can be the same. But look here: the Huawei ICT and this — is able to focus on
 handling, can move the data center level 0, level 1. Or even for our computing.
 
-[01:55:43] 【Carol·RNP】
+[01:55:43] 【Leandro·RNP】
 And all of this is also our software. Software engineering. So this part, they
 need to attend the development. So maybe we're talking about 42, 44 people, right?
 
@@ -1914,7 +1975,7 @@ My question — these 12 people.
 [01:56:31] 【RNP·现场·技术】
 Must be the same with —
 
-[01:56:55] 【Carol·RNP】
+[01:56:55] 【Leandro·RNP】
 One thing that is not very clear to me is that you mentioned that the first round
 should be run in China.
 
@@ -1923,7 +1984,7 @@ The second round? No — it could be, not should be; it could be in Brazil also.
 It depends on our plan, the future plan. We can make it that you can [do it]
 online, just the training — make the knowledge transfer also. But it's okay.
 
-[01:57:30] 【Carol·RNP】
+[01:57:30] 【Leandro·RNP】
 But maybe going to China is one choice. And all this training, at least the first
 round, I believe that it must be ready before we start this project — about the
 training phase, the language model and all the stuff. I think we should have
@@ -1940,14 +2001,14 @@ online. But actually, from our experience, we think online is not enough to lear
 a lot of things. So it's better we choose some important guys to attend the
 on-site training. Our teacher can go to Brazil, be on site.
 
-[01:58:49] 【Carol·RNP】
+[01:58:49] 【Leandro·RNP】
 We believe in a hybrid training.
 
 [01:58:52] 【华为·培训负责人】
 So in the LPU we will mention one item: if you want on-site training instead of
 online training, how much you should add for one day.
 
-[01:58:57] 【Carol·RNP】
+[01:58:57] 【Leandro·RNP】
 I'm not sure about the in-class training — what are the [resources] to train all
 these people, you know, the labs. Because if you think about a hybrid training,
 you've got one part that is online, one part that's in class. But this in-class
@@ -1962,14 +2023,14 @@ teaching resource is on cloud, it's very easy. You can define this. Even if your
 guys want, we can have a conversation with the university; we can hold some
 classes in the university.
 
-[01:59:37] 【Carol·RNP】
+[01:59:37] 【Leandro·RNP】
 One thing that we discussed already is that we want to transfer all these
 materials — I believe that also to the ESR.
 〔★ ESR = Escola Superior de Redes，RNP 自有的网络学校。
  A 版转写为 "ESAC" / "the SR"，B 版转写为 "the year" / "ASR"，
  三处误识指向同一个词。RNP 希望课程内容最终落到自己的培训机构〕
 
-[01:59:37] 【Carol·RNP】
+[01:59:37] 【Leandro·RNP】
 No, it's not 44 people, but maybe 12 + 32.
 
 [02:00:50] 【徐唯·讯飞】
@@ -1992,7 +2053,7 @@ similar profile, but majoring in O&M or majoring in AI algorithms.
 Okay. So we continue. Yes, this page is enough. What about the time — it's
 training time.
 
-[02:02:52] 【Carol·RNP】
+[02:02:52] 【Leandro·RNP】
 I don't know if it's already in all this slide, but I'm going back to my
 question. I can see the first one is [the green part] before, and the second one
 is the blue part.
@@ -2011,11 +2072,14 @@ China and have more [training].
 〔华为人才漏斗：2,900 总量 → 约 40% 进阶（2,070 → 1,080）→ 最终约 100 人赴华。
  两版数字一致〕
 
-[02:04:24] 【Carol·RNP】
+[02:04:24] 【Leandro·RNP】
 How many hours in total is it?
 
 [02:04:24] 【华为·培训负责人】
-It's not hours.
+It's not hours — it's days. Sixty days, six to eight hours per day; about two
+months.
+〔C 版补出 A/B 均未记录的时长："Sixty days… Eight hours per day. Two months…
+ Six hours a day"〕
 
 [02:04:45] 【陈昊·讯飞】〈中文·内部〉
 他们回的数据也可以，去我们那研讨。也可以。到时候一起加合并一下，是不是？
@@ -2027,7 +2091,7 @@ It's not hours.
 [02:04:55] 【华为·培训负责人】
 Yeah, so they have to go back to the online learning platform we provided.
 
-[02:05:23] 【Carol·RNP】
+[02:05:23] 【Leandro·RNP】
 What we already discussed: the content will be transferred to the ESR, and the
 labs could be used by Huawei. And the courses are covered by that reference term
 that [Inara/Yara] has sent to the ministry. It's covered by there. So we have some
@@ -2045,7 +2109,7 @@ The green one is included. But the blue one — no. The blue one is the LPU mode
 The blue one is LPU. The green one is the AIDC, it's included in the AIDC project,
 and the blue one is the LPU mode.
 
-[02:06:40] 【Carol·RNP】
+[02:06:40] 【Leandro·RNP】
 Yes, it's different models of charging, let's say. Okay — but in terms of budget,
 what we sent to the ministry: I think you covered all right for AIDC, and you
 also sent the LPU for talent, right?
@@ -2058,7 +2122,7 @@ If it's including the reference term, yes. But anyway, the cost for cloud servic
 for hosting the training platform is ours. We must include this. It's ours, but
 we'll be reimbursed.
 
-[02:07:26] 【Carol·RNP】
+[02:07:26] 【Leandro·RNP】
 But the labs, I think it's the major part of this — we're running from a Huawei
 platform.
 
@@ -2228,7 +2292,7 @@ some tools, maybe some small language models, to adjust to your data and analyse
 your data. We will guarantee that, now that you have prepared your dataset, our
 platform can connect to your dataset.
 
-[02:17:15] 【Inara?·RNP】
+[02:17:15] 【Iara?·RNP】
 Yeah, I know. Anyway, so we can extract from there and bring it to you. Good use
 cases. That is the biodiversity — the Brazilian node. It's an open data
 repository, a Brazilian data repository for biodiversity. So if you just Google
@@ -2244,7 +2308,7 @@ PDF, it's not text.
 [02:18:05] 【陈昊·讯飞】〈中文·内部〉
 就存量的数据集，就是说他们已经构建好的，可以整个导入，是吧？
 
-[02:18:10] 【Inara?·RNP】
+[02:18:10] 【Iara?·RNP】
 If all the semantics — informative, disciplinary — that will be very helpful for
 domain language models. Instead of PDF.
 
@@ -2253,11 +2317,11 @@ Yeah, I know your point. We can support you in importing already-segmented data
 and also some qualified data. We have the function to import a dataset like this,
 some already segmented.
 
-[02:18:46] 【Inara?·RNP】
+[02:18:46] 【Iara?·RNP】
 Let me just open a website. Just Google it. This is a good example — SiBBr. So
 this is GBIF, the global version — Global Biodiversity Information Facility.
 
-[02:19:15] 【Inara?·RNP】
+[02:19:15] 【Iara?·RNP】
 Yes, this is the Global Biodiversity Information System, and this is the Brazilian
 node. So here is very qualified domain data for biodiversity. And this one is
 public. This is an RNP operation — it's the open node of biodiversity. So in your
@@ -2273,7 +2337,7 @@ qualified data, into our system. It's very easy, I think it's straightforward.
 Not a very complex task. We have an R&D team — if the standard function does not
 support it, we can customize it. Technically it is not so difficult.
 
-[02:20:11] 【Inara?·RNP】
+[02:20:11] 【Iara?·RNP】
 Okay, this is for JSON. And tabular, CSV.
 
 [02:20:39] 【徐唯·讯飞】
@@ -2709,45 +2773,53 @@ OK, OK, thank you, thank you very much. Thank you for your time.
 
 
 ================================================================================
-附  录  一 ：待 核 实 清 单
+附  录  一 ：待 核 实 清 单（三版交叉后）
 ================================================================================
-以下各项在两版 ASR 中或存在冲突、或转写含混，对外引用前须向当事人确认。
+C 版（SRT）加入后，初版清单中的多项已解决，此处只保留仍需当事人确认的。
 
- 1. 【临时算力张数】徐唯 46:35 提出的 NPU 数量。
-    A 版 "16 card, maybe such a 2 card" / B 版 "16card, maybe such a two card"。
-    两版一致地含混，最可能是"16 张或 32 张"，但不能确定。
-    量级（十几到几十张）、时长（3–4 个月）、时间（2027 年）三项可用。
-    → 向徐唯核实
+【已由 C 版解决】
+ · 临时算力张数 → "16 cards, maybe 32 cards"，确定
+ · 星火从零训练数据量 → C 版与 A 版一致为 "hundreds of billions"，取此
+ · 远程支持月数 → 60 个月（A、C 一致；B 版 16 为误识）
+ · "Diana" → 实为 Iara（Yara），且与 Inara 是两个人
+ · "Marita" → 全名 Marisa Carvalho，数据与 AI 经理
+ · 培训口发言人 → Leandro Guimarães（培训、开发与服务副主任），非 Carol
+ · 郑立雪 → C 版 "Jenny Xue"，与用户确认一致
+ · 价格一句 "I thought that was in the same price" → 确认为 RNP 所说
 
- 2. 【星火从零训练的数据量】陈昊 38:50。
-    A 版 "hundreds of billions of data" / B 版 "400 of billions"。
-    → 向陈昊或赵祥核实
+【仍需核实】
+ 1. 【另一家巴西 AI 公司名】44:33。三版均转写为 "Buran / boron / Boran AI"，
+    未能对应到已知公司；"Maritaca AI" 确定。→ 向在场者核实
 
- 3. 【另一家巴西 AI 公司名】44:33 RNP 提及的两家公司。
-    "Maritaca AI" 高度确定；另一家 A 版 "Buran AI" / B 版 "boron ai"，未还原。
-    → 向在场者核实
+ 2. 【Serpro?】46:56 徐唯 "maybe from, like you said, [Sefaro]"。疑为 RNP
+    先前提到可借用算力的 Serpro（巴西联邦数据处理局）。→ 向徐唯核实
 
- 4. 【ESR 转移的具体范围】Carol 01:59:37、02:05:23 两次提出"把课程内容转移到
-    ESR，实验室跑在华为平台上"。会上未讨论：转移哪些材料、以什么许可、
-    RNP 能否用这些材料对第三方开班。PPT 与 SOW 中均无对应条款。
+ 3. 【首批训练算力】01:13:12 赵祥答 "around 200" 还是 "280" pFLOPS，
+    A 版 200、C 版 280。→ 向赵祥核实
+
+ 4. 【Inara 姓名拼写】C 版 "Nia Devosik Ayare"，A 版并入 "Diana"。
+    身份（Iara 的副手、本次会议召集人）可信，拼写待核。
+
+ 5. 【Lisa】Leandro 01:42 "working with Luis and Lisa"；Leandro 自我介绍
+    也提到 "talking with Lisa"。Luis 为华为 PCD；Lisa 身份未知，
+    可能是华为培训侧或郑立雪的英文名。→ 向华为侧核实
+
+ 6. 【Marcelo 姓氏】C 版 01:35:13 "Marcelo Jesus"。→ 核实
+
+ 7. 【ESR 转移的具体范围】Leandro 01:59:37、02:05:28 两次提出"课程内容转入
+    ESR，实验室跑在华为平台上"。会上未讨论转移哪些材料、以什么许可、
+    RNP 能否用其对第三方开班。PPT 与 SOW 均无对应条款。
     → 需内部确认口径后再答复 RNP
 
- 5. 【RNP 现场主问人身份】本稿以【RNP·现场·项目】/【RNP·现场·技术】区分，
-    实际应为具名的两人（推定 Diana 与 Filippo 或 Inara）。
-    → 请在场同事直接指认
+ 8. 【RNP 现场主问人】本稿以【RNP·现场·项目】/【RNP·现场·技术】区分。
+    C 版仍无分轨，无法进一步指认。→ 请在场同事直接指认
 
- 6. 【Diana / Inara / Yara 三个姓名】仅 A 版捕捉到，B 版无。是否为同一人、
-    拼写是否正确，均需确认。
+ 9. 【华为培训负责人姓名】角色明确，三版均未出现姓名。
 
- 7. 【Marita 姓名拼写】A 版误识为 "Maria Zakharova"，B 版为主持人点名的
-    "Marita"。身份（数据与 AI 经理、向 Marcelo 汇报）确定，姓名待确认。
-
- 8. 【郝磊】徐唯 02:04:51 中文内部提及，未到场，身份不明。
-
- 9. 【华为培训负责人姓名】角色明确，姓名未在会上出现。
+10. 【郝磊】徐唯 02:04:51 中文内部提及，未到场，身份不明。
 
 
-================================================================================
+=====
 附  录  二 ：本 次 会 上 超 出 PPT 口 径 的 口 头 承 诺
 ================================================================================
 以下五项，会上口头表述比 PPT / SOW 纸面更宽或更具体。RNP 会以会议记录为准，
