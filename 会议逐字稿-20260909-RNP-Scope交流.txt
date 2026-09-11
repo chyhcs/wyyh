@@ -406,7 +406,7 @@ Manager at RNP, and I work with Marcelo.
 [13:12] 【RNP·现场·主持】
 Yes, this is our team. Is there anyone from iFLYTEK or Huawei who is remote?
 
-[12:59] 【陈昊·讯飞】
+[13:16] 【陈昊·讯飞】
 No, we're all here.
 
 
@@ -1755,7 +1755,7 @@ same time. Yeah, I think it's good. This is working.
 Yes — there's another question. Oh, sorry — Marcelo.
 〔C 版此处转写 "Marcelo Jesus"，是否为其姓氏待核〕
 
-[01:35:00] 【Marcelo·RNP·远程】
+[01:35:13] 【Marcelo·RNP·远程】
 I would like to know how to organize our projects inside RNP. Because when I look
 at your slide, I see the display "what this means for RNP". And I think in
 slide 3 you talk about the shadowing and the RNP team shadowing. So in order to
