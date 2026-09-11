@@ -1,6 +1,8 @@
 ================================================================================
 RNP × 科大讯飞  技术交流会（Scope 交流）   会 议 逐 字 稿
 ================================================================================
+版本       v3 · 三版 ASR 校订终稿 · 2026-09-11
+           英文以 C 版（SRT）为基准；中文内部对话以 A 版为基准；B 版作仲裁
 
 会议时间   2026 年 9 月 9 日 18:01 起，历时 2 小时 48 分 34 秒
 会议地点   巴西 里约热内卢 · RNP（现场 + 远程接入）
@@ -192,17 +194,40 @@ We're configuring this microphone.
 [01:48] 【徐唯·讯飞】
 I need to — how to share the screen?
 
+[01:52] 【RNP·现场·主持】
+What is my presenter role? — Já fiz isso.
+〔"我已经设过了"。C 版〕
+
+[02:07] 【RNP·现场·主持】〈葡语〉
+Estão ouvindo agora? … Estão, pessoal remoto, estão ouvindo?
+〔"现在能听到吗？远程的各位，能听到吗？" C 版〕
+
 [02:10] 【徐唯·讯飞】
 Okay, currently my slides are there.
 
+[02:24] 【RNP·现场】〈葡语〉
+Microfone é tudo igual. Hoje até que tá pegando em mim.
+〔"麦克风都一样。今天倒是能收到我的声音。" C 版〕
+
 [02:39] 【徐唯·讯飞】
-You can full screen my slides. OK. Yes, yes.
+You can full screen my slides, okay? Yes, yes. But let me just check if it's all
+right.
 
 [02:44] 【RNP·现场】
 OK, thank you. Hello, can you hear me?
 
-[03:16] 【RNP·现场】
-Okay, so — as you put in your screen.
+[03:10] 【RNP·现场·主持】〈葡语〉
+Hello, estão ouvindo a gente agora aqui na sala, testando?
+
+[03:16] 【RNP·远程】〈葡语〉
+Sim, sim, estamos ouvindo.
+〔"现在能听到会议室这边吗，测试一下？" —— "能，能听到。" C 版〕
+
+[03:19] 【RNP·现场】
+Ok, ok. So I did put it in full screen. — É melhor? — Deixa eu ver.
+
+[03:44] 【RNP·现场】
+All set.
 
 [04:15] 【陈昊·讯飞】〈中文·内部〉
 最后你再展示吧，好吧？我讲完了你再展示，好不好？你有几个展示的？
@@ -219,9 +244,10 @@ Okay, so — as you put in your screen.
 [05:15] 【徐唯·讯飞】
 OK.
 
-[05:35] 【陈昊·讯飞】
-We can start — or do we need an opening? What about Mr Luciano?
-〔陈昊开场先请示华为项目 owner 王振华是否致辞〕
+[05:24] 【陈昊·讯飞】
+Okay, let's start. Thank you very much. I'm here. Um — how to start? How do you
+think that we can start — or do we need an opening? What about Mr Luciano?
+〔C 版补全开场；陈昊先请示华为项目 owner 王振华是否致辞〕
 
 Okay, I think everyone is clear why we're here. First I will introduce our team.
 My name is Chen Hao. I'm the project director of iFLYTEK for this national AI
@@ -252,7 +278,10 @@ things. So this time I just try my best to explain to you what we're doing and
 what we need the RNP team to do with us together, to create this set of AI
 projects. Thank you.
 
-[07:00] 【陈昊·讯飞】
+[07:33] 【RNP·现场】
+Thank you. Very important information.
+
+[07:37] 【陈昊·讯飞】
 Yes. Okay. This is Zhao Xiang, and he comes from our headquarters —
 iFLYTEK headquarters.
 
@@ -326,30 +355,30 @@ and Services at RNP. We've been talking with Lisa and —
 〔C 版把 Carol 与 Leandro 清晰分为两人；A 版合并为一人并把 Leandro 的头衔
  误记在 Carol 名下〕
 
-[10:24] 【Bernardo·RNP】
+[10:44] 【Bernardo·RNP】
 My name is Bernardo. I am the developer.
 
-[10:24] 【Filipe·RNP】
+[10:51] 【Filipe·RNP】
 Hey guys, my name is Filipe. I am from the IT department in RNP. I'm
 responsible for a team that develops projects with data and AI here in RNP.
 
-[10:24] 【Rafael·RNP】
+[11:04] 【Rafael·RNP】
 I'm Rafael, working with innovation at the [ERA?] directorate.
 
-[10:24] 【RNP·现场·项目】
+[11:11] 【RNP·现场·主持】
 And people from the remote side — can you present yourself?
 
-[10:24] 【Marcelo·RNP·远程】
+[11:19] 【Marcelo·RNP·远程】
 Yeah, I can start. Hello, everyone. Welcome to Brazil. My name is Marcelo.
 I'm Deputy Director of Digital Service at RNP.
 
-[10:24] 【RNP·现场·项目】
+[11:27] 【RNP·现场·主持】
 Welcome, everyone. Next one, Enzo, let's go.
 
-[10:24] 【Enzo·RNP·远程】
+[11:30] 【Enzo·RNP·远程】
 Hi, folks. My name is Enzo. I work with Sergio as a software architect.
 
-[10:24] 【RNP·现场·项目】
+[11:44] 【RNP·现场·主持】
 Marita, please. — We can hear you? — No battery. — Bluetooth… not yet. So let's
 skip. Michelle.
 〔C 版完整记录了这一段：Marisa（昵称 Marita）耳机没电，主持人跳过她先请
@@ -362,7 +391,7 @@ Development team too.
 [12:11] 【Rodrigo·RNP·远程】
 Hi, Rodrigo, purchasing department, RNP.
 
-[12:11] 【RNP·现场·项目】
+[12:41] 【RNP·现场·主持】
 Welcome. And Maritza, can you try again?
 
 [12:51] 【Marisa Carvalho·RNP·远程】〈葡语〉
@@ -374,7 +403,7 @@ Yes. Well, hello everyone. Welcome to Brazil. I'm Marisa Carvalho, Data and AI
 Manager at RNP, and I work with Marcelo.
 〔C 版清晰；A 版误识为 "Maria Zakharova"，B 版为 "I might use a combat…"〕
 
-[12:59] 【RNP·现场·项目】
+[13:12] 【RNP·现场·主持】
 Yes, this is our team. Is there anyone from iFLYTEK or Huawei who is remote?
 
 [12:59] 【陈昊·讯飞】
@@ -432,7 +461,11 @@ Okay, you can try if you can share.
 Let me put you as a presenter. Now you're a presenter.
 
 [16:20] 【徐唯·讯飞】
-Okay, let me try to share it. Let me share this one.
+Okay, let me try to share it. And it's now an extra button on the bottom right.
+Let me share this one.
+
+[16:57] 【陈昊·讯飞】〈中文·内部〉
+你看，你看我，你跟我同步啊。OK OK。
 
 [17:04] 【陈昊·讯飞】
 Full screen. Okay.
@@ -726,8 +759,10 @@ Okay, but you can use that one.
 
 I think there will be three different corpora.
 
-The first corpus is the corpus we use for pre-training. This is more than 50
-billion tokens — it is for our pre-training dataset. As he just mentioned, we
+The first corpus is the corpus we use for pre-training. This is — I think several,
+more than 50 billion tokens — it is for our pre-training dataset.
+〔C 版此处夹有一句中文内部插话「不止」（不止这个数），应为徐唯或赵祥提醒
+ 陈昊预训练语料远大于 500 亿；陈昊 38:50 随后改口为 "hundreds of billions"〕 As he just mentioned, we
 will bring this to you and you can use it to train your model, but it is not
 visible to you, because it is our core intellectual property.
 
@@ -788,7 +823,9 @@ concern?
 
 [39:11] 【RNP·现场·技术】
 I think the dataset can be shared — but the dataset, and as well the methodology
-to do this CPT with another model: are you going to transfer this?
+to do this CPT with another model: are you going to transfer this knowledge?
+Because you said that you have some copyrights on that.
+〔C 版补出 "you said that you have some copyrights on that"〕
 
 [40:11] 【Marisa Carvalho·RNP·远程】
 My concern is not to prescribe the training strategy, because I know that. It's
@@ -825,7 +862,13 @@ Another concern is: as you said, you're going to use all the public data in
 Portuguese. What I understand is that in our 50 billion token dataset, we cannot
 use this public data any more, because it will be duplicated with your data. So
 we have to have 50 billion of not-public but other sources of data that we can
-find — for example books and everything. For example you can use Wikipedia as
+find —
+
+[42:36] 【徐唯·讯飞】
+Yes, that's a fact.
+
+[42:39] 【RNP·现场·技术】
+— for example books and everything. For example you're going to use Wikipedia as
 well.
 
 [42:53] 【徐唯·讯飞】
@@ -851,11 +894,17 @@ useful.
 conversando com a gente... 
 〔葡语段落转写残缺，语义不完整。同一意思紧接着用英文重复了一遍，见下条〕
 
-[43:39] 【RNP·现场·项目】
-...with another company. Yes, I know. Doing the same. Yes, the same stuff.
-〔B 版记为："you have some other activities [in] Brazil with another company,
- I know, doing the same stuff." —— RNP 指出讯飞同时在与另一家巴西公司
- 洽谈同类工作〕
+[44:21] 【RNP·现场·项目】
+Because you have some other activities in Brazil — with another company.
+
+[44:29] 【徐唯·讯飞】
+Yes and no.
+
+[44:29] 【RNP·现场·项目】
+Doing the same — the same stuff.
+〔C 版："Because you have some other activities in Brazil with another company.
+ Yes and no. Doing the same, the same stuff." —— RNP 指出讯飞同时在与另一家
+ 巴西公司洽谈同类工作；徐唯答"是也不是"〕
 
 [44:33] 【RNP·现场·项目】
 And then, one idea is perhaps to share knowledge between these people, to not do
@@ -1259,11 +1308,17 @@ biodiversity, maybe one area, for example to analyse the genetics. One area in
 each domain, and this is a specific area.
 
 Within this budget, we're not able to do every capability in every area of health
-and keep a very high performance. One scenario, one domain.
+and keep a very high performance. One area, one domain.
 
-[01:06:17] 【RNP·现场·项目】
-Yes, of course. Great. Because starting with one specific part, and you can
-continue.
+[01:07:01] 【RNP·现场·项目】
+One area, one domain. But if you can transfer knowledge for us —
+
+[01:07:05] 【陈昊·讯飞】
+Yes, of course. Yes, of course.
+
+[01:07:10] 【RNP·现场·项目】
+Because I think that to start with one specific part is healthy, and you can
+continue to increase it. That's the plan.
 
 [01:07:27] 【陈昊·讯飞】
 So this is what we can support.
@@ -1376,7 +1431,10 @@ get both the Portuguese capability and domain language understanding.
 第六节  01:13:30 – 01:28:24   国家 AI 应用；并发与配额；AI 治理提问
 ────────────────────────────────────────────────────────────────────────────────
 
-[01:13:27] 【陈昊·讯飞】
+[01:14:47] 【陈昊·讯飞】〈中文·内部〉
+这个资源应该都讲过了吧？哎，yes。
+
+[01:14:50] 【陈昊·讯飞】
 So I think this is the main idea. And the next part is the National AI
 Application. This includes the national app. And this national app will be open
 for the approved users; the scope of the users should be determined by your side,
@@ -1620,7 +1678,8 @@ And the third part — we will have some tests for those engineers, maybe 20
 engineers; you let them operate by themselves.
 
 [01:29:54] 【陈昊·讯飞】〈中文·内部〉
-等一下，这个是吧？是。不是。
+我等一下。这个是吧？是。嗯。啊，这这这是 the four stages in detail。
+还是那个吧？还是这个。That sounds more clear. No, no need to change.
 
 [01:29:58] 【陈昊·讯飞】
 This is the four stages in detail.
@@ -1688,9 +1747,12 @@ to those engineers, not only watching our operations.
 〔徐唯在此对陈昊的说法做了补充：跟岗阶段也会派任务，不只是观察。
  两位口径存在细微不一致〕
 
-[01:35:00] 【RNP·现场·技术】
-It's a shadow for me — it's a shadow for you. Yeah, it's changed. I think it's
-good, this is working. Yes, there's another question. Oh, sorry — Marcelo.
+[01:34:59] 【RNP·现场·技术】
+It's a shadow for us — it's a shadow for you. Yeah, it's changed. Teaching at the
+same time. Yeah, I think it's good. This is working.
+
+[01:35:10] 【RNP·现场·主持】
+Yes — there's another question. Oh, sorry — Marcelo.
 〔C 版此处转写 "Marcelo Jesus"，是否为其姓氏待核〕
 
 [01:35:00] 【Marcelo·RNP·远程】
@@ -1731,9 +1793,11 @@ six; and also the DLM domain experts, about seven.
 This we will introduce later. And this is the last page. This page just shows you
 all of it — we just suggest it.
 
-[01:38:24] 【徐唯·讯飞】
+[01:38:19] 【徐唯·讯飞】
 That's why I'm just telling you — because this project needs that amount of
-people to organize. Some language experts, some domain experts are not needed for
+people to organize. For sure. So you can ask [Sarah? / Yara?] — because we will
+help you to find some people.
+〔A、C 两版均转写为 "you can ask Sarah"，会上无此人；疑为 Yara（Iara）。待核〕 Some language experts, some domain experts are not needed for
 the long time, not all the long time for this project; maybe only half a year,
 maybe only nine months is enough, for the training, to check whether the data
 corpus is correct or not. So at least I think it's a 30-people team from your
@@ -1853,6 +1917,15 @@ Maybe we can have a break, two to three minutes.
 
 [01:45:21] 【RNP·现场·项目】
 Okay, we have a small break.
+
+[01:45:30] 【RNP·现场】〈葡语·休息中，RNP 内部〉
+Isso aqui é qualitativo. Beleza. Agora a gente vai fazer um qualitativo, a gente
+tem que conectar tudo, porque senão a pessoa vai gerar, não consegue conectar uma
+parte a outra. … Pô, você não faz o WeChat, mano? Não faz o WeChat?
+〔"这是定性的。好，接下来我们做定性〔评估〕，得把所有东西连起来，不然人家
+ 生成了也没法把这部分和那部分连上。……哎，你没有微信吗，兄弟？"
+ C 版独有。前半句疑为 RNP 在讨论自己的评估材料；后半句是双方为传文件
+ 找微信〕
 
 
 ────────────────────────────────────────────────────────────────────────────────
@@ -2030,8 +2103,11 @@ materials — I believe that also to the ESR.
  A 版转写为 "ESAC" / "the SR"，B 版转写为 "the year" / "ASR"，
  三处误识指向同一个词。RNP 希望课程内容最终落到自己的培训机构〕
 
-[01:59:37] 【Leandro·RNP】
-No, it's not 44 people, but maybe 12 + 32.
+[02:00:37] 【RNP·现场·主持】
+So we are back online.
+
+[02:00:42] 【Leandro·RNP】
+Yeah — it's not 44 people, but maybe 12 + 32.
 
 [02:00:50] 【徐唯·讯飞】
 Yeah, sorry — 12 + 20. Actually it depends on your engineers' ability. Your
@@ -2052,6 +2128,12 @@ similar profile, but majoring in O&M or majoring in AI algorithms.
 [02:02:17] 【RNP·现场·项目】
 Okay. So we continue. Yes, this page is enough. What about the time — it's
 training time.
+
+[02:02:35] 【陈昊·讯飞】〈中文·内部〉
+我们的部分还有很长时间。
+
+[02:02:35] 【Leandro·RNP】
+I mean, the first training — for how long will it last?
 
 [02:02:52] 【Leandro·RNP】
 I don't know if it's already in all this slide, but I'm going back to my
@@ -2082,11 +2164,15 @@ months.
  Six hours a day"〕
 
 [02:04:45] 【陈昊·讯飞】〈中文·内部〉
-他们回的数据也可以，去我们那研讨。也可以。到时候一起加合并一下，是不是？
+他们回〔国〕的那批也可以来我们那研讨。也可以。到时候一起加、合并一下，
+是不是？
 
 [02:04:51] 【徐唯·讯飞】〈中文·内部〉
-不不不，不用合并，也不用数。那后面再说。后面再跟郝磊去讲。
-〔提到"郝磊"，未到场〕
+不不不，不用合并，也不用数。那后面再说，后面再跟郝磊去讲。
+有可能你的部署要后面再更好地去讲。对，这样他们就有回国的那个目的了；
+后面的我们就不用单独带〔人去中国〕，我们分开来搞，对吧？
+〔A、C 两版各记一半，此处合并。意思是：华为方案里最终有约 100 人赴华，
+ 讯飞的中国研讨可以搭这趟行程，不必单独组织。提到"郝磊"，未到场〕
 
 [02:04:55] 【华为·培训负责人】
 Yeah, so they have to go back to the online learning platform we provided.
@@ -2165,6 +2251,9 @@ and also the on-site service.
 
 [02:09:51] 【陈昊·讯飞】
 And hand over all of the software and hardware.
+
+[02:09:54] 【陈昊·讯飞】〈中文·内部〉
+这个就国家软件栈，下一个，就是再往下。
 
 And this is the proposal for how to support your national AI software stack.
 Actually in our proposal, our scope of work, we support this in five layers.
@@ -2627,8 +2716,12 @@ In the future we can [expand].
 [02:38:53] 【陈昊·讯飞】〈中文·内部〉
 我们这差不多了，差不多，差不多。
 
-[02:39:04] 【RNP·现场·项目】
-OK, come back to —
+[02:38:51] 【RNP·现场·主持】
+Okay. So — someone online has some questions? … Oh, is there anybody? Any
+question?
+
+[02:39:25] 【RNP·现场】
+They are tired. They are tired. There's somebody in this room —
 
 [02:39:43] 【RNP·现场·项目】
 Okay, we finished. We're done.
@@ -2763,8 +2856,9 @@ to send you some questions, the slides and so on.
 Yeah, if you have further questions, it is welcome from our part to have another
 meeting at any time.
 
-[02:47:43] 【RNP·现场·项目】
-Okay. Yeah, it's much more productive.
+[02:48:03] 【RNP·现场·项目】
+Okay. Especially if you come here — face-to-face meeting. Yeah, it's much more
+productive.
 
 [02:48:09] 【陈昊·讯飞】
 OK, OK, thank you, thank you very much. Thank you for your time.
