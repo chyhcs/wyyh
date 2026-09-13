@@ -1,19 +1,22 @@
 ================================================================================
 RNP × 科大讯飞  技术交流会（Scope 交流）   会 议 逐 字 稿
 ================================================================================
-版本       v3 · 三版 ASR 校订终稿 · 2026-09-11
-           英文以 C 版（SRT）为基准；中文内部对话以 A 版为基准；B 版作仲裁
+版本       v3.1 · 四版 ASR 校订终稿 · 2026-09-13
+           英文以 C 版（SRT）为基准；中文内部对话以 A 版为基准；B 版作仲裁；
+           D 版（逐字型）用于核对插话与重叠发言，据此补入 5 处（见附录一第 12 项）
 
 会议时间   2026 年 9 月 9 日 18:01 起，历时 2 小时 48 分 34 秒
 会议地点   巴西 里约热内卢 · RNP（现场 + 远程接入）
 会议性质   讯飞向 RNP 陈述交付范围（Scope of Work）、双方分工与知识转移安排
            华为项目 owner 及培训负责人同场
 
-记录来源   三份独立 ASR 转写交叉校验后重建
+记录来源   四份独立 ASR 转写交叉校验后重建
            A 版 = 06babfe8  有说话人分轨、有时间戳，中文识别较准，英文较弱
            B 版 = 7a9dcc23  无分轨、无时间戳，中文幻觉多，英文连续段识别较准
            C 版 = 87d671a2  SRT 字幕，无分轨、秒级时间戳，英文识别最准，
                             葡语段落可读；人名、数字、机构名多以此版为准
+           D 版 = fab3dab0  SRT 字幕，逐字型（含语气词、应答词与重叠插话），无分轨，
+                            英文覆盖最全但专有名词与数字错误多于 C 版；无葡语，中文最弱
 
 --------------------------------------------------------------------------------
 关于说话人标注（务必先读）
@@ -135,7 +138,8 @@ RNP × 科大讯飞  技术交流会（Scope 交流）   会 议 逐 字 稿
   Marcelo             数字服务副主任（Deputy Director of Digital Services）
                       置信度：确认。另由 Leandro 在 01:42 回指 "connecting with
                       what Marcelo said"，可反向确认其发言归属。
-                      〔C 版 01:35:13 转写为 "Marcelo Jesus"，是否为其姓氏待核〕
+                      〔C 版 01:35:13 转写为 "Marcelo Jesus"；D 版同处为 "Marcelo.
+                       Yeah, yes"，"Jesus" 系误听，非姓氏〕
 
   Marisa Carvalho     数据与 AI 经理，向 Marcelo 汇报；会上被主持人称作
   （"Marita"）        "Marita / Maritza"
@@ -1283,8 +1287,16 @@ Oh yeah? Because — I thought that was in the same price.
  应包含在同一报价内。A/B 版把这句并进了陈昊的发言块〕
 
 [01:05:00] 【陈昊·讯飞】
-Yes — but actually we increased our cost. But after we negotiated — we have
-agreed with Huawei, and we will keep the total price.
+Yes — but actually we increased our cost. But after we negotiate —
+
+[01:05:05] 【RNP·现场·项目】
+Ah — your cost, not ours.
+〔D 版补入："Ah, your cost, not our."〕
+
+[01:05:08] 【陈昊·讯飞】
+Yes. After we negotiate — we are trying; it's an internal negotiation. We have
+agreed with Huawei, and I think we will keep the total price.
+〔D 版补入 "We are trying. It's an internal negotiation."〕
 〔★ 三个领域可以留空，数量固定为 3；RNP 先主张"同一价格"，陈昊确认总价不变。
  华为侧在场但未出声背书〕
 
@@ -1507,7 +1519,9 @@ have the management system. This is a module that we deliver.
 
 [01:18:53] 【RNP·现场·技术】
 But maybe to check and say how much is going to be used for each one — is that
-possible? I mean, just for building governance, how much is going to be [used]?
+possible? I mean, just for building governance, how much is going to be… How far
+can you go with governance inside?
+〔D 版补入末句 "How far can you go with governance inside?"〕
 
 [01:19:43] 【徐唯·讯飞】〈中文·内部，转问赵祥〉
 可以，我们有是。Yes, I know what you mean。就是我们的租户上限是多少？
@@ -1753,7 +1767,7 @@ same time. Yeah, I think it's good. This is working.
 
 [01:35:10] 【RNP·现场·主持】
 Yes — there's another question. Oh, sorry — Marcelo.
-〔C 版此处转写 "Marcelo Jesus"，是否为其姓氏待核〕
+〔C 版此处转写 "Marcelo Jesus"；D 版为 "Marcelo. Yeah, yes"，非姓氏〕
 
 [01:35:13] 【Marcelo·RNP·远程】
 I would like to know how to organize our projects inside RNP. Because when I look
@@ -2402,8 +2416,10 @@ PDF, it's not text.
 就存量的数据集，就是说他们已经构建好的，可以整个导入，是吧？
 
 [02:18:10] 【Iara?·RNP】
-If all the semantics — informative, disciplinary — that will be very helpful for
-domain language models. Instead of PDF.
+We have the data with metadata. With all the semantics — informative,
+disciplinary — that will be very helpful for domain language models. Instead of
+PDF.
+〔D 版补入 "We have the data with metadata."〕
 
 [02:18:24] 【徐唯·讯飞】
 Yeah, I know your point. We can support you in importing already-segmented data
@@ -2566,7 +2582,8 @@ point of view, it's not right to train people to pilot this platform. It's a ver
 high level abstraction. If you're not able to modify the platform to adjust for
 new open source models and the libraries, everything — it's not worth learning
 how to use this. Any kid can use the file and open the file and everything. It's
-not what kind of training [we need].
+not the kind of training our engineers should do.
+〔D 版："It's not a kind of training our engineers should do."〕
 〔★ 全场对知识转移深度最尖锐的一次质疑〕
 
 [02:28:55] 【RNP·现场·技术】
@@ -2897,12 +2914,15 @@ C 版（SRT）加入后，初版清单中的多项已解决，此处只保留仍
 
  4. 【Inara 姓名拼写】C 版 "Nia Devosik Ayare"，A 版并入 "Diana"。
     身份（Iara 的副手、本次会议召集人）可信，拼写待核。
+    D 版此处转写 "I'm Leandro. I work with Yara. I am her deputy director"，
+    即此人可能名为 Leandro。→ 与第 11 项一并核实
 
  5. 【Lisa】Leandro 01:42 "working with Luis and Lisa"；Leandro 自我介绍
     也提到 "talking with Lisa"。Luis 为华为 PCD；Lisa 身份未知，
     可能是华为培训侧或郑立雪的英文名。→ 向华为侧核实
 
- 6. 【Marcelo 姓氏】C 版 01:35:13 "Marcelo Jesus"。→ 核实
+ 6. 【Marcelo 姓氏】C 版 01:35:13 "Marcelo Jesus"。→ 已核：D 版同处为
+    "Marcelo. Yeah, yes"，"Jesus" 为误听，无姓氏信息。
 
  7. 【ESR 转移的具体范围】Leandro 01:59:37、02:05:28 两次提出"课程内容转入
     ESR，实验室跑在华为平台上"。会上未讨论转移哪些材料、以什么许可、
@@ -2915,6 +2935,14 @@ C 版（SRT）加入后，初版清单中的多项已解决，此处只保留仍
  9. 【华为培训负责人姓名】角色明确，三版均未出现姓名。
 
 10. 【郝磊】徐唯 02:04:51 中文内部提及，未到场，身份不明。
+
+11. 【培训口副主任姓名】C 版自我介绍 "Leandro Guimarães"，D 版同处为
+    "Leonardo de Morais"。本稿所有【Leandro·RNP】标签指的都是这位培训、开发与
+    服务副主任。若第 4 项的召集人确为 Leandro，则此人更可能是 Leonardo。
+    → 按签到表核实
+
+12. 【D 版补入】01:05:05、01:05:08、01:18:53、02:18:10、02:28:08 五处据 D 版
+    逐字转写补入或改写，正文均标注〔D 版补入〕。
 
 
 =====
