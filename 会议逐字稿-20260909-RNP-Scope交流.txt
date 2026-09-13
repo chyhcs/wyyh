@@ -2335,6 +2335,10 @@ Yes, you can batch. Not one by one — you can batch upload and analyse in batch
 [02:15:38] 【赵祥·讯飞】〈中文·内部〉
 选数据集〔可以〕。
 
+[02:15:39] 【RNP·现场·技术】
+Do you have an API to just connect to a data repository?
+〔C 版 02:15:34 补出；A/B 版仅记有徐唯随后的中文转问〕
+
 [02:15:40] 【徐唯·讯飞】〈中文·内部〉
 这个有 API 吗？上传的、上传文件。
 
