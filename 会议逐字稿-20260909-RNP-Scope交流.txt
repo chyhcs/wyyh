@@ -93,8 +93,9 @@ RNP × 科大讯飞  技术交流会（Scope 交流）   会 议 逐 字 稿
                       〔A 版误识为 "Diana"，且把她与下一位 Inara 的自我介绍
                        合并成了一个人〕
 
-  Inara?              副主任；本次会议 RNP 侧召集人（"we have invited people
-                      from several departments here"）
+  Inara?              Iara 的副手（deputy director）；本次会议 RNP 侧召集人
+                      （"we have invited people from several departments here"）。
+                      即全场【RNP·现场·项目】声道的发言人（2026-09-14 陈昊确认）
                       置信度：中。C 版转写 "I'm Nia Devosik Ayare. I am her
                       deputy director"，"her" 指 Iara；Carol 自述"与 Leandro 和
                       Yara/Inara 同在研发部"。姓名拼写待核。
@@ -169,7 +170,10 @@ RNP 现场至少两位发言人交替完成，本稿按内容特征区分为：
   【RNP·现场·项目】   项目与商务视角：主持节奏、语料规模质疑、验收标准、
                       收尾索要材料、"我们要拿这份材料去 MCTI 请款"、
                       "DLM 应该早启动"
-                      推定为 Iara 或 Inara（项目牵头/召集人）
+                      = Iara 的副手（09:48 自报 "her deputy director"，本次会议
+                      RNP 侧召集人）。2026-09-14 陈昊确认：02:40 "我们正在写报
+                      MCTI 的项目文件" 等发言出自此人，非 Iara 本人。D 版记其
+                      自报名为 Leandro（与培训口 Leandro Guimarães 非同一人）
 
   【RNP·现场·技术】   工程视角：并行训练开源模型、平台抽象层批评
                       （"训人去点按钮不值得学"）、SDK、数据接入
