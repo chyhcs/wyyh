@@ -1,7 +1,7 @@
 // 科大讯飞致 RNP：RNP 侧项目团队配置建议（核心团队与岗位画像）—— 中文稿，供翻译为英文发 Iara
 //   视角：科大讯飞向 RNP 提出建议；书面语；只建议岗位、人数、能力要求与协作方式，不涉及 RNP 内部的人事与经费操作
 //   岗位与人数依据总部研发 v0.4（26 个岗位、111 人）；核心 43 / 扩展 68 的划分依据 9/15 内部讨论
-//   node build_rnp_team_proposal_docx.js  ->  RNP侧项目团队配置建议-核心团队与岗位画像-中文稿-20260915.docx
+//   node build_rnp_team_proposal_docx.js  ->  RNP侧项目人员配置参考-核心团队与岗位画像-中文稿-20260915.docx
 const fs = require("fs");
 const { Document, Packer, Paragraph, TextRun, HeadingLevel, AlignmentType, Footer, PageNumber, LevelFormat,
         ShadingType, Table, TableRow, TableCell, WidthType, BorderStyle, VerticalAlign, TabStopType } = require("docx");
@@ -73,10 +73,10 @@ const GROUPS = [
       req: ["熟练使用 Python、SQL 及数据处理工具", "批量清洗、转换、去重和流水线经验", "熟悉数据版本、元数据及来源追溯"],
       col: ["对口科大讯飞数据及平台团队，按分工执行数据处理任务并反馈异常", "接受平台操作指导，维护 RNP 负责的处理流程、配置和版本记录"] },
     { name: "标注员", en: "Annotator", c: 0, e: 20, one: "按规范完成文本标注、安全样本与语音转写",
-      req: ["葡语母语，书面表达规范，细致稳定", "经培训后能按标注规范作业，转写岗位需良好的听写能力"],
+      req: ["葡语母语，书面表达规范，细致稳定", "经培训后能按标注规范作业，转写岗位需良好的听写能力", "可以高校学生或阶段性人员为主，建议保留固定骨干"],
       col: ["使用双方确认的标注规范、样例与工具作业，配合科大讯飞在约定批次、抽样范围和复验轮次内开展质量复核"] },
   ] },
-  { name: "葡语语言专家", intro: "定义巴西葡语的质量、标注与语音标准。建议核心 1 人牵头。", roles: [
+  { name: "葡语语言专家", intro: "定义巴西葡语的质量、标注与语音标准。建议核心 1 人牵头，其余专家可来自高校与研究机构。", roles: [
     { name: "语言专家", en: "Portuguese Language Expert", c: 1, e: 5, one: "制定葡语质量、标注规则、安全标签与语音标准",
       req: ["语言学、计算语言学或语音学背景", "熟悉巴西葡语的地区差异与当代用法", "有语料库或标注项目经验"],
       col: ["对口科大讯飞语言与语音团队：共同走查标注标准与安全标签，确认规则", "评价模型的葡语输出质量"] },
@@ -101,7 +101,7 @@ const GROUPS = [
       req: ["领域数据与知识背景", "能定义评测集与预期输出，读懂评测报告"],
       col: ["对口科大讯飞领域模型顾问：共同定义评测方法与内容边界，参与评测练习"] },
     { name: "领域专家", en: "Domain Expert", c: 0, e: 2, one: "在领域内评价模型输出结果",
-      req: ["领域内资深专业人员", "能判断模型输出的正确性与适用性"],
+      req: ["领域内资深专业人员，可由高校或专业机构的专家兼职参与", "能判断模型输出的正确性与适用性"],
       col: ["参加 RNP 组织的领域评测，出具专业评价意见，配合科大讯飞开展评测结果分析"] },
   ] },
   { name: "模型与测试工程", intro: "在模型训练中心通过技术交流和约定的实操参与国家模型的训练与评测，并承担 RNP 负责的领域模型训练与评测；国家模型训练的合同责任分工不变。工作从项目第二阶段开始，是知识转移的核心受训对象。", roles: [
@@ -152,12 +152,12 @@ const NROLES = GROUPS.reduce((a, g) => a + g.roles.length, 0);
 // =====================================================================================
 // 封面与引言
 // =====================================================================================
-D.push(new Paragraph({ spacing: { after: 100 }, children: [R("RNP 侧项目团队配置建议", { size: 34, bold: true, color: RED })] }));
+D.push(new Paragraph({ spacing: { after: 100 }, children: [R("RNP 侧项目人员配置参考", { size: 34, bold: true, color: RED })] }));
 D.push(new Paragraph({ spacing: { after: 60 }, children: [R("核心团队与岗位画像", { size: 26, bold: true, color: NAVY })] }));
 D.push(new Paragraph({ spacing: { after: 320 }, children: [R("科大讯飞提交 RNP 参考　·　2026 年 9 月 15 日　·　中文稿", { size: 18, color: GRAY })] }));
 
-P("应 Iara 女士 9 月 13 日的请求，科大讯飞就 RNP 侧承接技术转移、并与科大讯飞共同实施本项目所需的团队提出以下建议：需要哪些岗位、各岗位的能力要求、建议人数，以及各岗位与科大讯飞的协作方式。");
-P("本建议依据 9 月 9 日技术交流的内容和当前的工作范围划分测算，供 RNP 参考。科大讯飞愿在 RNP 确定团队方案后共同评审，并据此细化知识转移的安排。", { after: 60 });
+P("科大讯飞根据本项目的工作范围、RNP 侧承接技术转移并共同实施项目的实际需要，并参考以往同类项目的经验，提出 RNP 侧人员配置参考：需要哪些岗位、各岗位的能力要求、建议人数，以及各岗位与科大讯飞的协作方式。");
+P("人数按当前的工作范围划分和各阶段的工作量测算，供 RNP 规划团队时参考。科大讯飞愿在 RNP 确定团队方案后共同评审，并据此细化知识转移的安排。", { after: 60 });
 
 // =====================================================================================
 // 一、团队构成建议
@@ -165,7 +165,7 @@ P("本建议依据 9 月 9 日技术交流的内容和当前的工作范围划�
 H1("一、团队构成建议");
 P(`建议 RNP 侧团队分为两层，合计 ${TOTAL} 人、${GROUPS.length} 个分组、${NROLES} 个岗位。`);
 P(`**核心团队（Equipe núcleo）${CORE} 人。** 贯穿项目全程的长期团队，是知识转移的主要对象，项目结束后继续运行平台、模型与应用。包括三类岗位：对项目成果负责和签署验收的岗位；项目结束后独立运行平台、模型与应用的岗位；承接知识转移并向其他人员传授的技术骨干。`);
-P(`**扩展团队（Equipe complementar）${EXT} 人。** 承担语料生产、领域与语言专业支持、应用本地化开发与运营等阶段性、工作量集中的任务，随相应的工作阶段参与。建议每一类扩展团队岗位对应一个核心团队岗位作为对接负责人，以保证工作的连续性和成果的沉淀。`);
+P(`**扩展团队（Equipe complementar）${EXT} 人。** 承担语料生产、领域与语言专业支持、应用本地化开发与运营等阶段性、工作量集中的任务，随相应的工作阶段参与。建议每一类扩展团队岗位对应一个核心团队岗位作为对接负责人，以保证工作的连续性和成果的沉淀。根据以往项目的经验，扩展团队人员可考虑通过科研项目津贴、阶段性合同以及高校和合作机构的参与来配置：语料标注等工作量大的岗位适合以高校学生和阶段性人员为主；语言专家和领域专家适合由高校和专业机构的专家参与。`);
 P("人数为按工作内容测算的建议配置，同一人可以承担多个岗位的工作，可根据各阶段的实际工作量调整。", { after: 60 });
 
 // =====================================================================================
@@ -223,16 +223,16 @@ GROUPS.forEach((g, gi) => {
 // =====================================================================================
 const bullet = (ref, left, hanging) => ({ reference: ref, levels: [{ level: 0, format: LevelFormat.BULLET, text: "•", alignment: AlignmentType.LEFT, style: { paragraph: { indent: { left, hanging } } } }] });
 const doc = new Document({
-  creator: "iFLYTEK", title: "RNP 侧项目团队配置建议：核心团队与岗位画像",
+  creator: "iFLYTEK", title: "RNP 侧项目人员配置参考：核心团队与岗位画像",
   styles: { default: { document: { run: { font: F, size: 21, color: BLACK } } } },
   numbering: { config: [bullet("cellb", 260, 220)] },
   sections: [{
     properties: { page: { size: { width: 11906, height: 16838 }, margin: { top: 1134, bottom: 1134, left: 1134, right: 1134 } } },
     footers: { default: new Footer({ children: [new Paragraph({ alignment: AlignmentType.CENTER, children: [
-      R("科大讯飞 · RNP 侧项目团队配置建议 · 2026 年 9 月 · 第 ", { size: 16, color: GRAY }),
+      R("科大讯飞 · RNP 侧项目人员配置参考 · 2026 年 9 月 · 第 ", { size: 16, color: GRAY }),
       new TextRun({ children: [PageNumber.CURRENT], font: F, size: 16, color: GRAY }), R(" 页", { size: 16, color: GRAY }) ] })] }) },
     children: D,
   }],
 });
-const OUT = "RNP侧项目团队配置建议-核心团队与岗位画像-中文稿-20260915.docx";
+const OUT = "RNP侧项目人员配置参考-核心团队与岗位画像-中文稿-20260915.docx";
 Packer.toBuffer(doc).then(b => { fs.writeFileSync(OUT, b); console.log("wrote", OUT, b.length, "bytes", "core", CORE, "ext", EXT, "total", TOTAL, "roles", NROLES); });
